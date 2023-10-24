@@ -1,12 +1,10 @@
-import Products from './components/Products/Products';
-import SearchBar from './components/SearchBar/SearchBar';
+import ProductsPage from './pages/Products';
 import ProductContextProvider from './store/product-context';
 
 function App() {
   return (
     <ProductContextProvider>
-      <SearchBar />
-      <Products />
+      <ProductsPage />
     </ProductContextProvider>
   );
 }
