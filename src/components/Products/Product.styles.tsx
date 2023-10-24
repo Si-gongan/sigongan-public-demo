@@ -11,24 +11,23 @@ export const thumbnail = css`
 export const content = css`
   flex-grow: 1;
   position: relative;
-  padding: 8px;
+  padding: 4px 16px;
 `;
 
 export const title = css`
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
 `;
 
 export const priceWrapper = css`
   position: absolute;
   bottom: 8px;
-  left: 8px;
-  padding: 2px 8px;
+  left: 16px;
   border-radius: 12px;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 700;
-  background: #52a08d98;
   border: 1px solid transparent;
-  color: #fff;
+  color: #333;
 `;
