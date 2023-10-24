@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProductResponse } from './types';
+import { ProductsResponseModel } from './types';
 import { ProductModel } from '../../types/product';
 
 export const getProducts = async (query: string): Promise<ProductModel[]> => {
@@ -15,7 +15,7 @@ export const getProducts = async (query: string): Promise<ProductModel[]> => {
     },
   });
 
-  return response.data.products.map((product: ProductResponse) => ({
+  return response.data.products.map((product: ProductsResponseModel) => ({
     id: product.id,
     title: product.name,
     image: product.thumbnail,
