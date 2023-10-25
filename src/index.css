@@ -23,6 +23,11 @@ li {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 body {
   background: #eee;
   margin: 0;

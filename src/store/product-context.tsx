@@ -5,7 +5,6 @@ interface ContextModel {
   products: ProductModel[];
   query: string;
   setUserQuery: (query: string) => void;
-  addProduct: (product: ProductModel) => void;
   setNewProducts: (products: ProductModel[]) => void;
 }
 
@@ -17,9 +16,6 @@ export const ProductContext = React.createContext<ContextModel>({
   products: [],
   query: '',
   setUserQuery: () => {
-    // placeholder function
-  },
-  addProduct: () => {
     // placeholder function
   },
   setNewProducts: () => {
@@ -35,10 +31,6 @@ const ProductContextProvider: React.FC<Children> = (props) => {
     setQuery(query);
   };
 
-  const addProduct = (product: ProductModel) => {
-    setProducts((prevProducts) => prevProducts.concat(product));
-  };
-
   const setNewProducts = (products: ProductModel[]) => {
     setProducts(products);
   };
@@ -47,7 +39,6 @@ const ProductContextProvider: React.FC<Children> = (props) => {
     products,
     query,
     setUserQuery,
-    addProduct,
     setNewProducts,
   };
 

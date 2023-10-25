@@ -1,10 +1,10 @@
-import ProductsPage from './pages/Products';
+import Router from './routes';
 import ProductContextProvider from './store/product-context';
 
 function App() {
   return (
     <ProductContextProvider>
-      <ProductsPage />
+      <Router />
     </ProductContextProvider>
   );
 }

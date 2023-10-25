@@ -18,5 +18,5 @@ export const getReport = async (
 
   const response = await axios.post(`${apiUrl}/report`, updatedParams);
 
-  return response.data.answer;
+  return response.data;
 };

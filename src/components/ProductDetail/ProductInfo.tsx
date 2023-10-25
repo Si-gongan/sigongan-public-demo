@@ -1,0 +1,61 @@
+/** @jsxImportSource @emotion/react */
+import { Link, useLoaderData } from 'react-router-dom';
+import Info from '../UI/Info/Info';
+import { InfoProps } from '../UI/Info/types';
+import BaseContainer from '../UI/Layout/BaseContainer';
+import * as styles from './ProductInfo.styles';
+import { ProductDetailModel } from '../../types/product';
+
+const ProductInfo: React.FC = () => {
+  const product = useLoaderData() as ProductDetailModel;
+  const price = `${product.price.toLocaleString()}원`;
+
+  const infoData: InfoProps['infoData'] = [
+    {
+      title: 'category',
+      description: product.category,
+    },
+    {
+      title: 'ratings',
+      description: product.ratings.toString(),
+    },
+    {
+      title: 'reviews',
+      description: product.reviews.toString(),
+    },
+  ];
+  return (
+    <BaseContainer>
+      <div css={styles.container}>
+        <div css={styles.imgWrapper}>
+          <img css={styles.img} src={product.picture} />
+        </div>
+        <div css={styles.contentContainer}>
+          <div css={styles.mainInfoContainer}>
+            <h2 css={styles.detailTitle}>{product.name}</h2>
+            <div css={styles.detailPrice}>{price}</div>
+          </div>
+          <div css={styles.metaContainer}>
+            <strong css={styles.subTitle}>기타 정보</strong>
+            <Info infoData={infoData} />
+          </div>
+          <div css={styles.actions}>
+            <Link css={styles.button('cancel')} to={'..'}>
+              이전으로
+            </Link>
+            <a
+              css={styles.button('ok')}
+              href={product.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              제품 보러가기
+            </a>
+          </div>
+        </div>
+      </div>
+    </BaseContainer>
+  );
+};
+
+export default ProductInfo;

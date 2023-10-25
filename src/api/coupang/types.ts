@@ -1,3 +1,5 @@
+import { ProductDetailModel } from '../../types/product';
+
 export interface ProductsResponseModel {
   id: number;
   name: string;
@@ -11,11 +13,5 @@ export interface ProductParamsModel {
 }
 
 export interface ProductResponseModel {
-  name: string;
-  thumbnail: string;
-  price: number;
-  url: string;
-  category: string;
-  reviews: number;
-  ratings: number;
+  product: ProductDetailModel;
 }

@@ -5,3 +5,15 @@ export interface ProductModel {
   price: number;
   url: string;
 }
+
+export interface ProductDetailModel {
+  // TODO: 쓸만한 데이터 더 채우기
+  id: number;
+  name: string;
+  picture: string;
+  price: number;
+  url: string;
+  category: string;
+  reviews: number;
+  ratings: number;
+}
