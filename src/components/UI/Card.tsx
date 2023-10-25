@@ -5,12 +5,14 @@ interface Props {
   children: React.ReactNode;
   width?: string;
   height?: string;
+  maxWidth?: string;
 }
 
 const Card: React.FC<Props> = (props) => {
-  const width = props.width || '';
-  const height = props.height || '';
-  return <div css={card(width, height)}>{props.children}</div>;
+  const width = props.width || undefined;
+  const height = props.height || undefined;
+  const maxWidth = props.maxWidth || undefined;
+  return <div css={card(width, height, maxWidth)}>{props.children}</div>;
 };
 
 export default Card;

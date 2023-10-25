@@ -1,7 +1,8 @@
 import { css } from '@emotion/react';
 
 export const productsContainer = css`
-  padding: 16px;
+  padding-top: 32px;
+  margin-bottom: 16px;
 `;
 
 export const ulStyle = css`

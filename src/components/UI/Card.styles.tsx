@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const card = (width: string, height: string) => css`
+export const card = (width?: string, height?: string, maxWidth?: string) => css`
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -8,4 +8,5 @@ export const card = (width: string, height: string) => css`
   background: #fff;
   width: ${width};
   height: ${height};
+  max-width: ${maxWidth};
 `;
