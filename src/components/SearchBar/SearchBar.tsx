@@ -3,7 +3,8 @@ import { FiSearch } from 'react-icons/fi';
 import * as styles from './SearchBar.styles';
 import { useContext, useRef } from 'react';
 import { ProductContext } from '../../store/product-context';
-import { getProducts } from '../../api/coupang/api';
+import coupangApi from '../../api/coupang/api';
+import { ProductsResponseModel } from '../../api/coupang/types';
 
 const SearchBar: React.FC = () => {
   const { setNewProducts } = useContext(ProductContext);
@@ -15,10 +16,20 @@ const SearchBar: React.FC = () => {
     if (enteredText.trim().length === 0) {
       return;
     }
-
-    const newProducts = await getProducts(enteredText);
-    setNewProducts(newProducts);
-    console.log(newProducts);
+    try {
+      const { data } = await coupangApi.getProducts(enteredText);
+      setNewProducts(
+        data.products.map((product: ProductsResponseModel) => ({
+          id: product.id,
+          title: product.name,
+          image: product.thumbnail,
+          price: product.price,
+          url: product.url,
+        }))
+      );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

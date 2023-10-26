@@ -2,24 +2,22 @@
 import { useLoaderData } from 'react-router-dom';
 import * as styles from './Report.styles';
 import { ProductDetailModel } from '../../types/product';
-import { ReportParamsModel, ReportResponseModel } from '../../api/ai/types';
-import { getReport } from '../../api/ai/api';
+import { ReportParamsModel } from '../../api/ai/types';
+import aiApi from '../../api/ai/api';
 import { useState } from 'react';
 import ReportCard from '../UI/Card/ReportCard';
 
 const Report: React.FC = () => {
   const product = useLoaderData() as ProductDetailModel;
-  const [reportResult, setReportResult] =
-    useState<ReportResponseModel['answer']>('');
+  const [reportResult, setReportResult] = useState('');
 
   const createReport = async () => {
     const reportParams: ReportParamsModel = {
       id: product.id.toString(),
     };
     try {
-      const response = await getReport(reportParams);
-      console.log(response.answer);
-      setReportResult(response.answer);
+      const { data } = await aiApi.getReport(reportParams);
+      setReportResult(data.answer);
     } catch (error) {
       console.error(error);
     }
