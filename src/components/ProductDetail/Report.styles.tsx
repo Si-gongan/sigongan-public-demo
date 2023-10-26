@@ -7,7 +7,6 @@ export const reportActions = css`
   flex-wrap: wrap;
   padding-top: 32px;
   margin-bottom: 16px;
-  border-top: 1px solid #ddd;
 `;
 
 export const reportButton = css`
@@ -24,6 +23,10 @@ export const reportButton = css`
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+`;
+
+export const reportContainer = css`
+  padding-top: 16px;
 `;
 
 export const reportContent = css`

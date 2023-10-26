@@ -1,13 +1,13 @@
 import Products from '../components/Products/Products';
 import SearchBar from '../components/SearchBar/SearchBar';
-import BaseContainer from '../components/UI/Layout/BaseContainer';
+import ResponsiveContainer from '../components/UI/Layout/ResponsiveContainer';
 
 const ProductsPage: React.FC = () => {
   return (
-    <BaseContainer>
+    <ResponsiveContainer>
       <SearchBar />
       <Products />
-    </BaseContainer>
+    </ResponsiveContainer>
   );
 };
 
