@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const form = css`
-  /* padding: 16px; */
+  padding-top: 16px;
 `;
 
 export const inputContainer = css`

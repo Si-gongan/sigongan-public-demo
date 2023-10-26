@@ -1,10 +1,16 @@
 import { css } from '@emotion/react';
 
-export const thumbnail = css`
+export const imageWrapper = css`
   width: 100%;
-  object-fit: cover;
+  aspect-ratio: 1/1;
   padding: 8px;
-  border-radius: 12px;
+`;
+
+export const image = css`
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
 `;
 
 export const contentTitle = css`
@@ -24,7 +30,7 @@ export const contentPrice = css`
 export const title = css`
   padding: 0;
   margin: 0;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
 `;
 

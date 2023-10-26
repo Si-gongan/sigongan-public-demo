@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Jost';
+  font-weight: 400;
+  src: url('./Jost-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: 500;
+  src: url('./Jost-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: 600;
+  src: url('./Jost-SemiBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: 700;
+  src: url('./Jost-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: 800;
+  src: url('./Jost-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Jost';
+  font-weight: 900;
+  src: url('./Jost-Black.woff') format('woff');
+}

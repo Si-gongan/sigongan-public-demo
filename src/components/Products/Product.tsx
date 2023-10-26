@@ -17,7 +17,9 @@ const Product: React.FC<PropsType> = (props) => {
   return (
     <ProductCard>
       <Link to={`/detail/${product.id}`}>
-        <img css={styles.thumbnail} src={product.image} alt={truncatedText} />
+        <div css={styles.imageWrapper}>
+          <img css={styles.image} src={product.image} alt={truncatedText} />
+        </div>
         <div css={styles.contentTitle}>
           <h2 css={styles.title}>{truncatedText}</h2>
         </div>
