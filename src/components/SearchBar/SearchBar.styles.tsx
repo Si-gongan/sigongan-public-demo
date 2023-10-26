@@ -11,7 +11,6 @@ export const inputContainer = css`
   background: #fff;
   border: 1px solid transparent;
   border-radius: 32px;
-  font-size: 20px;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
 
   & input {
@@ -24,6 +23,8 @@ export const input = css`
   background: transparent;
   border: 1px solid transparent;
   outline: none;
+  font-size: 18px;
+  font-weight: 600;
 `;
 
 export const searchButton = css`
