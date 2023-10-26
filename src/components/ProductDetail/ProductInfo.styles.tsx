@@ -5,15 +5,23 @@ export const container = css`
   display: flex;
   align-items: flex-start;
   width: 100%;
+
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
 
 export const imgWrapper = css`
   position: relative;
   width: 40%;
   flex-shrink: 0;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    padding: 16px;
+  }
 `;
 
-// TODO: img 크기 정하기
 export const img = css`
   width: 100%;
 `;
@@ -22,6 +30,10 @@ export const contentContainer = css`
   width: 100%;
   flex: 1;
   padding-left: 48px;
+
+  @media screen and (max-width: 767px) {
+    padding-left: 0;
+  }
 `;
 
 export const mainInfoContainer = css`
@@ -37,6 +49,10 @@ export const detailTitle = css`
   font-size: 24px;
   font-weight: 700;
   color: #000000;
+
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+  }
 `;
 
 export const detailPrice = css`

@@ -2,12 +2,13 @@ import axios from 'axios';
 import ProductDetail from '../components/ProductDetail/ProductDetail';
 import { LoaderFunction, json } from 'react-router-dom';
 import { ProductResponseModel } from '../api/coupang/types';
+import ResponsiveContainer from '../components/UI/Layout/ResponsiveContainer';
 
 const DetailPage: React.FC = () => {
   return (
-    <>
+    <ResponsiveContainer>
       <ProductDetail />
-    </>
+    </ResponsiveContainer>
   );
 };
 

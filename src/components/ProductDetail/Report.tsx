@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useLoaderData } from 'react-router-dom';
-import Card from '../UI/Card';
-import BaseContainer from '../UI/Layout/BaseContainer';
 import * as styles from './Report.styles';
 import { ProductDetailModel } from '../../types/product';
 import { ReportParamsModel, ReportResponseModel } from '../../api/ai/types';
 import { getReport } from '../../api/ai/api';
 import { useState } from 'react';
+import ReportCard from '../UI/Card/ReportCard';
 
 const Report: React.FC = () => {
   const product = useLoaderData() as ProductDetailModel;
@@ -34,11 +33,11 @@ const Report: React.FC = () => {
         </button>
         <button css={styles.reportButton}>AI 상담</button>
       </div>
-      <BaseContainer>
-        <Card>
+      <section css={styles.reportContainer}>
+        <ReportCard>
           <div css={styles.reportContent}>{reportResult}</div>
-        </Card>
-      </BaseContainer>
+        </ReportCard>
+      </section>
     </div>
   );
 };
