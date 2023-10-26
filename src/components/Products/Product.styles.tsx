@@ -2,16 +2,23 @@ import { css } from '@emotion/react';
 
 export const thumbnail = css`
   width: 100%;
-  height: 200px;
   object-fit: cover;
   padding: 8px;
-  border-radius: 16px;
+  border-radius: 12px;
 `;
 
-export const content = css`
+export const contentTitle = css`
   flex-grow: 1;
   position: relative;
   padding: 4px 16px;
+  height: 80px;
+  overflow: hidden;
+`;
+
+export const contentPrice = css`
+  position: relative;
+  padding: 4px 16px;
+  height: 40px;
 `;
 
 export const title = css`
@@ -30,4 +37,7 @@ export const priceWrapper = css`
   font-weight: 700;
   border: 1px solid transparent;
   color: #333;
+  @media screen and (max-width: 320px) {
+    font-size: 10px;
+  }
 `;

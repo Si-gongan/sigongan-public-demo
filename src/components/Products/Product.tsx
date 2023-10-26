@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import Card from '../UI/Card';
-import { content, priceWrapper, thumbnail, title } from './Product.styles';
+import * as styles from './Product.styles';
 import { ProductModel } from '../../types/product';
 import { truncateText } from '../../utils';
 import { Link } from 'react-router-dom';
+import ProductCard from '../UI/Card/ProductCard';
 
 interface PropsType {
   product: ProductModel;
@@ -15,17 +15,17 @@ const Product: React.FC<PropsType> = (props) => {
   const truncatedText = `${truncateText(product.title, 60)}`;
 
   return (
-    <li>
+    <ProductCard>
       <Link to={`/detail/${product.id}`}>
-        <Card width="100%" height="320px" maxWidth="200px">
-          <img css={thumbnail} src={product.image} alt={truncatedText} />
-          <div css={content}>
-            <h2 css={title}>{truncatedText}</h2>
-            <span css={priceWrapper}>{price}</span>
-          </div>
-        </Card>
+        <img css={styles.thumbnail} src={product.image} alt={truncatedText} />
+        <div css={styles.contentTitle}>
+          <h2 css={styles.title}>{truncatedText}</h2>
+        </div>
+        <div css={styles.contentPrice}>
+          <div css={styles.priceWrapper}>{price}</div>
+        </div>
       </Link>
-    </li>
+    </ProductCard>
   );
 };
 

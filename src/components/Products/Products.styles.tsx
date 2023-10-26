@@ -3,14 +3,15 @@ import { css } from '@emotion/react';
 export const productsContainer = css`
   padding-top: 32px;
   margin-bottom: 16px;
+  display: flex;
+
+  & main {
+    flex: 1 1;
+  }
 `;
 
 export const ulStyle = css`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  justify-items: center;
-  gap: 16px;
-  padding: 0;
-  margin: 0;
-  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -8px;
 `;
