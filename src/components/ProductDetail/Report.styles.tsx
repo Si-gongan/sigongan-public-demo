@@ -23,6 +23,11 @@ export const reportButton = css`
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
 export const reportContainer = css`

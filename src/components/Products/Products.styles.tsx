@@ -3,11 +3,12 @@ import { css } from '@emotion/react';
 export const productsContainer = css`
   padding-top: 32px;
   margin-bottom: 16px;
-  display: flex;
+  /* display: flex; */
+  display: block;
 
-  & main {
+  /* & main {
     flex: 1 1;
-  }
+  } */
 `;
 
 export const ulStyle = css`
