@@ -28,10 +28,3 @@ export const reportButton = css`
 export const reportContainer = css`
   padding-top: 16px;
 `;
-
-export const reportContent = css`
-  padding: 32px;
-  white-space: pre-line;
-  line-height: 28px;
-  font-weight: 500;
-`;

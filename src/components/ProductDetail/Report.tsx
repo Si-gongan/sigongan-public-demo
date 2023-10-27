@@ -2,38 +2,45 @@
 import { useLoaderData } from 'react-router-dom';
 import * as styles from './Report.styles';
 import { ProductDetailModel } from '../../types/product';
-import { ReportParamsModel } from '../../api/ai/types';
 import aiApi from '../../api/ai/api';
-import { useState } from 'react';
 import ReportCard from '../UI/Card/ReportCard';
+import useAxios from '../../hooks/useAxios';
+import ReportContent from './ReportContent';
+import { ApiSate } from '../../types/api';
 
 const Report: React.FC = () => {
   const product = useLoaderData() as ProductDetailModel;
-  const [reportResult, setReportResult] = useState('');
+  const {
+    response,
+    isLoading,
+    error,
+    sendRequest: createReport,
+  } = useAxios(aiApi.getReport, { id: product.id.toString() });
 
-  const createReport = async () => {
-    const reportParams: ReportParamsModel = {
-      id: product.id.toString(),
-    };
-    try {
-      const { data } = await aiApi.getReport(reportParams);
-      setReportResult(data.answer);
-    } catch (error) {
-      console.error(error);
-    }
+  let state: ApiSate = 'pending';
+  if (isLoading) {
+    state = 'loading';
+  } else if (error) {
+    state = 'error';
+  } else if (response) {
+    state = 'done';
+  }
+
+  const createReportHandler = async () => {
+    createReport();
   };
 
   return (
     <div>
       <div css={styles.reportActions}>
-        <button css={styles.reportButton} onClick={createReport}>
+        <button css={styles.reportButton} onClick={() => createReportHandler()}>
           AI 리포트 생성
         </button>
         <button css={styles.reportButton}>AI 상담</button>
       </div>
       <section css={styles.reportContainer}>
         <ReportCard>
-          <div css={styles.reportContent}>{reportResult}</div>
+          <ReportContent state={state} answer={response?.data.answer} />
         </ReportCard>
       </section>
     </div>
