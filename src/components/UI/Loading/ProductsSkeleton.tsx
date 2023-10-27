@@ -1,0 +1,24 @@
+/** @jsxImportSource @emotion/react */
+import ProductCard from '../Card/ProductCard';
+import * as styles from './ProductsSkeleton.styles';
+
+const ProductsSkeleton: React.FC = () => {
+  return (
+    <ProductCard>
+      <span>
+        <div css={styles.imageWrapper}>
+          <span css={styles.image} />
+        </div>
+        <div css={styles.contentTitle}>
+          <div css={styles.title} />
+          <div css={styles.title} />
+        </div>
+        <div css={styles.contentPrice}>
+          <div css={styles.priceWrapper} />
+        </div>
+      </span>
+    </ProductCard>
+  );
+};
+
+export default ProductsSkeleton;
