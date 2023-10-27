@@ -1,12 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Info from '../UI/Info/Info';
 import { InfoProps } from '../UI/Info/types';
 import * as styles from './ProductInfo.styles';
 import { ProductDetailModel } from '../../types/product';
 
-const ProductInfo: React.FC = () => {
-  const product = useLoaderData() as ProductDetailModel;
+interface Props {
+  product: ProductDetailModel;
+}
+
+const ProductInfo: React.FC<Props> = (props) => {
+  const product = props.product;
   const price = `${product.price.toLocaleString()}원`;
 
   const infoData: InfoProps['infoData'] = [

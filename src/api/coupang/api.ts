@@ -9,7 +9,12 @@ const api = axios.create({
 
 const coupangApi = {
   getProducts: (query: string) => api.get('', { params: { keyword: query } }),
-  getProduct: (id?: string) => api.get(id || ''),
+  getProduct: (id: string) => {
+    if (!id) {
+      throw new Error('invalid id');
+    }
+    return api.get(id);
+  },
 };
 
 export default coupangApi;

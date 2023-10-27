@@ -1,21 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { useLoaderData } from 'react-router-dom';
 import * as styles from './Report.styles';
-import { ProductDetailModel } from '../../types/product';
 import aiApi from '../../api/ai/api';
 import ReportCard from '../UI/Card/ReportCard';
 import useAxios from '../../hooks/useAxios';
 import ReportContent from './ReportContent';
 import { ApiSate } from '../../types/api';
 
-const Report: React.FC = () => {
-  const product = useLoaderData() as ProductDetailModel;
+interface Props {
+  id: string;
+}
+
+const Report: React.FC<Props> = (props) => {
+  const { id } = props;
   const {
     response,
     isLoading,
     error,
     sendRequest: createReport,
-  } = useAxios(aiApi.getReport, { id: product.id.toString() });
+  } = useAxios(aiApi.getReport, { id });
 
   let state: ApiSate = 'pending';
   if (isLoading) {

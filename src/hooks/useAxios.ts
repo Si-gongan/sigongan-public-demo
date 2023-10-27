@@ -12,10 +12,8 @@ const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
     setResponse(undefined);
     setIsLoading(true);
     try {
-      console.log('fetching data...');
       const response = await requestFn(params);
       setResponse(response);
-      console.log('success!');
     } catch (error) {
       setError(error as AxiosError);
     }
@@ -23,7 +21,7 @@ const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
   };
 
   // trigger
-  const sendRequest = () => {
+  const sendRequest = async () => {
     fetchData();
   };
 
