@@ -1,30 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import { FiSearch } from 'react-icons/fi';
 import * as styles from './SearchBar.styles';
-import { useContext, useRef } from 'react';
-import { ProductContext } from '../../store/product-context';
-import { getProducts } from '../../api/coupang/api';
+import { AxiosError } from 'axios';
 
-const SearchBar: React.FC = () => {
-  const { setNewProducts } = useContext(ProductContext);
-  const userInputRef = useRef<HTMLInputElement>(null);
+interface Props {
+  isLoading: boolean;
+  error?: AxiosError;
+  submitHandler: (event: React.FormEvent) => void;
+  setUserInput: (value: string) => void;
+}
 
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-    const enteredText = userInputRef.current?.value || '';
-    if (enteredText.trim().length === 0) {
-      return;
-    }
+const SearchBar: React.FC<Props> = (props) => {
+  const { submitHandler, setUserInput } = props;
+  // TODO: isLoading, error UI 처리
 
-    const newProducts = await getProducts(enteredText);
-    setNewProducts(newProducts);
-    console.log(newProducts);
+  const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInput(event.target.value);
   };
 
   return (
     <form css={styles.form} onSubmit={submitHandler}>
       <div css={styles.inputContainer}>
-        <input css={styles.input} type="text" ref={userInputRef} />
+        <input css={styles.input} type="text" onChange={changeHandler} />
         <button css={styles.searchButton}>
           <FiSearch css={styles.icon} size={16} />
         </button>

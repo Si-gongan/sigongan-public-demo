@@ -8,9 +8,11 @@ export const responsiveCard = css`
   background: #fff;
   width: calc(20% - 16px);
   margin: 8px;
-  transition:
-    box-shadow 0.25s ease-in,
-    transform 0.25s ease-in;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
 
   @media screen and (max-width: 1440px) {
     width: calc(25% - 16px);

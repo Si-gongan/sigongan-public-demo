@@ -23,15 +23,13 @@ export const reportButton = css`
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
 export const reportContainer = css`
   padding-top: 16px;
-`;
-
-export const reportContent = css`
-  padding: 32px;
-  white-space: pre-line;
-  line-height: 28px;
-  font-weight: 500;
 `;

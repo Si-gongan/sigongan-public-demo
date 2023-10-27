@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ProductsPage from '../pages/Products';
-import DetailPage, { loader as detailLoader } from '../pages/Detail';
+import DetailPage from '../pages/Detail';
 
 // TODO: path 정의
 const router = createBrowserRouter([
@@ -11,7 +11,6 @@ const router = createBrowserRouter([
   {
     path: '/detail/:id',
     element: <DetailPage />,
-    loader: detailLoader,
   },
 ]);
 
