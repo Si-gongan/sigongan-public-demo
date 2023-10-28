@@ -3,7 +3,7 @@ import ProductInfo from './ProductInfo';
 import Report from './Report';
 import * as styles from './ProductDetail.styles';
 import useAxios from '../../hooks/useAxios';
-import coupangApi from '../../api/coupang/api';
+import coupangApi from '../../api/axios/coupang/api';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import ProductInfoSkeleton from '../UI/Loading/ProductInfoSkeleton';

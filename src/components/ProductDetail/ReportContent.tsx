@@ -45,7 +45,7 @@ const ReportContent: React.FC<Props> = (props) => {
     case 'done':
       return (
         <div css={styles.reportContent}>
-          <p>{answer}</p>
+          <p css={styles.answer}>{answer}</p>
         </div>
       );
     default:
