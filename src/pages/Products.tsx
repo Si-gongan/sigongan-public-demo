@@ -4,8 +4,8 @@ import SearchBar from '../components/SearchBar/SearchBar';
 import ResponsiveContainer from '../components/UI/Layout/ResponsiveContainer';
 import { ProductContext } from '../store/product-context';
 import useAxios from '../hooks/useAxios';
-import coupangApi from '../api/coupang/api';
-import { ProductsResponseModel } from '../api/coupang/types';
+import coupangApi from '../api/axios/coupang/api';
+import { ProductsResponseModel } from '../api/axios/coupang/types';
 
 const ProductsPage: React.FC = () => {
   const { setNewProducts } = useContext(ProductContext);

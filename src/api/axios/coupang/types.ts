@@ -1,4 +1,4 @@
-import { ProductDetailModel } from '../../types/product';
+import { ProductDetailModel } from '../../../types/product';
 
 export interface ProductsResponseModel {
   id: number;

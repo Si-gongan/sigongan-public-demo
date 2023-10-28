@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './Report.styles';
-import aiApi from '../../api/ai/api';
 import ReportCard from '../UI/Card/ReportCard';
-import useAxios from '../../hooks/useAxios';
 import ReportContent from './ReportContent';
 import { ApiSate } from '../../types/api';
+import { useStream } from '../../hooks/useStream';
+import { useState } from 'react';
 
 interface Props {
   id: string;
@@ -12,24 +12,20 @@ interface Props {
 
 const Report: React.FC<Props> = (props) => {
   const { id } = props;
-  const {
-    response,
-    isLoading,
-    error,
-    sendRequest: createReport,
-  } = useAxios(aiApi.getReport, { id });
+  const [reply, setReply] = useState('');
+  const { isLoading, error, getAnswer } = useStream({ id }, setReply);
 
   let state: ApiSate = 'pending';
   if (isLoading) {
     state = 'loading';
   } else if (error) {
     state = 'error';
-  } else if (response) {
+  } else if (reply) {
     state = 'done';
   }
 
   const createReportHandler = async () => {
-    createReport();
+    getAnswer();
   };
 
   return (
@@ -42,7 +38,7 @@ const Report: React.FC<Props> = (props) => {
       </div>
       <section css={styles.reportContainer}>
         <ReportCard>
-          <ReportContent state={state} answer={response?.data.answer} />
+          <ReportContent state={state} answer={reply} />
         </ReportCard>
       </section>
     </div>
