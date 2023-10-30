@@ -32,6 +32,10 @@ export const title = css`
   margin: 0;
   font-size: 14px;
   font-weight: 500;
+
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const priceWrapper = css`
