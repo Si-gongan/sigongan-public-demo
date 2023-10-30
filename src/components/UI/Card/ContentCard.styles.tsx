@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const reportCard = css`
+export const contentCard = css`
   width: 100%;
   display: flex;
   flex-direction: column;

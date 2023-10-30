@@ -15,6 +15,8 @@ export const imgWrapper = css`
   position: relative;
   width: 40%;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -24,6 +26,9 @@ export const imgWrapper = css`
 
 export const img = css`
   width: 100%;
+  max-height: 432px;
+  object-fit: contain;
+  padding: 32px;
 `;
 
 export const contentContainer = css`
