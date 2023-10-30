@@ -6,6 +6,7 @@ interface ContextModel {
   query: string;
   setUserQuery: (query: string) => void;
   setNewProducts: (products: ProductModel[]) => void;
+  resetProducts: () => void;
 }
 
 interface Children {
@@ -19,6 +20,9 @@ export const ProductContext = React.createContext<ContextModel>({
     // placeholder function
   },
   setNewProducts: () => {
+    // placeholder function
+  },
+  resetProducts: () => {
     // placeholder function
   },
 });
@@ -35,11 +39,16 @@ const ProductContextProvider: React.FC<Children> = (props) => {
     setProducts(products);
   };
 
+  const resetProducts = () => {
+    setProducts([]);
+  };
+
   const contextValue: ContextModel = {
     products,
     query,
     setUserQuery,
     setNewProducts,
+    resetProducts,
   };
 
   return (
