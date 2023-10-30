@@ -55,8 +55,8 @@ const PriceHistory: React.FC<Props> = (props) => {
         data={props.histories}
         margin={{
           top: 16,
-          right: isNarrow ? 0 : 32,
-          left: 0,
+          right: isNarrow ? 8 : 32,
+          left: 8,
           bottom: 8,
         }}
         onMouseEnter={mouseEnterHandler}

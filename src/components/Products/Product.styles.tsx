@@ -30,7 +30,7 @@ export const contentPrice = css`
 export const title = css`
   padding: 0;
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 `;
 
