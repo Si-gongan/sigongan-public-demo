@@ -8,7 +8,7 @@ import coupangApi from '../api/axios/coupang/api';
 import { ProductsResponseModel } from '../api/axios/coupang/types';
 
 const ProductsPage: React.FC = () => {
-  const { setNewProducts } = useContext(ProductContext);
+  const { setNewProducts, resetProducts } = useContext(ProductContext);
   const [userInput, setUserInput] = useState('');
 
   const {
@@ -20,6 +20,7 @@ const ProductsPage: React.FC = () => {
 
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
+    resetProducts();
     await fetchProducts();
   };
 
