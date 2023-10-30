@@ -20,15 +20,15 @@ export const imgWrapper = css`
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    padding: 16px;
+    padding-bottom: 16px;
   }
 `;
 
 export const img = css`
   width: 100%;
-  max-height: 432px;
+  max-height: 448px;
   object-fit: contain;
-  padding: 32px;
+  padding: 0px;
 `;
 
 export const contentContainer = css`
