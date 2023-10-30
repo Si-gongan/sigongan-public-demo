@@ -33,4 +33,4 @@ export interface ProductDetailModel {
   histories: History[];
 }
 
-export type DetailContentType = 'report' | 'priceHistory';
+export type DetailTabType = 'report' | 'priceHistory';

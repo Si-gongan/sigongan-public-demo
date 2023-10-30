@@ -1,17 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import ProductInfo from './ProductInfo';
-import Report from './Report';
+import TabbedContent from './TabbedContent';
 import * as styles from './ProductDetail.styles';
 import useAxios from '../../hooks/useAxios';
 import coupangApi from '../../api/axios/coupang/api';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProductInfoSkeleton from '../UI/Loading/ProductInfoSkeleton';
-import { DetailContentType, HistoryInput } from '../../types/product';
+import { DetailTabType, HistoryInput } from '../../types/product';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
-  const [contentType, setContentType] = useState<DetailContentType>('report');
+  const [tabType, setTabType] = useState<DetailTabType>('report');
   const {
     response,
     isLoading,
@@ -33,11 +33,11 @@ const ProductDetail: React.FC = () => {
   );
 
   const clickReportHandler = () => {
-    setContentType('report');
+    setTabType('report');
   };
 
   const clickPriceHistoryHandler = () => {
-    setContentType('priceHistory');
+    setTabType('priceHistory');
   };
 
   // TODO: 정리하기
@@ -48,11 +48,10 @@ const ProductDetail: React.FC = () => {
       {!isLoading && response?.data.product && (
         <>
           <ProductInfo product={response?.data.product} />
-
-          <Report
+          <TabbedContent
             id={id as string}
             histories={histories}
-            contentType={contentType}
+            tabType={tabType}
             clickReport={clickReportHandler}
             clickPriceHistory={clickPriceHistoryHandler}
           />

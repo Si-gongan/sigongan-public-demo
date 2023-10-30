@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const reportActions = css`
+export const switchers = css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@ export const reportActions = css`
   margin-bottom: 16px;
 `;
 
-export const reportButton = css`
+export const button = css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +30,6 @@ export const reportButton = css`
   }
 `;
 
-export const reportContainer = css`
+export const contentContainer = css`
   padding-top: 16px;
 `;
