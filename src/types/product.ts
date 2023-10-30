@@ -32,3 +32,5 @@ export interface ProductDetailModel {
   ratings: number;
   histories: History[];
 }
+
+export type DetailContentType = 'report' | 'priceHistory';

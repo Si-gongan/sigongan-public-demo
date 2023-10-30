@@ -5,13 +5,19 @@ import ReportContent from './ReportContent';
 import { ApiSate } from '../../types/api';
 import { useStream } from '../../hooks/useStream';
 import { useState } from 'react';
+import PriceHistory from './PriceHistory';
+import { DetailContentType, History } from '../../types/product';
 
 interface Props {
   id: string;
+  histories: History[];
+  contentType: DetailContentType;
+  clickReport: () => void;
+  clickPriceHistory: () => void;
 }
 
 const Report: React.FC<Props> = (props) => {
-  const { id } = props;
+  const { id, histories, contentType, clickReport, clickPriceHistory } = props;
   const [reply, setReply] = useState('');
   const { isLoading, error, getAnswer } = useStream({ id }, setReply);
 
@@ -25,7 +31,12 @@ const Report: React.FC<Props> = (props) => {
   }
 
   const createReportHandler = async () => {
+    clickReport();
     getAnswer();
+  };
+
+  const clickPriceHistoryHandler = () => {
+    clickPriceHistory();
   };
 
   return (
@@ -35,10 +46,18 @@ const Report: React.FC<Props> = (props) => {
           AI 리포트 생성
         </button>
         <button css={styles.reportButton}>AI 상담</button>
+        <button css={styles.reportButton} onClick={clickPriceHistoryHandler}>
+          가격 추적
+        </button>
       </div>
       <section css={styles.reportContainer}>
         <ReportCard>
-          <ReportContent state={state} answer={reply} />
+          {contentType === 'report' && (
+            <ReportContent state={state} answer={reply} />
+          )}
+          {contentType === 'priceHistory' && (
+            <PriceHistory histories={histories} />
+          )}
         </ReportCard>
       </section>
     </div>

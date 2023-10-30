@@ -5,14 +5,13 @@ import * as styles from './ProductDetail.styles';
 import useAxios from '../../hooks/useAxios';
 import coupangApi from '../../api/axios/coupang/api';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ProductInfoSkeleton from '../UI/Loading/ProductInfoSkeleton';
-import PriceHistory from './PriceHistory';
-import { HistoryInput } from '../../types/product';
+import { DetailContentType, HistoryInput } from '../../types/product';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
-
+  const [contentType, setContentType] = useState<DetailContentType>('report');
   const {
     response,
     isLoading,
@@ -33,6 +32,14 @@ const ProductDetail: React.FC = () => {
     })
   );
 
+  const clickReportHandler = () => {
+    setContentType('report');
+  };
+
+  const clickPriceHistoryHandler = () => {
+    setContentType('priceHistory');
+  };
+
   // TODO: 정리하기
   return (
     <div css={styles.container}>
@@ -41,8 +48,14 @@ const ProductDetail: React.FC = () => {
       {!isLoading && response?.data.product && (
         <>
           <ProductInfo product={response?.data.product} />
-          <Report id={id as string} />
-          <PriceHistory histories={histories} />
+
+          <Report
+            id={id as string}
+            histories={histories}
+            contentType={contentType}
+            clickReport={clickReportHandler}
+            clickPriceHistory={clickPriceHistoryHandler}
+          />
         </>
       )}
     </div>
