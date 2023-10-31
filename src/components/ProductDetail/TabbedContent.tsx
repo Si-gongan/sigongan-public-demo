@@ -5,7 +5,7 @@ import AiReport from './AiReport';
 import { ApiSate } from '../../types/api';
 import { useStream } from '../../hooks/useStream';
 import { useState } from 'react';
-import PriceHistory from './PriceHistory';
+import PriceHistory from './PriceHistory/PriceHistory';
 import { DetailTabType, History } from '../../types/product';
 
 interface Props {

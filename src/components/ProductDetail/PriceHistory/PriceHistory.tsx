@@ -1,15 +1,18 @@
 import {
   LineChart,
   Line,
+  ReferenceLine,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { History } from '../../types/product';
-import '../../styles/price-history.css';
+import { History } from '../../../types/product';
+import '../../../styles/price-history.css';
 import { useRef, useState } from 'react';
+import { calculatePriceDiff } from '../../../utils';
+import CustomTooltip from './CustomTooltip';
 
 interface Props {
   histories: History[];
@@ -19,6 +22,7 @@ const PriceHistory: React.FC<Props> = (props) => {
   const [isMouseEnter, setIsMouseEnter] = useState(false);
   const windowWidth = useRef(window.innerWidth); // TODO: 훅 분리
   const isNarrow = windowWidth.current < 767;
+  const histories = calculatePriceDiff(props.histories);
 
   // Mouse Event Handler
   const mouseEnterHandler = () => {
@@ -38,21 +42,11 @@ const PriceHistory: React.FC<Props> = (props) => {
     return `${yTick.toLocaleString()}`;
   };
 
-  const formatTooltip = (value: number) => {
-    return [`${value.toLocaleString()}원`];
-  };
-
-  const formatTooltipLabel = (value: string) => {
-    return `${value.toString().substring(4, 6)}월 ${value
-      .toString()
-      .substring(6, 8)}일 가격 정보`;
-  };
-
   // Recharts
   return (
     <ResponsiveContainer width="100%" height={240}>
       <LineChart
-        data={props.histories}
+        data={histories}
         margin={{
           top: 16,
           right: isNarrow ? 8 : 32,
@@ -81,25 +75,18 @@ const PriceHistory: React.FC<Props> = (props) => {
           tickFormatter={formatYAxis}
           hide={isNarrow}
         />
-        <Tooltip
-          formatter={formatTooltip}
-          labelFormatter={formatTooltipLabel}
-          wrapperStyle={{ fontSize: '12px', textAlign: 'left' }}
-          labelStyle={{
-            fontSize: '12px',
-            marginBottom: '8px',
-            fontWeight: 700,
-            color: '#555',
-          }}
-          contentStyle={{ fontWeight: 700, color: '#5983fc' }}
-          cursor={{ stroke: '#eee', strokeWidth: 1 }}
+        <Tooltip content={CustomTooltip} />
+        <ReferenceLine
+          y={histories[histories.length - 1].price}
+          stroke={isMouseEnter ? '#c4c4c4' : '#e4e4e4'}
+          strokeDasharray="2 2"
         />
         <Line
           dataKey="price"
           type="stepAfter"
-          stroke={isMouseEnter ? '#5983fc' : '#c4c4c4'}
+          stroke={isMouseEnter ? '#a6bbfb' : '#c4c4c4'}
           strokeWidth="1.5"
-          strokeOpacity={isMouseEnter ? 0.5 : 1}
+          // strokeOpacity={isMouseEnter ? 0.5 : 1}
           dot={{
             fill: isMouseEnter ? '#5983fc' : '#c4c4c4',
             stroke: '#fff',
