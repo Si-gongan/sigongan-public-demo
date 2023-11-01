@@ -21,7 +21,7 @@ const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
   };
 
   // trigger
-  const sendRequest = async () => {
+  const sendRequest = () => {
     fetchData();
   };
 

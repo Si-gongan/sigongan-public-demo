@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Products from '../components/Products/Products';
-import SearchBar from '../components/SearchBar/SearchBar';
 import ResponsiveContainer from '../components/UI/Layout/ResponsiveContainer';
 import { ProductContext } from '../store/product-context';
 import useAxios from '../hooks/useAxios';
@@ -8,21 +7,21 @@ import coupangApi from '../api/axios/coupang/api';
 import { ProductsResponseModel } from '../api/axios/coupang/types';
 
 const ProductsPage: React.FC = () => {
-  const { setNewProducts, resetProducts } = useContext(ProductContext);
-  const [userInput, setUserInput] = useState('');
+  const { query, setNewProducts, resetProducts } = useContext(ProductContext);
 
   const {
     response,
     isLoading,
     error,
     sendRequest: fetchProducts,
-  } = useAxios(coupangApi.getProducts, userInput);
+  } = useAxios(coupangApi.getProducts, query);
 
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault();
-    resetProducts();
-    await fetchProducts();
-  };
+  useEffect(() => {
+    if (query.trim().length > 0) {
+      resetProducts();
+      fetchProducts();
+    }
+  }, [query]);
 
   useEffect(() => {
     if (!isLoading && !error && response?.data.products) {
@@ -35,20 +34,17 @@ const ProductsPage: React.FC = () => {
           url: product.url,
         })
       );
+      console.log('newProducts', newProducts);
       setNewProducts(newProducts);
     }
   }, [response?.data.products]);
 
   return (
-    <ResponsiveContainer>
-      <SearchBar
-        isLoading={isLoading}
-        error={error}
-        submitHandler={submitHandler}
-        setUserInput={setUserInput}
-      />
-      <Products isLoading={isLoading} error={error} />
-    </ResponsiveContainer>
+    <>
+      <ResponsiveContainer>
+        <Products isLoading={isLoading} error={error} />
+      </ResponsiveContainer>
+    </>
   );
 };
 
