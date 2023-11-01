@@ -34,7 +34,6 @@ const ProductsPage: React.FC = () => {
           url: product.url,
         })
       );
-      console.log('newProducts', newProducts);
       setNewProducts(newProducts);
     }
   }, [response?.data.products]);

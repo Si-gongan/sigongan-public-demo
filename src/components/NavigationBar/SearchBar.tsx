@@ -6,7 +6,7 @@ import * as styles from './SearchBar.styles';
 
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();
-  const { query, setUserQuery } = useContext(ProductContext);
+  const { setUserQuery } = useContext(ProductContext);
   const [userInput, setUserInput] = useState('');
   // TODO: isLoading, error UI 처리
 
@@ -16,7 +16,6 @@ const SearchBar: React.FC = () => {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(query);
     setUserQuery(userInput);
     navigate('/products');
   };

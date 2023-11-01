@@ -1,8 +1,14 @@
 import { css } from '@emotion/react';
 
-export const header = css`
-  border-bottom: 1px solid #eee;
+export const header = (isUp: boolean, scrollY: number) => css`
+  position: sticky;
+  top: 0;
   height: 88px;
+  background: #fff;
+  z-index: 10;
+  transition: transform 0.2s ease-in-out;
+  transform: ${isUp || scrollY < 56 ? 'translateY(0)' : 'translateY(-100%)'};
+  box-shadow: ${scrollY < 20 ? 'none' : '0 2px 4px 0 rgba(0, 0, 0, 0.1)'};
 `;
 
 export const navbar = css`

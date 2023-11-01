@@ -1,14 +1,9 @@
 import { css } from '@emotion/react';
 
 export const productsContainer = css`
-  padding-top: 32px;
+  padding-top: 16px;
   margin-bottom: 16px;
-  /* display: flex; */
   display: block;
-
-  /* & main {
-    flex: 1 1;
-  } */
 `;
 
 export const ulStyle = css`

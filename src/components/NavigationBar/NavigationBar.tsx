@@ -5,10 +5,14 @@ import { BiSearch, BiSolidUser } from 'react-icons/bi';
 import logo from '../../assets/logo/pickforme-logo.jpg';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
+import useScroll from '../../hooks/useScroll';
 
 const NavigationBar: React.FC = () => {
+  const { scrollDirection } = useScroll();
+  const isUp = scrollDirection === 'up' ? true : false;
+
   return (
-    <header css={styles.header}>
+    <header css={styles.header(isUp, window.scrollY)}>
       <ResponsiveContainer>
         <nav css={styles.navbar}>
           {/* Logo */}
