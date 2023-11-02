@@ -3,6 +3,7 @@ import { HashLoader } from 'react-spinners';
 import { FaCircleInfo, FaRegFaceSurprise } from 'react-icons/fa6';
 import * as styles from './AiReport.styles';
 import { ApiSate } from '../../types/api';
+import { useEffect, useRef } from 'react';
 
 interface Props {
   state: ApiSate;
@@ -11,6 +12,15 @@ interface Props {
 
 const AiReport: React.FC<Props> = (props) => {
   const { state, answer } = props;
+  const answerEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    answerEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [answer]);
 
   switch (state) {
     case 'pending':
@@ -46,6 +56,7 @@ const AiReport: React.FC<Props> = (props) => {
       return (
         <div css={styles.reportContent}>
           <p css={styles.answer}>{answer}</p>
+          <div ref={answerEndRef} />
         </div>
       );
     default:
