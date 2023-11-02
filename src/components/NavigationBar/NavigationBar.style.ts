@@ -36,10 +36,10 @@ export const navLink = css`
   vertical-align: middle;
   font-size: 32px;
   font-weight: 400;
-  color: #666;
+  color: #c4c4c4;
 
   &:hover {
-    color: #424242;
+    color: #9fa7c3;
   }
 `;
 export const navLogo = css`

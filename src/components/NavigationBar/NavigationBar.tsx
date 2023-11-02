@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { NavLink } from 'react-router-dom';
 import * as styles from './NavigationBar.style';
-import { BiSearch, BiSolidUser } from 'react-icons/bi';
+import { BiSolidHeart, BiSolidUser } from 'react-icons/bi';
 import logo from '../../assets/logo/pickforme-logo.jpg';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
@@ -30,7 +30,7 @@ const NavigationBar: React.FC = () => {
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
                 <NavLink to="/test" css={styles.navLink}>
-                  <BiSearch />
+                  <BiSolidHeart />
                 </NavLink>
               </li>
               <li css={styles.navItem}>
