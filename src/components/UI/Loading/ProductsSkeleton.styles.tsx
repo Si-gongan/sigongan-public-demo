@@ -8,7 +8,7 @@ export const imageWrapper = css`
 
 export const image = css`
   ${productStyle.image}
-  background: #eee;
+  background: #f4f4f4;
 `;
 
 export const contentTitle = css`
@@ -25,7 +25,7 @@ export const title = css`
   margin-top: 4px;
   width: 80%;
   height: 20px;
-  background: #eee;
+  background: #f4f4f4;
   border-radius: 4px;
 `;
 
@@ -35,6 +35,6 @@ export const priceWrapper = css`
   left: 16px;
   width: 40%;
   height: 28px;
-  background: #eee;
+  background: #f4f4f4;
   border-radius: 4px;
 `;
