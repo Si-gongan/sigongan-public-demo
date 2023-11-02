@@ -1,48 +1,40 @@
 import { css } from '@emotion/react';
+import * as productStyle from '../../../components/Products/Product.styles';
 
 export const imageWrapper = css`
-  width: 92%;
-  aspect-ratio: 1/1;
-  margin: 4%;
-  background: #eee;
-  border-radius: 4px;
+  ${productStyle.imageWrapper}
+  background: transparent;
 `;
 
 export const image = css`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  ${productStyle.image}
+  background: #eee;
 `;
 
 export const contentTitle = css`
-  flex-grow: 1;
-  position: relative;
-  padding: 4px 16px;
-  height: 80px;
-  overflow: hidden;
+  ${productStyle.contentTitle}
 `;
 
 export const contentPrice = css`
-  position: relative;
-  padding: 4px 16px;
-  height: 40px;
+  ${productStyle.contentPrice}
 `;
 
 export const title = css`
   padding: 0;
-  margin-top: 8px;
+  margin: 0;
+  margin-top: 4px;
   width: 80%;
-  height: 22px;
+  height: 20px;
   background: #eee;
   border-radius: 4px;
 `;
 
 export const priceWrapper = css`
   position: absolute;
-  bottom: 8px;
+  bottom: 12px;
   left: 16px;
-  border-radius: 4px;
-  background: #eee;
-  height: 28px;
   width: 40%;
+  height: 28px;
+  background: #eee;
+  border-radius: 4px;
 `;

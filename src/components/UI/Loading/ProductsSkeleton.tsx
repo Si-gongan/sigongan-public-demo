@@ -4,17 +4,17 @@ import * as styles from './ProductsSkeleton.styles';
 
 const ProductsSkeleton: React.FC = () => {
   return (
-    <ProductCard>
+    <ProductCard isLoading>
       <span>
         <div css={styles.imageWrapper}>
-          <span css={styles.image} />
+          <div css={styles.image} />
         </div>
         <div css={styles.contentTitle}>
           <div css={styles.title} />
           <div css={styles.title} />
         </div>
         <div css={styles.contentPrice}>
-          <div css={styles.priceWrapper} />
+          <div css={styles.priceWrapper}> </div>
         </div>
       </span>
     </ProductCard>

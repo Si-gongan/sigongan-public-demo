@@ -1,48 +1,26 @@
 import { css } from '@emotion/react';
+import * as productInfoStyle from '../../../components/ProductDetail/ProductInfo.styles';
 
 export const container = css`
-  display: flex;
-  align-items: flex-start;
-  width: 100%;
-
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-  }
+  ${productInfoStyle.container}
 `;
 
 export const imgWrapper = css`
-  position: relative;
-  padding: 28px;
-  width: 40%;
-  flex-shrink: 0;
-
-  @media screen and (max-width: 767px) {
-    width: 100%;
-    padding: 16px;
-  }
+  ${productInfoStyle.imgWrapper}
 `;
 
 export const img = css`
-  width: 100%;
+  ${productInfoStyle.img}
   aspect-ratio: 1/1;
   background: #eee;
 `;
 
 export const contentContainer = css`
-  width: 100%;
-  flex: 1;
-  padding-left: 48px;
-
-  @media screen and (max-width: 767px) {
-    padding-left: 0;
-  }
+  ${productInfoStyle.contentContainer}
 `;
 
 export const mainInfoContainer = css`
-  flex-grow: 1;
-  padding-bottom: 16px;
-  border-top: 2px solid #eee;
-  border-bottom: 1px solid #eee;
+  ${productInfoStyle.mainInfoContainer}
 `;
 
 export const detailTitle = css`
@@ -65,8 +43,7 @@ export const metaContainer = css`
 `;
 
 export const subTitle = css`
-  display: block;
-  margin-bottom: 12px;
+  ${productInfoStyle.subTitle}
   background: #eee;
   width: 72px;
   height: 26px;
@@ -80,9 +57,7 @@ export const info = css`
 `;
 
 export const actions = css`
-  display: flex;
-  gap: 8px;
-  padding-top: 16px;
+  ${productInfoStyle.actions}
 `;
 
 export const button = css`

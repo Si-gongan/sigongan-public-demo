@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const responsiveCard = css`
+export const responsiveCard = (isLoading: boolean = false) => css`
   display: flex;
   flex-direction: column;
   border-radius: 8px;
@@ -9,10 +9,12 @@ export const responsiveCard = css`
   width: calc(20% - 16px);
   margin: 8px;
   transition: transform 0.3s ease-in-out;
+  pointer-events: ${isLoading ? 'none' : 'auto'};
 
-  &:hover {
+  ${!isLoading &&
+  `&:hover {
     transform: translateY(-4px);
-  }
+  }`}
 
   @media screen and (max-width: 1440px) {
     width: calc(25% - 16px);
