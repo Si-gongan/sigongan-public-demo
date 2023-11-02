@@ -7,10 +7,11 @@ export const imageWrapper = css`
 `;
 
 export const image = css`
+  display: block;
   width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 4px;
 `;
 
 export const contentTitle = css`
