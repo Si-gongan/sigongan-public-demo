@@ -8,6 +8,7 @@ export const form = css`
 
 export const inputContainer = css`
   display: flex;
+  align-items: center;
   gap: 8px;
   padding: 4px 16px 4px 16px;
   border: 1px solid transparent;
@@ -24,4 +25,18 @@ export const input = css`
   font-size: 18px;
   font-weight: 600;
   width: 100%;
+`;
+
+export const clearButton = (buttonVisible: boolean) => css`
+  display: flex;
+  height: fit-content;
+  background: #e4e4e4;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 100%;
+  padding: 2px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  opacity: ${buttonVisible ? '1' : '0'};
+  pointer-events: ${buttonVisible ? '' : 'none'};
 `;
