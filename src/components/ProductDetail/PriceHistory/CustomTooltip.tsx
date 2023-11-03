@@ -4,7 +4,10 @@ import * as styles from './CustomTooltip.styles';
 
 export type DiffType = 'increment' | 'decrement' | 'same';
 
-const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
+  active,
+  payload,
+}) => {
   if (active && payload && payload.length) {
     const { price, createdAt, diff } = payload[0].payload;
     const title = `
@@ -35,6 +38,8 @@ const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
         </div>
       </div>
     );
+  } else {
+    return null;
   }
 };
 

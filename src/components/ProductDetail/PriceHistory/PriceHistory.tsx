@@ -75,7 +75,7 @@ const PriceHistory: React.FC<Props> = (props) => {
           tickFormatter={formatYAxis}
           hide={isNarrow}
         />
-        <Tooltip content={CustomTooltip} />
+        <Tooltip content={<CustomTooltip />} />
         <ReferenceLine
           y={histories[histories.length - 1].price}
           stroke={isMouseEnter ? '#c4c4c4' : '#e4e4e4'}
@@ -86,7 +86,6 @@ const PriceHistory: React.FC<Props> = (props) => {
           type="stepAfter"
           stroke={isMouseEnter ? '#a6bbfb' : '#c4c4c4'}
           strokeWidth="1.5"
-          // strokeOpacity={isMouseEnter ? 0.5 : 1}
           dot={{
             fill: isMouseEnter ? '#5983fc' : '#c4c4c4',
             stroke: '#fff',
