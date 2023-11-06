@@ -35,8 +35,8 @@ const ProductContextProvider: React.FC<Children> = (props) => {
     setQuery(query);
   };
 
-  const setNewProducts = (products: ProductModel[]) => {
-    setProducts(products);
+  const setNewProducts = (newProducts: ProductModel[]) => {
+    setProducts([...products, ...newProducts]);
   };
 
   const resetProducts = () => {
