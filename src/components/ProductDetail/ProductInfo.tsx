@@ -42,7 +42,7 @@ const ProductInfo: React.FC<Props> = (props) => {
           <Info infoData={infoData} />
         </div>
         <div css={styles.actions}>
-          <Link css={styles.button('cancel')} to={'..'}>
+          <Link css={styles.button('cancel')} to="/products">
             이전으로
           </Link>
           <a
