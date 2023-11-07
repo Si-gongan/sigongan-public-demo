@@ -14,7 +14,6 @@ const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
     try {
       const response = await requestFn(params);
       setResponse(response);
-      console.log(response.data);
     } catch (error) {
       setError(error as AxiosError);
       console.log(error);
