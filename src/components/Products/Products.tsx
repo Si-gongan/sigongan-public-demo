@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../store/product-context';
 import Product from './Product';
 import { productsContainer, ulStyle } from './Products.styles';
-import ProductsSkeleton from '../UI/Loading/ProductsSkeleton';
+// import ProductsSkeleton from '../UI/Loading/ProductsSkeleton';
 import useAxios from '../../hooks/useAxios';
 import coupangApi from '../../api/axios/coupang/api';
 import { ProductsResponseModel } from '../../api/axios/coupang/types';
@@ -71,7 +71,7 @@ const Products: React.FC = () => {
               <Product key={product.id} product={product} />
             ))}
           {/* TODO: UI 개선 */}
-          {isLoading && <ProductsSkeleton />}
+          {/* {isLoading && <ProductsSkeleton />} */}
         </ul>
       </div>
       <LoadMoreButton toNextPage={toNextPage} isLoading={isLoading} />
