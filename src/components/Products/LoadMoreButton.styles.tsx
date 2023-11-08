@@ -30,10 +30,6 @@ export const btn = css`
   &:hover {
     transform: translateY(-2px);
   }
-
-  /* @media screen and (max-width: 767px) {
-    width: 100%;
-  } */
 `;
 
 export const descriptionContainer = css`
@@ -42,11 +38,12 @@ export const descriptionContainer = css`
   align-items: center;
   justify-content: center;
   min-height: 180px;
+  color: #666;
 `;
 
 export const description = css`
+  text-align: center;
   padding-top: 16px;
-  color: #333;
   font-size: 14px;
   font-weight: 500;
 `;

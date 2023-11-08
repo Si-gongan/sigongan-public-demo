@@ -1,32 +1,33 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../store/product-context';
 import Product from './Product';
 import { productsContainer, ulStyle } from './Products.styles';
-// import ProductsSkeleton from '../UI/Loading/ProductsSkeleton';
 import useAxios from '../../hooks/useAxios';
 import coupangApi from '../../api/axios/coupang/api';
 import { ProductsResponseModel } from '../../api/axios/coupang/types';
 import LoadMoreButton from './LoadMoreButton';
 import ScrollToTopButton from './ScrollToTopButton';
-// import { ProductModel } from '../../types/product';
 
 const Products: React.FC = () => {
   const { products, query, page, addPage, setNewProducts } =
     useContext(ProductContext);
-  // const [lastPage, setLastPage] = useState<number>();
-  // const [productCount, setProductCount] = useState<number>();
-
   const {
     response,
     isLoading,
     error,
     sendRequest: fetchProducts,
   } = useAxios(coupangApi.getProducts);
+  const [isLastPage, setIsLastPage] = useState(
+    sessionStorage.getItem('isLastPage') === 'true' ? true : false
+  );
+  const isLoadMoreAllowed = !isLastPage && products.length > 0;
 
   const toNextPage = () => {
-    addPage();
-    fetchProducts({ query, page: page + 1 });
+    if (isLoadMoreAllowed) {
+      addPage();
+      fetchProducts({ query, page: page + 1 });
+    }
   };
 
   useEffect(() => {
@@ -36,10 +37,16 @@ const Products: React.FC = () => {
   }, [query, products.length]);
 
   useEffect(() => {
-    if (!isLoading && !error && response?.data.products) {
-      // setLastPage(response.data.last_page);
-      // setProductCount(response.data.count);
-      const newProducts = response?.data.products.map(
+    const productsData = response?.data.products;
+    if (!isLoading && !error && productsData) {
+      if (page >= response.data.last_page || response.data.count < 15) {
+        setIsLastPage(true);
+        sessionStorage.setItem('isLastPage', 'true');
+      } else {
+        setIsLastPage(false);
+        sessionStorage.setItem('isLastPage', 'false');
+      }
+      const newProducts = productsData.map(
         (product: ProductsResponseModel) => ({
           id: product.id,
           title: product.name,
@@ -50,7 +57,7 @@ const Products: React.FC = () => {
       );
       setNewProducts(newProducts);
     }
-  }, [isLoading]);
+  }, [isLoading, error]);
 
   return (
     <>
@@ -61,16 +68,15 @@ const Products: React.FC = () => {
             products.map((product) => (
               <Product key={product.id} product={product} />
             ))}
-          {/* TODO: UI 개선 */}
+          {/* TODO: 로딩 UI 개선 */}
           {/* {isLoading && <ProductsSkeleton />} */}
         </ul>
-        {query.trim().length > 0 && (
-          <LoadMoreButton
-            // toNextPage={loadMoreHandler}
-            toNextPage={toNextPage}
-            isLoading={isLoading}
-          />
-        )}
+        <LoadMoreButton
+          toNextPage={toNextPage}
+          isLoading={isLoading}
+          showButton={products.length > 0}
+          isLastPage={isLastPage}
+        />
       </div>
       <ScrollToTopButton />
     </>
