@@ -5,10 +5,11 @@ export const container = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 80px;
+  margin-top: 32px;
 
   @media screen and (max-width: 767px) {
-    margin: 32px 0 16px 0;
+    margin: 40px 0 32px 0;
     height: auto;
   }
 `;
@@ -30,9 +31,9 @@ export const btn = css`
     transform: translateY(-2px);
   }
 
-  @media screen and (max-width: 767px) {
+  /* @media screen and (max-width: 767px) {
     width: 100%;
-  }
+  } */
 `;
 
 export const descriptionContainer = css`
