@@ -1,5 +1,10 @@
 import { ProductDetailModel } from '../../../types/product';
 
+export interface ProductsParamsModel {
+  query: string;
+  page: number;
+}
+
 export interface ProductsResponseModel {
   id: number;
   name: string;

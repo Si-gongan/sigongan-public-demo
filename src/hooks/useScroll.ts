@@ -19,10 +19,10 @@ const useScroll = (): ScrollData => {
   const listener = (event: Event) => {
     if (event) {
       setBodyOffset(document.body.getBoundingClientRect());
-      setScrollY(bodyOffset.top);
+      setScrollY(-bodyOffset.top);
       setScrollX(bodyOffset.left);
-      setScrollDirection(lastScrollTop > bodyOffset.top ? 'down' : 'up');
-      setLastScrollTop(bodyOffset.top);
+      setScrollDirection(lastScrollTop > -bodyOffset.top ? 'up' : 'down');
+      setLastScrollTop(-bodyOffset.top);
     }
   };
 
