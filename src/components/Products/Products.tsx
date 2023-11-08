@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { ProductContext } from '../../store/product-context';
 import Product from './Product';
 import { productsContainer, ulStyle } from './Products.styles';
@@ -8,46 +8,37 @@ import useAxios from '../../hooks/useAxios';
 import coupangApi from '../../api/axios/coupang/api';
 import { ProductsResponseModel } from '../../api/axios/coupang/types';
 import LoadMoreButton from './LoadMoreButton';
+import ScrollToTopButton from './ScrollToTopButton';
+// import { ProductModel } from '../../types/product';
 
 const Products: React.FC = () => {
-  const { products, query, setNewProducts } = useContext(ProductContext);
-  const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState<number>();
-  const [productCount, setProductCount] = useState<number>();
+  const { products, query, page, addPage, setNewProducts } =
+    useContext(ProductContext);
+  // const [lastPage, setLastPage] = useState<number>();
+  // const [productCount, setProductCount] = useState<number>();
 
   const {
     response,
     isLoading,
     error,
     sendRequest: fetchProducts,
-  } = useAxios(coupangApi.getProducts, { query, page });
+  } = useAxios(coupangApi.getProducts);
 
   const toNextPage = () => {
-    setPage((prevPage) => {
-      if ((lastPage && prevPage >= lastPage) || productCount === 0) {
-        return prevPage;
-      }
-      return prevPage + 1;
-    });
+    addPage();
+    fetchProducts({ query, page: page + 1 });
   };
 
   useEffect(() => {
     if (query.trim().length > 0 && products.length === 0) {
-      setPage(1);
-      fetchProducts();
+      fetchProducts({ query, page });
     }
-  }, [query]);
-
-  useEffect(() => {
-    if (query.trim().length > 0 && page !== 1) {
-      fetchProducts();
-    }
-  }, [page]);
+  }, [query, products.length]);
 
   useEffect(() => {
     if (!isLoading && !error && response?.data.products) {
-      setLastPage(response.data.last_page);
-      setProductCount(response.data.count);
+      // setLastPage(response.data.last_page);
+      // setProductCount(response.data.count);
       const newProducts = response?.data.products.map(
         (product: ProductsResponseModel) => ({
           id: product.id,
@@ -59,7 +50,7 @@ const Products: React.FC = () => {
       );
       setNewProducts(newProducts);
     }
-  }, [response?.data.products]);
+  }, [isLoading]);
 
   return (
     <>
@@ -73,8 +64,15 @@ const Products: React.FC = () => {
           {/* TODO: UI 개선 */}
           {/* {isLoading && <ProductsSkeleton />} */}
         </ul>
+        {query.trim().length > 0 && (
+          <LoadMoreButton
+            // toNextPage={loadMoreHandler}
+            toNextPage={toNextPage}
+            isLoading={isLoading}
+          />
+        )}
       </div>
-      <LoadMoreButton toNextPage={toNextPage} isLoading={isLoading} />
+      <ScrollToTopButton />
     </>
   );
 };

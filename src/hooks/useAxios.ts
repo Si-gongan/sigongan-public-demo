@@ -3,12 +3,12 @@ import { AxiosError, AxiosResponse } from 'axios';
 
 type RequestFn<T> = (params: T) => Promise<AxiosResponse>;
 
-const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
+const useAxios = <T>(requestFn: RequestFn<T>) => {
   const [response, setResponse] = useState<AxiosResponse>();
   const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = async (params: T) => {
     setResponse(undefined);
     setIsLoading(true);
     try {
@@ -22,8 +22,8 @@ const useAxios = <T>(requestFn: RequestFn<T>, params: T) => {
   };
 
   // trigger
-  const sendRequest = () => {
-    fetchData();
+  const sendRequest = (params: T) => {
+    fetchData(params);
   };
 
   return { response, error, isLoading, sendRequest };

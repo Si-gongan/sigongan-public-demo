@@ -17,10 +17,10 @@ const ProductDetail: React.FC = () => {
     isLoading,
     error,
     sendRequest: fetchProduct,
-  } = useAxios(coupangApi.getProduct, id as string);
+  } = useAxios(coupangApi.getProduct);
 
   useEffect(() => {
-    fetchProduct();
+    fetchProduct(id as string);
   }, []);
 
   const histories = response?.data.product.histories.map(

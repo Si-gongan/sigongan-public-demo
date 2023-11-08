@@ -7,7 +7,7 @@ import * as styles from './SearchBar.styles';
 
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();
-  const { setUserQuery, resetProducts } = useContext(ProductContext);
+  const { setUserQuery, resetProducts, resetPage } = useContext(ProductContext);
   const [userInput, setUserInput] = useState('');
   const buttonVisible = userInput.trim().length > 0;
   // TODO: isLoading, error UI 처리
@@ -19,6 +19,7 @@ const SearchBar: React.FC = () => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     resetProducts();
+    resetPage();
     setUserQuery(userInput);
     navigate('/products');
   };
