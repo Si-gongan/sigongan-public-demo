@@ -2,7 +2,7 @@
 import { NavLink } from 'react-router-dom';
 import * as styles from './NavigationBar.style';
 import { BiSolidMoon, BiSolidUser } from 'react-icons/bi';
-import logo from '../../assets/logo/pickforme-logo.jpg';
+import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 import useScroll from '../../hooks/useScroll';
