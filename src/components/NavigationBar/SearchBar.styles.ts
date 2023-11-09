@@ -24,7 +24,7 @@ export const input = (theme: Theme) => css`
   background: transparent;
   border: 1px solid transparent;
   outline: none;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   width: 100%;
   color: ${theme.color.text};
