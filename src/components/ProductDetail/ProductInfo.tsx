@@ -4,12 +4,14 @@ import Info from '../UI/Info/Info';
 import { InfoProps } from '../UI/Info/types';
 import * as styles from './ProductInfo.styles';
 import { ProductDetailModel } from '../../types/product';
+import { useTheme } from '@emotion/react';
 
 interface Props {
   product: ProductDetailModel;
 }
 
 const ProductInfo: React.FC<Props> = (props) => {
+  const theme = useTheme();
   const product = props.product;
   const price = `${product.price.toLocaleString()}원`;
 
@@ -33,7 +35,7 @@ const ProductInfo: React.FC<Props> = (props) => {
         <img css={styles.img} src={product.picture} />
       </div>
       <div css={styles.contentContainer}>
-        <div css={styles.mainInfoContainer}>
+        <div css={styles.mainInfoContainer(theme)}>
           <h2 css={styles.detailTitle}>{product.name}</h2>
           <div css={styles.detailPrice}>{price}</div>
         </div>
@@ -42,11 +44,11 @@ const ProductInfo: React.FC<Props> = (props) => {
           <Info infoData={infoData} />
         </div>
         <div css={styles.actions}>
-          <Link css={styles.button('cancel')} to="/products">
+          <Link css={styles.button('cancel', theme)} to="/products">
             이전으로
           </Link>
           <a
-            css={styles.button('ok')}
+            css={styles.button('ok', theme)}
             href={product.url}
             target="_blank"
             rel="noopener noreferrer"

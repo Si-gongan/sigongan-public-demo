@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { useTheme } from '@emotion/react';
 import { responsiveCard } from './ProductCard.styles';
 
 interface Props {
@@ -7,7 +8,10 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = (props) => {
-  return <div css={responsiveCard(props.isLoading)}>{props.children}</div>;
+  const theme = useTheme();
+  return (
+    <div css={responsiveCard(props.isLoading, theme)}>{props.children}</div>
+  );
 };
 
 export default ProductCard;

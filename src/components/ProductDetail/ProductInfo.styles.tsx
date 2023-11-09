@@ -1,5 +1,4 @@
-import { css } from '@emotion/react';
-import { BLUE } from '../../styles/theme';
+import { Theme, css } from '@emotion/react';
 
 export const container = css`
   display: flex;
@@ -41,39 +40,39 @@ export const contentContainer = css`
   }
 `;
 
-export const mainInfoContainer = css`
+export const mainInfoContainer = (theme: Theme) => css`
   flex-grow: 1;
   padding-bottom: 16px;
-  border-top: 2px solid #333;
-  border-bottom: 1px solid #ddd;
+  border-top: 2px solid ${theme.color.primary};
+  border-bottom: 1.2px solid ${theme.color.border};
 `;
 
-export const detailTitle = css`
+export const detailTitle = (theme: Theme) => css`
   padding: 24px 0;
   line-height: 32px;
   font-size: 24px;
   font-weight: 700;
-  color: #000000;
+  color: ${theme.color.text};
 
   @media screen and (max-width: 767px) {
     font-size: 18px;
   }
 `;
 
-export const detailPrice = css`
+export const detailPrice = (theme: Theme) => css`
   font-size: 24px;
   font-weight: 700;
-  color: #000000;
+  color: ${theme.color.text};
 `;
 
-export const metaContainer = css`
+export const metaContainer = (theme: Theme) => css`
   padding: 20px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1.2px solid ${theme.color.border};
 `;
 
-export const subTitle = css`
+export const subTitle = (theme: Theme) => css`
   display: block;
-  color: #000;
+  color: ${theme.color.text};
   margin-bottom: 12px;
   font-size: 16px;
 `;
@@ -84,29 +83,25 @@ export const actions = css`
   padding-top: 16px;
 `;
 
-const buttonStyles = {
+const buttonStyles = (theme: Theme) => ({
   ok: css`
-    background: #000;
-    color: #fff;
-    border: 1px solid #000;
+    background: ${theme.mainBtn.background};
+    color: ${theme.mainBtn.content};
+    border: 1px solid ${theme.mainBtn.background};
     box-shadow: 10px 10px 16px 0 rgba(0, 0, 0, 0.2);
     &:hover {
-      background: ${BLUE};
-      border: 1px solid ${BLUE};
+      background: var(--color-blue-500);
+      border: var(--color-blue-500);
     }
   `,
   cancel: css`
-    background: #fff;
-    color: #000;
-    border: 1px solid #ddd;
-    &:hover {
-      background: #fff;
-      border: 1px solid #ddd;
-    }
+    background: ${theme.subBtn.background};
+    color: ${theme.subBtn.content};
+    border: 1.2px solid ${theme.subBtn.border};
   `,
-};
+});
 
-export const button = (type: 'cancel' | 'ok') => css`
+export const button = (type: 'cancel' | 'ok', theme: Theme) => css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,5 +112,5 @@ export const button = (type: 'cancel' | 'ok') => css`
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  ${buttonStyles[type]}
+  ${buttonStyles(theme)[type]}
 `;

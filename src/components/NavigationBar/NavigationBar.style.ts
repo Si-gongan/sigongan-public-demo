@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-export const header = (isUp: boolean, scrollY: number) => css`
+export const header = (isUp: boolean, scrollY: number, theme: Theme) => css`
   position: sticky;
   top: 0;
   height: 88px;
-  background: #fff;
+  background: ${theme.color.background};
   z-index: 10;
   transition: transform 0.2s ease-in-out;
   transform: ${isUp || scrollY < 56 ? 'translateY(0)' : 'translateY(-100%)'};
@@ -30,16 +30,32 @@ export const navItem = css`
   vertical-align: baseline;
 `;
 
+export const navBtn = css`
+  display: inline-block;
+  height: 34px;
+  vertical-align: middle;
+  font-size: 32px;
+  font-weight: 400;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-gray-300);
+
+  &:hover {
+    color: var(--color-gray-200);
+  }
+`;
+
 export const navLink = css`
   display: inline-block;
   height: 34px;
   vertical-align: middle;
   font-size: 32px;
   font-weight: 400;
-  color: #c4c4c4;
+  color: var(--color-gray-300);
 
   &:hover {
-    color: #9fa7c3;
+    color: var(--color-gray-200);
   }
 `;
 export const navLogo = css`
@@ -48,7 +64,6 @@ export const navLogo = css`
   vertical-align: middle;
   margin-right: 16px;
   font-weight: 700;
-  color: #000;
 `;
 
 export const imgLogo = css`

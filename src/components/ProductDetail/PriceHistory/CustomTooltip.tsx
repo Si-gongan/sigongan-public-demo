@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { TooltipProps } from 'recharts';
 import * as styles from './CustomTooltip.styles';
+import { useTheme } from '@emotion/react';
 
 export type DiffType = 'increment' | 'decrement' | 'same';
 
@@ -8,6 +9,7 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
   active,
   payload,
 }) => {
+  const theme = useTheme();
   if (active && payload && payload.length) {
     const { price, createdAt, diff } = payload[0].payload;
     const title = `
@@ -30,11 +32,11 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
     }
 
     return (
-      <div css={styles.customTooltip}>
+      <div css={styles.customTooltip(theme)}>
         <h3 css={styles.tooltipTitle}>{title}</h3>
         <div css={styles.tooltipContent}>
           <div css={styles.price}>{priceText}</div>
-          <div css={styles.priceInfo(diffType)}>{diffText}</div>
+          <div css={styles.priceInfo(diffType, theme)}>{diffText}</div>
         </div>
       </div>
     );

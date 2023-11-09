@@ -1,10 +1,11 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-export const reportContent = css`
+export const reportContent = (theme: Theme) => css`
   padding: 32px;
   white-space: pre-line;
   line-height: 28px;
   font-weight: 500;
+  color: ${theme.color.text};
 `;
 
 export const descriptionContainer = css`
@@ -15,9 +16,9 @@ export const descriptionContainer = css`
   min-height: 180px;
 `;
 
-export const description = css`
+export const description = (theme: Theme) => css`
   padding-top: 16px;
-  color: #333;
+  color: ${theme.color.primary};
   font-size: 14px;
   font-weight: 500;
 `;

@@ -30,8 +30,6 @@ export const btn = css`
 
   &:hover {
     transform: scale(1.1);
-    /* background: #eaefff;
-    border-color: #eaefff; */
     color: #555;
   }
 `;

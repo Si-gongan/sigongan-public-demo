@@ -1,12 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './TabbedContent.styles';
 import ContentCard from '../UI/Card/ContentCard';
-import AiReport from './AiReport';
+import AIReport from './AIReport';
 import { ApiSate } from '../../types/api';
 import { useStream } from '../../hooks/useStream';
 import { useState } from 'react';
 import PriceHistory from './PriceHistory/PriceHistory';
 import { DetailTabType, History } from '../../types/product';
+import { useTheme } from '@emotion/react';
 
 interface Props {
   id: string;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const TabbedContent: React.FC<Props> = (props) => {
+  const theme = useTheme();
   const { id, histories, tabType, clickReport, clickPriceHistory } = props;
   const [reply, setReply] = useState('');
   const { isLoading, error, getAnswer } = useStream({ id }, setReply);
@@ -42,7 +44,7 @@ const TabbedContent: React.FC<Props> = (props) => {
   return (
     <div>
       {/* Switchers */}
-      <div css={styles.switchers}>
+      <div css={styles.switchers(theme)}>
         <button css={styles.button} onClick={() => createReportHandler()}>
           AI 리포트 생성
         </button>
@@ -54,7 +56,7 @@ const TabbedContent: React.FC<Props> = (props) => {
       {/* Content */}
       <section css={styles.contentContainer}>
         <ContentCard>
-          {tabType === 'report' && <AiReport state={state} answer={reply} />}
+          {tabType === 'report' && <AIReport state={state} answer={reply} />}
           {tabType === 'priceHistory' && <PriceHistory histories={histories} />}
         </ContentCard>
       </section>

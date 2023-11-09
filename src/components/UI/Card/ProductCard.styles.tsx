@@ -1,11 +1,12 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
-export const responsiveCard = (isLoading: boolean = false) => css`
+export const responsiveCard = (isLoading: boolean = false, theme: Theme) => css`
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  background: ${theme.card.background};
+  color: ${theme.card.color};
   width: calc(20% - 16px);
   margin: 8px;
   transition: transform 0.3s ease-in-out;

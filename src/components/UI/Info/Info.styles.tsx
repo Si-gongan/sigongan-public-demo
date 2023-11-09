@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
 export const metaContainer = css`
   padding: 20px 0;
@@ -16,13 +16,14 @@ export const metaListTitle = css`
   width: 96px;
   font-size: 14px;
   line-height: 24px;
-  color: #5d5d5d;
+  color: var(--color-gray-500);
   vertical-align: middle;
 `;
 
-export const metaListText = css`
+export const metaListText = (theme: Theme) => css`
   position: relative;
   flex-grow: 1;
   font-size: 14px;
   line-height: 24px;
+  color: ${theme.color.primary};
 `;

@@ -47,7 +47,6 @@ export const priceWrapper = css`
   font-size: 18px;
   font-weight: 700;
   border: 1px solid transparent;
-  color: #333;
   @media screen and (max-width: 320px) {
     font-size: 10px;
   }
