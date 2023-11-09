@@ -20,11 +20,11 @@ export const inputContainer = (theme: Theme) => css`
 
 export const input = (theme: Theme) => css`
   flex-grow: 1;
-  padding: 8px;
+  padding: 4px;
   background: transparent;
   border: 1px solid transparent;
   outline: none;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
   width: 100%;
   color: ${theme.color.text};

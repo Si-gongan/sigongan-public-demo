@@ -39,7 +39,7 @@ const SearchBar: React.FC = () => {
           css={styles.clearButton(buttonVisible, theme)}
           onClick={resetHandler}
         >
-          <BiX size={18} />
+          <BiX size={14} />
         </button>
       </div>
     </form>
