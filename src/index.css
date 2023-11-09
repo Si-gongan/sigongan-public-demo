@@ -12,6 +12,28 @@
     sans-serif;
 }
 
+:root {
+  --color-gray-100: #ececec;
+  --color-gray-200: #d1d1d1;
+  --color-gray-300: #c4c4c4;
+  --color-gray-400: #848484;
+  --color-gray-500: #6f6f6f;
+  --color-gray-600: #545454;
+  --color-gray-700: #333333;
+  --color-gray-800: #1c1c1c;
+  --color-gray-900: #121212;
+
+  --color-blue-100: #f2f5fc;
+  --color-blue-200: #dee4f9;
+  --color-blue-300: #b4c5f9;
+  --color-blue-400: #819ef3;
+  --color-blue-500: #5983fc;
+  --color-blue-600: #39549f;
+  --color-blue-700: #29375f;
+  --color-blue-800: #151f42;
+  --color-blue-900: #14192d;
+}
+
 ol,
 ul,
 li {
