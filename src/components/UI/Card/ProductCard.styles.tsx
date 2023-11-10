@@ -6,7 +6,6 @@ export const responsiveCard = (isLoading: boolean = false) => css`
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   background: var(--background1);
-  color: var(--text1);
   width: calc(20% - 16px);
   margin: 8px;
   transition: transform 0.3s ease-in-out;
