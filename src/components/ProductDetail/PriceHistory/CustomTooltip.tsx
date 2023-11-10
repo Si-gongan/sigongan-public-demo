@@ -34,7 +34,7 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
         <h3 css={styles.tooltipTitle}>{title}</h3>
         <div css={styles.tooltipContent}>
           <div css={styles.price}>{priceText}</div>
-          <div css={styles.priceInfo(diffType)}>{diffText}</div>
+          <div css={styles.priceInfo[diffType]}>{diffText}</div>
         </div>
       </div>
     );

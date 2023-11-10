@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './TabbedContent.styles';
 import ContentCard from '../UI/Card/ContentCard';
-import AiReport from './AiReport';
+import AIReport from './AIReport';
 import { ApiSate } from '../../types/api';
 import { useStream } from '../../hooks/useStream';
 import { useState } from 'react';
@@ -54,7 +54,7 @@ const TabbedContent: React.FC<Props> = (props) => {
       {/* Content */}
       <section css={styles.contentContainer}>
         <ContentCard>
-          {tabType === 'report' && <AiReport state={state} answer={reply} />}
+          {tabType === 'report' && <AIReport state={state} answer={reply} />}
           {tabType === 'priceHistory' && <PriceHistory histories={histories} />}
         </ContentCard>
       </section>

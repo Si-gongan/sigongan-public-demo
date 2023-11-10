@@ -1,13 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { NavLink } from 'react-router-dom';
 import * as styles from './NavigationBar.style';
-import { BiSolidHeart, BiSolidUser } from 'react-icons/bi';
-import logo from '../../assets/logo/pickforme-logo.jpg';
+import { BiSolidMoon, BiSolidUser } from 'react-icons/bi';
+import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 import useScroll from '../../hooks/useScroll';
+import { useContext } from 'react';
+import { ThemeContext } from '../../store/theme-context';
 
 const NavigationBar: React.FC = () => {
+  const { toggleTheme } = useContext(ThemeContext);
   const { scrollDirection } = useScroll();
   const isUp = scrollDirection === 'up' ? true : false;
 
@@ -22,16 +25,16 @@ const NavigationBar: React.FC = () => {
             </NavLink>
           </div>
           {/* Search */}
-          <div style={{ flexGrow: 1 }}>
+          <div css={styles.searchBarWrapper}>
             <SearchBar />
           </div>
           {/* Navigation */}
           <div>
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
-                <NavLink to="/test" css={styles.navLink}>
-                  <BiSolidHeart />
-                </NavLink>
+                <button css={styles.navBtn} onClick={toggleTheme}>
+                  <BiSolidMoon />
+                </button>
               </li>
               <li css={styles.navItem}>
                 <NavLink to="/test" css={styles.navLink}>

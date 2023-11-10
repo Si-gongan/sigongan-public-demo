@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { BLUE } from '../../styles/theme';
 
 export const container = css`
   display: flex;
@@ -44,8 +43,8 @@ export const contentContainer = css`
 export const mainInfoContainer = css`
   flex-grow: 1;
   padding-bottom: 16px;
-  border-top: 2px solid #333;
-  border-bottom: 1px solid #ddd;
+  border-top: 2px solid var(--text2);
+  border-bottom: 1.2px solid var(--border1);
 `;
 
 export const detailTitle = css`
@@ -53,7 +52,7 @@ export const detailTitle = css`
   line-height: 32px;
   font-size: 24px;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-base);
 
   @media screen and (max-width: 767px) {
     font-size: 18px;
@@ -63,17 +62,17 @@ export const detailTitle = css`
 export const detailPrice = css`
   font-size: 24px;
   font-weight: 700;
-  color: #000000;
+  color: var(--text-base);
 `;
 
 export const metaContainer = css`
   padding: 20px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1.2px solid var(--border1);
 `;
 
 export const subTitle = css`
   display: block;
-  color: #000;
+  color: var(--text-base);
   margin-bottom: 12px;
   font-size: 16px;
 `;
@@ -86,23 +85,19 @@ export const actions = css`
 
 const buttonStyles = {
   ok: css`
-    background: #000;
-    color: #fff;
-    border: 1px solid #000;
+    background: var(--background-emp);
+    color: var(--text-emp);
+    border: none;
     box-shadow: 10px 10px 16px 0 rgba(0, 0, 0, 0.2);
     &:hover {
-      background: ${BLUE};
-      border: 1px solid ${BLUE};
+      background: var(--primary2);
+      border: var(--primary2);
     }
   `,
   cancel: css`
-    background: #fff;
-    color: #000;
-    border: 1px solid #ddd;
-    &:hover {
-      background: #fff;
-      border: 1px solid #ddd;
-    }
+    background: var(--background1);
+    color: var(--text1);
+    border: 1.2px solid var(--border2);
   `,
 };
 

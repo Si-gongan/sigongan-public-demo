@@ -5,6 +5,7 @@ export const reportContent = css`
   white-space: pre-line;
   line-height: 28px;
   font-weight: 500;
+  color: var(--text-base);
 `;
 
 export const descriptionContainer = css`
@@ -17,7 +18,7 @@ export const descriptionContainer = css`
 
 export const description = css`
   padding-top: 16px;
-  color: #333;
+  color: var(--text2);
   font-size: 14px;
   font-weight: 500;
 `;

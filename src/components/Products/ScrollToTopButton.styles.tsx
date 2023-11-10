@@ -19,10 +19,10 @@ export const btn = css`
   align-items: center;
   width: 48px;
   height: 48px;
-  border: 1px solid #fff;
+  border: 1px solid var(--border-base);
   border-radius: 100%;
-  background-color: #fff;
-  color: #333;
+  background-color: var(--background2);
+  color: var(--text1);
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.1);
   font-weight: 600;
   transition: transform 0.2s ease-in-out;
@@ -30,8 +30,6 @@ export const btn = css`
 
   &:hover {
     transform: scale(1.1);
-    /* background: #eaefff;
-    border-color: #eaefff; */
-    color: #555;
+    color: var(--text3);
   }
 `;

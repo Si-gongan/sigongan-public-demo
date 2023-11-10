@@ -20,12 +20,14 @@ export const contentTitle = css`
   padding: 4px 16px;
   height: 80px;
   overflow: hidden;
+  color: var(--text1);
 `;
 
 export const contentPrice = css`
   position: relative;
   padding: 4px 16px;
   height: 40px;
+  color: var(--text1);
 `;
 
 export const title = css`
@@ -47,7 +49,6 @@ export const priceWrapper = css`
   font-size: 18px;
   font-weight: 700;
   border: 1px solid transparent;
-  color: #333;
   @media screen and (max-width: 320px) {
     font-size: 10px;
   }

@@ -1,11 +1,14 @@
 import Router from './routes';
 import ProductContextProvider from './store/product-context';
+import ThemeContextProvider from './store/theme-context';
 
 function App() {
   return (
-    <ProductContextProvider>
-      <Router />
-    </ProductContextProvider>
+    <ThemeContextProvider>
+      <ProductContextProvider>
+        <Router />
+      </ProductContextProvider>
+    </ThemeContextProvider>
   );
 }
 

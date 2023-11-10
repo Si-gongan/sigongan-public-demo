@@ -16,7 +16,7 @@ export const metaListTitle = css`
   width: 96px;
   font-size: 14px;
   line-height: 24px;
-  color: #5d5d5d;
+  color: var(--color-gray-500);
   vertical-align: middle;
 `;
 
@@ -25,4 +25,5 @@ export const metaListText = css`
   flex-grow: 1;
   font-size: 14px;
   line-height: 24px;
+  color: var(--text2);
 `;

@@ -11,27 +11,30 @@ export const inputContainer = css`
   align-items: center;
   gap: 8px;
   padding: 4px 16px 4px 16px;
-  border: 1px solid transparent;
+  background: var(--background2);
+  border: 1px solid var(--border-base);
   border-radius: 32px;
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 `;
 
 export const input = css`
   flex-grow: 1;
-  padding: 8px;
+  padding: 4px;
+  background: transparent;
   border: 1px solid transparent;
   outline: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   width: 100%;
+  color: var(--text-base);
 `;
 
 export const clearButton = (buttonVisible: boolean) => css`
   display: flex;
   height: fit-content;
-  background: #e4e4e4;
-  color: #fff;
+  background: var(--background3);
+  color: var(--background2);
   border: 1px solid transparent;
   border-radius: 100%;
   padding: 2px;

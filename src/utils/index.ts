@@ -15,3 +15,13 @@ export const calculatePriceDiff = (data: History[]) => {
     return { ...item, diff };
   });
 };
+
+export const setThemeColor = () => {
+  const initalThemeColor =
+    localStorage.getItem('theme') && localStorage.getItem('theme') === 'dark'
+      ? '#121212'
+      : '#ffffff';
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', initalThemeColor);
+};

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { HashLoader } from 'react-spinners';
 import { FaCircleInfo, FaRegFaceSurprise } from 'react-icons/fa6';
-import * as styles from './AiReport.styles';
+import * as styles from './AIReport.styles';
 import { ApiSate } from '../../types/api';
 import { useEffect, useRef } from 'react';
 
@@ -10,7 +10,7 @@ interface Props {
   answer?: string;
 }
 
-const AiReport: React.FC<Props> = (props) => {
+const AIReport: React.FC<Props> = (props) => {
   const { state, answer } = props;
   const answerEndRef = useRef<HTMLDivElement>(null);
 
@@ -73,4 +73,4 @@ const AiReport: React.FC<Props> = (props) => {
   }
 };
 
-export default AiReport;
+export default AIReport;

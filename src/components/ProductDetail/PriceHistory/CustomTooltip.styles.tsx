@@ -1,10 +1,9 @@
 import { css } from '@emotion/react';
-import { DiffType } from './CustomTooltip';
 
 export const customTooltip = css`
   padding: 8px 12px;
-  border: 1px solid #ddd;
-  background: #fff;
+  border: 1px solid var(--border1);
+  background: var(--background-base);
   font-size: 12px;
 `;
 
@@ -12,7 +11,7 @@ export const tooltipTitle = css`
   font-size: 12px;
   margin-bottom: 8px;
   font-weight: 700;
-  color: #555;
+  color: var(--text3);
 `;
 
 export const tooltipContent = css`
@@ -20,17 +19,27 @@ export const tooltipContent = css`
   gap: 8px;
   align-items: center;
 `;
+
 export const price = css`
   font-weight: 700;
-  color: #000;
+  color: var(--text-base);
 `;
 
-export const priceInfo = (diffType: DiffType) => css`
-  font-size: 8px;
-  font-weight: 700;
-  color: ${diffType === 'same'
-    ? '#ddd'
-    : diffType === 'increment'
-    ? '#fc6161'
-    : '#5983fc'};
-`;
+// function to key
+export const priceInfo = {
+  same: css`
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--text4);
+  `,
+  increment: css`
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--increment);
+  `,
+  decrement: css`
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--decrement);
+  `,
+};

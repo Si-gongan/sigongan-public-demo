@@ -20,7 +20,6 @@ const ScrollToTopButton: React.FC = () => {
         <div css={styles.container}>
           <button css={styles.btn} onClick={scrollToTop}>
             <BiUpArrowAlt size={24} />
-            {/* <p>top</p> */}
           </button>
         </div>
       )}

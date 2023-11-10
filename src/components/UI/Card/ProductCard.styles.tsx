@@ -5,7 +5,7 @@ export const responsiveCard = (isLoading: boolean = false) => css`
   flex-direction: column;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  background: var(--background1);
   width: calc(20% - 16px);
   margin: 8px;
   transition: transform 0.3s ease-in-out;
