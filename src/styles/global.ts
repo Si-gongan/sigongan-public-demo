@@ -6,7 +6,6 @@ export const globalStyle = (theme: Theme) => css`
   }
 
   :root {
-    --skeleton-color: ${theme.border1};
     --background-base: ${theme.backgroundBase};
     --background1: ${theme.background1};
     --background2: ${theme.background2};
@@ -20,6 +19,7 @@ export const globalStyle = (theme: Theme) => css`
     --text-emp: ${theme.textEmp};
     --accent1: ${theme.accent1};
     --accent2: ${theme.accent2};
+    --border-base: ${theme.borderBase};
     --border1: ${theme.border1};
     --border2: ${theme.border2};
     --primary1: ${theme.primary1};

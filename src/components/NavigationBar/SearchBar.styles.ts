@@ -12,7 +12,7 @@ export const inputContainer = css`
   gap: 8px;
   padding: 4px 16px 4px 16px;
   background: var(--background2);
-  border: 1px solid transparent;
+  border: 1px solid var(--border-base);
   border-radius: 32px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   width: 100%;

@@ -18,6 +18,7 @@ declare module '@emotion/react' {
     accent1: string;
     accent2: string;
 
+    borderBase: string;
     border1: string;
     border2: string;
 
