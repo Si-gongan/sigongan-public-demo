@@ -1,6 +1,6 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 
-export const switchers = (theme: Theme) => css`
+export const switchers = css`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,10 +9,10 @@ export const switchers = (theme: Theme) => css`
   margin-bottom: 16px;
 
   & button {
-    background: ${theme.mainBtn.background};
-    color: ${theme.mainBtn.content};
+    background: var(--background-emp);
+    color: var(--text-emp);
     box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid ${theme.mainBtn.background};
+    border: 1px solid var(--background-emp);
   }
 `;
 

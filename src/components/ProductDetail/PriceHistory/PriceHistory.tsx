@@ -65,49 +65,41 @@ const PriceHistory: React.FC<Props> = (props) => {
           type="category"
           domain={['dataMin', 'dataMax']}
           tickLine={false}
-          stroke={theme.lineChart.primary}
+          stroke={theme.accent2}
           padding={{ left: 4, right: 4 }}
           tickFormatter={formatXAxis}
         />
         <YAxis
           tickLine={false}
           domain={['dataMin', 'dataMax']}
-          stroke={theme.lineChart.primary}
+          stroke={theme.accent2}
           padding={{ bottom: 20, top: 8 }}
           tickFormatter={formatYAxis}
           hide={isNarrow}
         />
         <Tooltip
           content={<CustomTooltip />}
-          cursor={{ stroke: theme.lineChart.secondary }}
+          cursor={{ stroke: theme.accent1 }}
         />
         <ReferenceLine
           y={histories[histories.length - 1].price}
-          stroke={
-            isMouseEnter ? theme.lineChart.primary : theme.lineChart.secondary
-          }
+          stroke={isMouseEnter ? theme.accent2 : theme.accent1}
           strokeDasharray="2 2"
         />
         <Line
           dataKey="price"
           type="stepAfter"
-          stroke={
-            isMouseEnter
-              ? theme.lineChart.secondaryBlue
-              : theme.lineChart.primary
-          }
+          stroke={isMouseEnter ? theme.primary1 : theme.accent2}
           strokeWidth="1.5"
           dot={{
-            fill: isMouseEnter
-              ? theme.lineChart.primaryBlue
-              : theme.lineChart.primary,
-            stroke: theme.lineChart.dotStroke,
+            fill: isMouseEnter ? theme.primary2 : theme.accent2,
+            stroke: theme.backgroundBase,
             strokeWidth: 1,
             r: 2,
           }}
           activeDot={{
-            fill: theme.lineChart.primaryBlue,
-            stroke: theme.lineChart.dotStroke,
+            fill: theme.primary2,
+            stroke: theme.backgroundBase,
             strokeWidth: 2,
             r: 4,
           }}

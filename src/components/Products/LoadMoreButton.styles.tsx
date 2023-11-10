@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 
 export const container = css`
   display: flex;
@@ -14,13 +14,13 @@ export const container = css`
   }
 `;
 
-export const btn = (theme: Theme) => css`
+export const btn = css`
   padding: 12px 32px;
   margin: 0 4px;
-  background: ${theme.mainBtn.background};
-  color: ${theme.mainBtn.content};
+  background: var(--background-emp);
+  color: var(--text-emp);
   box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid ${theme.mainBtn.background};
+  border: 1px solid var(--background-emp);
   border-radius: 32px;
   font-weight: 600;
   font-size: 14px;

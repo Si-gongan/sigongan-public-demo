@@ -6,18 +6,16 @@ import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 import useScroll from '../../hooks/useScroll';
-import { useTheme } from '@emotion/react';
 import { useContext } from 'react';
 import { ThemeContext } from '../../store/theme-context';
 
 const NavigationBar: React.FC = () => {
-  const theme = useTheme();
   const { toggleTheme } = useContext(ThemeContext);
   const { scrollDirection } = useScroll();
   const isUp = scrollDirection === 'up' ? true : false;
 
   return (
-    <header css={styles.header(isUp, window.scrollY, theme)}>
+    <header css={styles.header(isUp, window.scrollY)}>
       <ResponsiveContainer>
         <nav css={styles.navbar}>
           {/* Logo */}
@@ -27,7 +25,7 @@ const NavigationBar: React.FC = () => {
             </NavLink>
           </div>
           {/* Search */}
-          <div style={{ flexGrow: 1 }}>
+          <div css={styles.searchBarWrapper}>
             <SearchBar />
           </div>
           {/* Navigation */}

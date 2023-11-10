@@ -2,40 +2,29 @@ import '@emotion/react';
 
 declare module '@emotion/react' {
   export interface Theme {
-    color: {
-      text: string;
-      background: string;
-      primary: string;
-      secondary: string;
-      border: string;
-      muted: string;
-    };
-    lineChart: {
-      primary: string;
-      secondary: string;
-      primaryBlue: string;
-      secondaryBlue: string;
-      dotStroke: string;
-    };
-    searchBar: {
-      background: string;
-    };
-    mainBtn: {
-      background: string;
-      content: string;
-    };
-    subBtn: {
-      background: string;
-      content: string;
-      border: string;
-    };
-    clearBtn: {
-      background: string;
-      color: string;
-    };
-    card: {
-      background: string;
-      color: string;
-    };
+    backgroundBase: string;
+    background1: string;
+    background2: string;
+    background3: string;
+    backgroundEmp: string;
+
+    textBase: string;
+    text1: string;
+    text2: string;
+    text3: string;
+    text4: string;
+    textEmp: string;
+
+    accent1: string;
+    accent2: string;
+
+    border1: string;
+    border2: string;
+
+    primary1: string;
+    primary2: string;
+
+    increment: string;
+    decrement: string;
   }
 }

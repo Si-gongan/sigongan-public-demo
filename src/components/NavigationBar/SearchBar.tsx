@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../../store/product-context';
 import { BiX } from 'react-icons/bi';
 import * as styles from './SearchBar.styles';
-import { useTheme } from '@emotion/react';
 
 const SearchBar: React.FC = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
   const { setUserQuery, resetProducts, resetPage } = useContext(ProductContext);
   const [userInput, setUserInput] = useState('');
@@ -32,11 +30,11 @@ const SearchBar: React.FC = () => {
 
   return (
     <form css={styles.form} onSubmit={submitHandler}>
-      <div css={styles.inputContainer(theme)}>
-        <input css={styles.input(theme)} type="text" onChange={changeHandler} />
+      <div css={styles.inputContainer}>
+        <input css={styles.input} type="text" onChange={changeHandler} />
         <button
           type="reset"
-          css={styles.clearButton(buttonVisible, theme)}
+          css={styles.clearButton(buttonVisible)}
           onClick={resetHandler}
         >
           <BiX size={14} />

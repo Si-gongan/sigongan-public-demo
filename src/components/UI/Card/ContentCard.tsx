@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useTheme } from '@emotion/react';
 import { contentCard } from './ContentCard.styles';
 
 interface Props {
@@ -7,8 +6,7 @@ interface Props {
 }
 
 const ContentCard: React.FC<Props> = (props) => {
-  const theme = useTheme();
-  return <div css={contentCard(theme)}>{props.children}</div>;
+  return <div css={contentCard}>{props.children}</div>;
 };
 
 export default ContentCard;

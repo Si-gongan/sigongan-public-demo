@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 import * as productInfoStyle from '../../../components/ProductDetail/ProductInfo.styles';
 
 export const container = css`
@@ -19,8 +19,8 @@ export const contentContainer = css`
   ${productInfoStyle.contentContainer}
 `;
 
-export const mainInfoContainer = (theme: Theme) => css`
-  ${productInfoStyle.mainInfoContainer(theme)}
+export const mainInfoContainer = css`
+  ${productInfoStyle.mainInfoContainer}
   border-top: 2px solid var(--skeleton-color);
   border-bottom: 1px solid var(--skeleton-color);
 `;
@@ -44,8 +44,8 @@ export const metaContainer = css`
   border-bottom: 1px solid var(--skeleton-color);
 `;
 
-export const subTitle = (theme: Theme) => css`
-  ${productInfoStyle.subTitle(theme)}
+export const subTitle = css`
+  ${productInfoStyle.subTitle}
   background: var(--skeleton-color);
   width: 72px;
   height: 26px;

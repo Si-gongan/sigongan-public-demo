@@ -1,4 +1,4 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 
 export const form = css`
   justify-content: center;
@@ -6,19 +6,19 @@ export const form = css`
   min-width: 56px;
 `;
 
-export const inputContainer = (theme: Theme) => css`
+export const inputContainer = css`
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 4px 16px 4px 16px;
-  background: ${theme.card.background};
+  background: var(--background2);
   border: 1px solid transparent;
   border-radius: 32px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   width: 100%;
 `;
 
-export const input = (theme: Theme) => css`
+export const input = css`
   flex-grow: 1;
   padding: 4px;
   background: transparent;
@@ -27,14 +27,14 @@ export const input = (theme: Theme) => css`
   font-size: 16px;
   font-weight: 600;
   width: 100%;
-  color: ${theme.color.text};
+  color: var(--text-base);
 `;
 
-export const clearButton = (buttonVisible: boolean, theme: Theme) => css`
+export const clearButton = (buttonVisible: boolean) => css`
   display: flex;
   height: fit-content;
-  background: ${theme.clearBtn.background};
-  color: ${theme.clearBtn.color};
+  background: var(--background3);
+  color: var(--background2);
   border: 1px solid transparent;
   border-radius: 100%;
   padding: 2px;
