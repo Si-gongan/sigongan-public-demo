@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 
-type RequestFn<T> = (params: T) => Promise<AxiosResponse>;
+type RequestFn<T, R> = (params: T) => Promise<AxiosResponse<R>>;
 
-const useAxios = <T>(requestFn: RequestFn<T>) => {
-  const [response, setResponse] = useState<AxiosResponse>();
+const useAxios = <T, R>(requestFn: RequestFn<T, R>) => {
+  const [response, setResponse] = useState<AxiosResponse<R>>();
   const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
 
