@@ -27,5 +27,10 @@ declare module '@emotion/react' {
 
     increment: string;
     decrement: string;
+
+    chatBackground: string;
+    chatPrimary1: string;
+    chatPrimary2: string;
+    chatPrimary3: string;
   }
 }
