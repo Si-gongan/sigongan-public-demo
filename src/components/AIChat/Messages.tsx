@@ -33,12 +33,12 @@ const Messages: React.FC<Props> = (props) => {
             </div>
           );
         }
-        if (message.sender === 'assistant') {
+        if (message.sender === 'ai') {
           return (
-            <div key={message.id} css={styles.assistantContainer}>
-              <div css={styles.assistantCard}>
-                <div css={styles.assistantContent}>
-                  <p css={styles.assistantText}>{message.text}</p>
+            <div key={message.id} css={styles.aiContainer}>
+              <div css={styles.aiCard}>
+                <div css={styles.aiContent}>
+                  <p css={styles.aiText}>{message.text}</p>
                   {message.products && (
                     <RecommendedProducts products={message.products} />
                   )}
@@ -50,9 +50,9 @@ const Messages: React.FC<Props> = (props) => {
         }
       })}
       {isLoading && (
-        <div css={styles.assistantContainer}>
-          <div css={styles.assistantCard}>
-            <div css={styles.assistantContent}>
+        <div css={styles.aiContainer}>
+          <div css={styles.aiCard}>
+            <div css={styles.aiContent}>
               <HashLoader color="#333" loading size={24} />
             </div>
           </div>

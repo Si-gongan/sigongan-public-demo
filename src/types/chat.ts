@@ -9,7 +9,7 @@ export interface UserMessage {
   text: string;
 }
 
-export interface AssistantProduct {
+export interface AIProduct {
   name: string;
   price: number;
   rating: number;
@@ -18,12 +18,12 @@ export interface AssistantProduct {
   link: string;
 }
 
-export interface AssistantMessage {
+export interface AIMessage {
   id: number;
-  sender: 'assistant';
+  sender: 'ai';
   text: string;
-  products?: AssistantProduct[];
+  products?: AIProduct[];
   questions: string[];
 }
 
-export type ChatMessage = UserMessage | AssistantMessage;
+export type ChatMessage = UserMessage | AIMessage;

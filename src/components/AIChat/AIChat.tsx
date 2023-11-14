@@ -5,7 +5,7 @@ import aiApi from '../../api/axios/ai/api';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 import ChatInput from './ChatInput';
 import {
-  AssistantMessage,
+  AIMessage,
   ChatMessage,
   MetaData,
   UserMessage,
@@ -51,7 +51,7 @@ const AIChat: React.FC = () => {
     if (!error && !isLoading && response?.data) {
       idRef.current += 1;
 
-      // add to new assistant message
+      // add to new ai message
       const products = response.data.data.products?.map((product) => ({
         name: product.name,
         price: product.price,
@@ -60,14 +60,14 @@ const AIChat: React.FC = () => {
         thumbnail: product.thumbnail,
         link: product.link,
       }));
-      const newAssistantMessage: AssistantMessage = {
+      const newAIMessage: AIMessage = {
         id: idRef.current,
-        sender: 'assistant',
+        sender: 'ai',
         text: response.data.answer,
         products: products,
         questions: response.data.data.questions,
       };
-      setChatData((prev) => [...prev, newAssistantMessage]);
+      setChatData((prev) => [...prev, newAIMessage]);
 
       // fetch meta data
       const metaData: MetaData = {

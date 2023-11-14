@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { AssistantProduct } from '../../types/chat';
-import ChatProduct from './Product';
+import { AIProduct } from '../../types/chat';
+import RecommendedProduct from './RecommendedProduct';
 import * as styles from './RecommendedProducts.styles';
 
 interface Props {
-  products: AssistantProduct[];
+  products: AIProduct[];
 }
 
 const RecommendedProducts: React.FC<Props> = (props) => {
@@ -12,7 +12,7 @@ const RecommendedProducts: React.FC<Props> = (props) => {
   return (
     <div css={styles.cardArea}>
       {products.map((product, index) => (
-        <ChatProduct product={product} key={index} />
+        <RecommendedProduct product={product} key={index} />
       ))}
     </div>
   );

@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
-import { AssistantProduct } from '../../types/chat';
+import { AIProduct } from '../../types/chat';
 import { truncateText } from '../../utils';
-import * as styles from './Product.style';
+import * as styles from './RecommendedProduct.style';
 
 interface Props {
-  product: AssistantProduct;
+  product: AIProduct;
 }
 
-const ChatProduct: React.FC<Props> = (props) => {
+const RecommendedProduct: React.FC<Props> = (props) => {
   const { product } = props;
   const title = truncateText(product.name, 40);
   const price = `${product.price.toLocaleString()}원`;
@@ -42,4 +42,4 @@ const ChatProduct: React.FC<Props> = (props) => {
   );
 };
 
-export default ChatProduct;
+export default RecommendedProduct;

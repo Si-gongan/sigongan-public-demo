@@ -24,20 +24,20 @@ export const userText = css`
   color: var(--text-base);
 `;
 
-export const assistantCard = css`
+export const aiCard = css`
   border-radius: 18px;
   background-color: var(--chat-background);
 `;
 
-export const assistantContainer = css`
+export const aiContainer = css`
   margin-bottom: 16px;
 `;
 
-export const assistantContent = css`
+export const aiContent = css`
   padding: 24px 32px;
 `;
 
-export const assistantText = css`
+export const aiText = css`
   white-space: pre-line;
   font-weight: 400;
   line-height: 28px;
