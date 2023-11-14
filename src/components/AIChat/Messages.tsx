@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { useEffect, useRef } from 'react';
 import { ChatMessage } from '../../types/chat';
 import * as styles from './Messages.styles';
 import RecommendedProducts from './RecommendedProducts';
@@ -11,6 +12,15 @@ interface Props {
 
 const Messages: React.FC<Props> = (props) => {
   const { data, isLoading } = props;
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [data]);
 
   return (
     <div css={styles.messagesContainer}>
@@ -48,6 +58,7 @@ const Messages: React.FC<Props> = (props) => {
           </div>
         </div>
       )}
+      <div ref={chatEndRef} />
     </div>
   );
 };

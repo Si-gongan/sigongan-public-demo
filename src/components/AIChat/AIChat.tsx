@@ -79,14 +79,14 @@ const AIChat: React.FC = () => {
   }, [isLoading, error]);
 
   return (
-    <ResponsiveContainer>
-      <main css={styles.main}>
+    <main css={styles.main}>
+      <ResponsiveContainer>
         <div css={styles.chatContainer}>
           <Messages data={chatData} isLoading={isLoading} />
           <ChatInput inputRef={userInputRef} submitHandler={submitHandler} />
         </div>
-      </main>
-    </ResponsiveContainer>
+      </ResponsiveContainer>
+    </main>
   );
 };
 

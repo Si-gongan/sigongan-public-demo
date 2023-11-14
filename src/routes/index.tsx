@@ -5,7 +5,7 @@ import RootLayout from '../pages/Root';
 import TestPage from '../pages/Test';
 import ErrorPage from '../pages/Error';
 import MainPage from '../pages/Main';
-import AIChat from '../components/AIChat/AIChat';
+import ChatPage from '../pages/Chat';
 
 // TODO: path 정의
 const router = createBrowserRouter([
@@ -33,10 +33,9 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // 컴포넌트 확인용
   {
     path: '/chat',
-    element: <AIChat />,
+    element: <ChatPage />,
     errorElement: <ErrorPage />,
   },
 ]);
