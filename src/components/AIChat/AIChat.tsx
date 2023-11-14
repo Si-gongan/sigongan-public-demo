@@ -13,7 +13,11 @@ const AIChat: React.FC = () => {
       <ResponsiveContainer>
         <div css={styles.chatContainer}>
           <Messages data={chatData} isLoading={isLoading} />
-          <ChatInput inputRef={userInputRef} submitHandler={submitHandler} />
+          <ChatInput
+            inputRef={userInputRef}
+            isLoading={isLoading}
+            submitHandler={submitHandler}
+          />
         </div>
       </ResponsiveContainer>
     </main>

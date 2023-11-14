@@ -49,15 +49,15 @@ export const input = css`
   outline: none;
 `;
 
-export const submitBtn = css`
+export const submitBtn = (isLoading: boolean) => css`
   background: transparent;
   border: none;
-  cursor: pointer;
+  cursor: ${isLoading ? 'not-allowed' : 'pointer'};
 `;
 
-export const icon = css`
+export const icon = (isLoading: boolean) => css`
   color: var(--primary1);
   &:hover {
-    color: var(--primary2);
+    color: ${isLoading ? 'var(--primary1)' : 'var(--primary2)'};
   }
 `;

@@ -5,11 +5,12 @@ import * as styles from './ChatInput.styles';
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>;
+  isLoading: boolean;
   submitHandler: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const ChatInput: React.FC<Props> = (props) => {
-  const { inputRef, submitHandler } = props;
+  const { inputRef, isLoading, submitHandler } = props;
 
   return (
     <div css={styles.inputArea}>
@@ -18,8 +19,8 @@ const ChatInput: React.FC<Props> = (props) => {
           <input css={styles.input} ref={inputRef} />
         </div>
         <div>
-          <button css={styles.submitBtn}>
-            <PiPaperPlaneRightFill size={24} css={styles.icon} />
+          <button css={styles.submitBtn(isLoading)} disabled={isLoading}>
+            <PiPaperPlaneRightFill size={24} css={styles.icon(isLoading)} />
           </button>
         </div>
       </form>
