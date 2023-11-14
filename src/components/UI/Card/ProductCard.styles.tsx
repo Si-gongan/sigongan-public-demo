@@ -10,6 +10,7 @@ export const responsiveCard = (isLoading: boolean = false) => css`
   margin: 8px;
   transition: transform 0.3s ease-in-out;
   pointer-events: ${isLoading ? 'none' : 'auto'};
+  border: 1px solid var(--border1);
 
   ${!isLoading &&
   `&:hover {

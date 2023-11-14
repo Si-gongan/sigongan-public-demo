@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { NavLink } from 'react-router-dom';
 import * as styles from './NavigationBar.style';
-import { BiSolidMoon, BiSolidUser } from 'react-icons/bi';
+import { BiSolidMoon, BiSolidMessageSquareDetail } from 'react-icons/bi';
 import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
@@ -32,14 +32,14 @@ const NavigationBar: React.FC = () => {
           <div>
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
+                <NavLink to="/chat" css={styles.navLink}>
+                  <BiSolidMessageSquareDetail />
+                </NavLink>
+              </li>
+              <li css={styles.navItem}>
                 <button css={styles.navBtn} onClick={toggleTheme}>
                   <BiSolidMoon />
                 </button>
-              </li>
-              <li css={styles.navItem}>
-                <NavLink to="/test" css={styles.navLink}>
-                  <BiSolidUser />
-                </NavLink>
               </li>
             </ul>
           </div>

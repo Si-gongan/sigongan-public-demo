@@ -1,17 +1,11 @@
 import { css } from '@emotion/react';
 
-export const header = (isUp: boolean, scrollY: number) => css`
-  position: sticky;
+export const header = css`
+  position: relative;
   top: 0;
   height: 72px;
   background: var(--background-base);
   z-index: 10;
-  transition: transform 0.2s ease-in-out;
-  transform: ${isUp || scrollY < 56 ? 'translateY(0)' : 'translateY(-100%)'};
-  box-shadow: ${scrollY < 20 ? 'none' : '0 2px 4px 0 rgba(0, 0, 0, 0.1)'};
-  @media screen and (max-width: 767px) {
-    height: 68px;
-  }
 `;
 
 export const navbar = css`
@@ -21,6 +15,7 @@ export const navbar = css`
   align-items: center;
   padding: 16px 0;
   height: 72px;
+
   @media screen and (max-width: 767px) {
     padding: 12px 0;
   }
@@ -64,17 +59,6 @@ export const navLink = css`
   &:hover {
     color: var(--color-gray-200);
   }
-`;
-export const navLogo = css`
-  display: inline-block;
-  height: 28px;
-  vertical-align: middle;
-  margin-right: 16px;
-  font-weight: 700;
-`;
-
-export const imgLogo = css`
-  width: 28px;
 `;
 
 export const searchBarWrapper = css`

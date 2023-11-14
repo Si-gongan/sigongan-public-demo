@@ -26,5 +26,9 @@ export const globalStyle = (theme: Theme) => css`
     --primary2: ${theme.primary2};
     --increment: ${theme.increment};
     --decrement: ${theme.decrement};
+    --chat-background: ${theme.chatBackground};
+    --chat-primary1: ${theme.chatPrimary1};
+    --chat-primary2: ${theme.chatPrimary2};
+    --chat-primary3: ${theme.chatPrimary3};
   }
 `;

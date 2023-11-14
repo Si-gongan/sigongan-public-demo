@@ -5,12 +5,12 @@ export const container = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 112px;
   margin-top: 32px;
 
   @media screen and (max-width: 767px) {
     margin: 40px 0 32px 0;
-    height: auto;
+    height: 48px;
   }
 `;
 

@@ -5,6 +5,7 @@ import RootLayout from '../pages/Root';
 import TestPage from '../pages/Test';
 import ErrorPage from '../pages/Error';
 import MainPage from '../pages/Main';
+import ChatPage from '../pages/Chat';
 
 // TODO: path 정의
 const router = createBrowserRouter([
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
         element: <TestPage />,
       },
     ],
+  },
+  {
+    path: '/chat',
+    element: <ChatPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
