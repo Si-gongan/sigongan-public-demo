@@ -4,6 +4,7 @@ import { ChatMessage } from '../../types/chat';
 import * as styles from './Messages.styles';
 import RecommendedProducts from './RecommendedProducts';
 import { HashLoader } from 'react-spinners';
+import MarkdownArea from '../UI/Markdown/MarkdownArea';
 
 interface Props {
   data: ChatMessage[];
@@ -38,7 +39,7 @@ const Messages: React.FC<Props> = (props) => {
             <div key={message.id} css={styles.aiContainer}>
               <div css={styles.aiCard}>
                 <div css={styles.aiContent}>
-                  <p css={styles.aiText}>{message.text}</p>
+                  <MarkdownArea>{message.text}</MarkdownArea>
                   {message.products && (
                     <RecommendedProducts products={message.products} />
                   )}
