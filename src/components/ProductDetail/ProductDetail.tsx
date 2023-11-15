@@ -11,7 +11,7 @@ import { DetailTabType, HistoryInput } from '../../types/product';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
-  const [tabType, setTabType] = useState<DetailTabType>('report');
+  const [tabType, setTabType] = useState<DetailTabType>();
   const {
     response,
     isLoading,
@@ -32,16 +32,8 @@ const ProductDetail: React.FC = () => {
     })
   );
 
-  const clickReportHandler = () => {
-    setTabType('report');
-  };
-
-  const clickCaptionHandler = () => {
-    setTabType('caption');
-  };
-
-  const clickPriceHistoryHandler = () => {
-    setTabType('priceHistory');
+  const changeTab = (tab: DetailTabType) => {
+    setTabType(tab);
   };
 
   // TODO: 정리하기
@@ -56,9 +48,7 @@ const ProductDetail: React.FC = () => {
             id={id as string}
             histories={histories}
             tabType={tabType}
-            clickReport={clickReportHandler}
-            clickCaption={clickCaptionHandler}
-            clickPriceHistory={clickPriceHistoryHandler}
+            changeTab={changeTab}
           />
         </>
       )}

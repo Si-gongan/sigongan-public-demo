@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const reportContent = css`
+export const content = css`
   padding: 32px;
   white-space: pre-line;
   line-height: 28px;
