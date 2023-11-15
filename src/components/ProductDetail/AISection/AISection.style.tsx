@@ -21,6 +21,8 @@ export const description = css`
   color: var(--text2);
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
+  word-break: keep-all;
 `;
 
 export const answer = css`

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export const switchers = css`
   display: flex;
+  /* gap: 8px; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -28,7 +29,7 @@ export const button = (active: boolean) => css`
   align-items: center;
   justify-content: center;
   padding: 8px 16px;
-  margin: 0 4px;
+  margin: 4px;
   border-radius: 32px;
   font-weight: 600;
   font-size: 14px;
