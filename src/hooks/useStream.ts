@@ -1,9 +1,14 @@
 import { useState } from 'react';
-import { ReportParamsModel } from '../api/axios/ai/types';
-import { getReport } from '../api/fetch/ai/api';
+// import { ReportParamsModel } from '../api/axios/ai/types';
+// import { getReport } from '../api/fetch/ai/api';
 
-export const useStream = (
-  params: ReportParamsModel,
+type FetchFn<T> = (
+  params: T
+) => Promise<ReadableStreamDefaultReader<Uint8Array> | undefined>;
+
+export const useStream = <T>(
+  params: T,
+  fetchFn: FetchFn<T>,
   updateReplyFn: React.Dispatch<React.SetStateAction<string>>
 ) => {
   const [error, setError] = useState<Error>();
@@ -12,7 +17,7 @@ export const useStream = (
   const streamReply = async () => {
     setIsLoading(true);
     try {
-      const reader = await getReport(params);
+      const reader = await fetchFn(params);
       setIsLoading(false);
       while (reader) {
         const { done, value } = await reader.read();

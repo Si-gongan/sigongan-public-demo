@@ -36,6 +36,10 @@ const ProductDetail: React.FC = () => {
     setTabType('report');
   };
 
+  const clickCaptionHandler = () => {
+    setTabType('caption');
+  };
+
   const clickPriceHistoryHandler = () => {
     setTabType('priceHistory');
   };
@@ -53,6 +57,7 @@ const ProductDetail: React.FC = () => {
             histories={histories}
             tabType={tabType}
             clickReport={clickReportHandler}
+            clickCaption={clickCaptionHandler}
             clickPriceHistory={clickPriceHistoryHandler}
           />
         </>
