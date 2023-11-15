@@ -1,60 +1,77 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './TabbedContent.styles';
 import ContentCard from '../UI/Card/ContentCard';
-import AIReport from './AIReport';
-import { ApiSate } from '../../types/api';
 import { useStream } from '../../hooks/useStream';
-import { useState } from 'react';
 import PriceHistory from './PriceHistory/PriceHistory';
 import { DetailTabType, History } from '../../types/product';
+import { getCaption, getReport } from '../../api/fetch/ai/api';
+import Instruction from './AISection/Instruction';
+import Answer from './AISection/Answer';
 
 interface Props {
   id: string;
   histories: History[];
   tabType: DetailTabType;
-  clickReport: () => void;
-  clickPriceHistory: () => void;
+  changeTab: (tab: DetailTabType) => void;
 }
 
 const TabbedContent: React.FC<Props> = (props) => {
-  const { id, histories, tabType, clickReport, clickPriceHistory } = props;
-  const [reply, setReply] = useState('');
-  const { isLoading, error, getAnswer } = useStream({ id }, setReply);
+  const { id, histories, tabType, changeTab } = props;
 
-  let state: ApiSate = 'pending';
-  if (isLoading) {
-    state = 'loading';
-  } else if (error) {
-    state = 'error';
-  } else if (reply) {
-    state = 'done';
-  }
+  const report = useStream({ id }, getReport);
+  const caption = useStream({ id }, getCaption);
 
   const createReportHandler = async () => {
-    clickReport();
-    getAnswer();
+    changeTab('report');
+    if (!report.answer) {
+      report.getAnswer();
+    }
+  };
+
+  const createCaptionHandler = async () => {
+    changeTab('caption');
+    if (!caption.answer) {
+      caption.getAnswer();
+    }
   };
 
   const clickPriceHistoryHandler = () => {
-    clickPriceHistory();
+    changeTab('priceHistory');
   };
 
   return (
     <div>
       {/* Switchers */}
       <div css={styles.switchers}>
-        <button css={styles.button} onClick={() => createReportHandler()}>
+        <button
+          css={styles.button(tabType === 'report')}
+          onClick={createReportHandler}
+        >
           AI 리포트 생성
         </button>
-        <button css={styles.button}>AI 상담</button>
-        <button css={styles.button} onClick={clickPriceHistoryHandler}>
+        <button
+          css={styles.button(tabType === 'caption')}
+          onClick={createCaptionHandler}
+        >
+          이미지 분석
+        </button>
+        <button
+          css={styles.button(tabType === 'priceHistory')}
+          onClick={clickPriceHistoryHandler}
+        >
           가격 추적
         </button>
       </div>
       {/* Content */}
       <section css={styles.contentContainer}>
         <ContentCard>
-          {tabType === 'report' && <AIReport state={state} answer={reply} />}
+          {!tabType && <Instruction />}
+          {tabType === 'report' && (
+            <Answer state={report.state} answer={report.answer} />
+          )}
+          {tabType === 'caption' && (
+            <Answer state={caption.state} answer={caption.answer} />
+          )}
           {tabType === 'priceHistory' && <PriceHistory histories={histories} />}
         </ContentCard>
       </section>

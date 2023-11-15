@@ -1,24 +1,37 @@
 import { useState } from 'react';
-import { ReportParamsModel } from '../api/axios/ai/types';
-import { getReport } from '../api/fetch/ai/api';
+import { ApiSate } from '../types/api';
 
-export const useStream = (
-  params: ReportParamsModel,
-  updateReplyFn: React.Dispatch<React.SetStateAction<string>>
+type FetchFn<T> = (
+  params: T
+) => Promise<ReadableStreamDefaultReader<Uint8Array> | undefined>;
+
+export const useStream = <T>(
+  params: T,
+  fetchFn: FetchFn<T>,
+  initialText: string = ''
 ) => {
+  const [answer, setAnswer] = useState(initialText);
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(false);
 
+  let state: ApiSate = 'pending';
+  if (isLoading) {
+    state = 'loading';
+  } else if (error) {
+    state = 'error';
+  }
+
   const streamReply = async () => {
+    setAnswer(initialText);
     setIsLoading(true);
     try {
-      const reader = await getReport(params);
+      const reader = await fetchFn(params);
       setIsLoading(false);
       while (reader) {
         const { done, value } = await reader.read();
         if (done) break;
         const replyChunk = new TextDecoder().decode(value);
-        updateReplyFn((prevReply) => prevReply + replyChunk); // update component state
+        setAnswer((prevReply) => prevReply + replyChunk); // update component state
       }
     } catch (error) {
       setIsLoading(false);
@@ -30,5 +43,5 @@ export const useStream = (
     streamReply();
   };
 
-  return { error, isLoading, getAnswer };
+  return { answer, state, getAnswer };
 };

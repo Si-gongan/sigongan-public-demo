@@ -2,26 +2,34 @@ import { css } from '@emotion/react';
 
 export const switchers = css`
   display: flex;
+  /* gap: 8px; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   padding-top: 32px;
   margin-bottom: 16px;
-
-  & button {
-    background: var(--background-emp);
-    color: var(--text-emp);
-    box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--background-emp);
-  }
 `;
 
-export const button = css`
+export const btnColor = {
+  active: css`
+    background: var(--background-emp);
+    border: 1px solid var(--background-emp);
+    color: var(--text-emp);
+  `,
+  inactive: css`
+    background: var(--chat-background);
+    border: 1px solid var(--chat-background);
+    color: var(--text1);
+  `,
+};
+
+export const button = (active: boolean) => css`
+  ${active ? btnColor['active'] : btnColor['inactive']}
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 8px 16px;
-  margin: 0 4px;
+  margin: 4px;
   border-radius: 32px;
   font-weight: 600;
   font-size: 14px;

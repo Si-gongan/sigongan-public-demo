@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-export const reportContent = css`
+export const content = css`
   padding: 32px;
   white-space: pre-line;
   line-height: 28px;
@@ -21,6 +21,8 @@ export const description = css`
   color: var(--text2);
   font-size: 14px;
   font-weight: 500;
+  text-align: center;
+  word-break: keep-all;
 `;
 
 export const answer = css`

@@ -1,1 +1,1 @@
-export type ApiSate = 'pending' | 'loading' | 'error' | 'done';
+export type ApiSate = 'pending' | 'loading' | 'error';
