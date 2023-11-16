@@ -10,6 +10,10 @@ export const inputArea = css`
   align-items: center;
   position: relative;
 
+  @media screen and (max-width: 767px) {
+    padding: 0px 0px 16px 0px;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -44,9 +48,13 @@ export const input = css`
   font-size: 16px;
   font-weight: 500;
   color: var(--text-base);
-  background: var(--background2);
-  border: 1.6px solid var(--primary1);
+  background: var(--background-base);
+  border: 1.6px solid var(--chat-primary1);
   outline: none;
+
+  @media screen and (max-width: 767px) {
+    padding: 12px 20px;
+  }
 `;
 
 export const submitBtn = (isLoading: boolean) => css`
@@ -56,8 +64,8 @@ export const submitBtn = (isLoading: boolean) => css`
 `;
 
 export const icon = (isLoading: boolean) => css`
-  color: var(--primary1);
+  color: var(--chat-primary2);
   &:hover {
-    color: ${isLoading ? 'var(--primary1)' : 'var(--primary2)'};
+    color: ${isLoading ? 'var(--chat-primary2)' : 'var(--chat-primary3)'};
   }
 `;

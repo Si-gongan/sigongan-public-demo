@@ -24,11 +24,11 @@ export const themeLight: Theme = {
   chatBackground: '#f4f4f4',
   chatPrimary1: '#dfe5f5',
   chatPrimary2: '#c8d2ee',
-  chatPrimary3: '#b4c5f9',
+  chatPrimary3: '#7486bf',
 };
 
 export const themeDark: Theme = {
-  backgroundBase: 'rgb(0, 0, 0)',
+  backgroundBase: 'rgb(18, 18, 18)',
   background1: '#1c1c1c',
   background2: '#202020',
   background3: '#545454',
@@ -48,8 +48,8 @@ export const themeDark: Theme = {
   primary2: '#5983fc',
   increment: '#f87575',
   decrement: '#7194fa',
-  chatBackground: '#171719',
-  chatPrimary1: '#171719',
-  chatPrimary2: '#1b1b1f',
-  chatPrimary3: '#292c33',
+  chatBackground: '#232328',
+  chatPrimary1: '#323c52',
+  chatPrimary2: '#384771',
+  chatPrimary3: '#3f64bb',
 };

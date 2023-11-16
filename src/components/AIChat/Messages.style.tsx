@@ -6,6 +6,12 @@ export const messagesContainer = css`
   flex: 1;
   overflow-y: scroll;
 
+  &::before {
+    content: '';
+    display: block;
+    margin-top: -32px;
+  }
+
   &::after {
     content: '';
     display: block;
@@ -14,7 +20,7 @@ export const messagesContainer = css`
 `;
 
 export const userContainer = css`
-  padding: 24px 32px;
+  padding: 32px 32px 24px 32px;
 `;
 
 export const userText = css`
@@ -34,6 +40,15 @@ export const aiContainer = css`
 `;
 
 export const aiContent = css`
+  padding: 24px 32px;
+`;
+
+export const loadingContent = css`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: var(--chat-primary3);
+  font-size: 14px;
   padding: 24px 32px;
 `;
 
