@@ -8,10 +8,10 @@ export const wrapper = css`
   padding: 0 32px;
   margin-bottom: 16px;
 
-  /* @media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     padding: 0;
-  } */
+  }
 `;
 
 export const btn = css`
