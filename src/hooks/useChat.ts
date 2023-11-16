@@ -16,6 +16,17 @@ const useChat = () => {
     sendRequest: getAnswer,
   } = useAxios(aiApi.getChat);
 
+  const clickQuestion = (recommendedQuestion: string) => {
+    idRef.current += 1;
+    const newUserMessage: UserMessage = {
+      id: idRef.current,
+      sender: 'user',
+      text: recommendedQuestion,
+    };
+    setChatData((prev) => [...prev, newUserMessage]);
+    getAnswer({ text: recommendedQuestion, data: metaData });
+  };
+
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const enteredUserText = userInputRef.current?.value;
@@ -61,7 +72,14 @@ const useChat = () => {
     }
   }, [isLoading, error]);
 
-  return { chatData, isLoading, error, submitHandler, userInputRef };
+  return {
+    chatData,
+    isLoading,
+    error,
+    userInputRef,
+    submitHandler,
+    clickQuestion,
+  };
 };
 
 export default useChat;

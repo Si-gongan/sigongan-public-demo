@@ -2,8 +2,8 @@
 import { useEffect, useRef } from 'react';
 import { ApiSate } from '../../../types/api';
 import { HashLoader } from 'react-spinners';
-import { FaCircleInfo, FaRegFaceSurprise } from 'react-icons/fa6';
-import * as styles from './AISection.style';
+import { FaRegFaceSurprise } from 'react-icons/fa6';
+import * as styles from './AISection.styles';
 
 interface Props {
   state: ApiSate;
@@ -31,14 +31,6 @@ const Answer: React.FC<Props> = (props) => {
               <p css={styles.answer}>{answer}</p>
               <div ref={answerEndRef} />
             </>
-          )}
-          {!answer && (
-            <div css={styles.descriptionContainer}>
-              <FaCircleInfo size={20} color="#bbb" />
-              <p css={styles.description}>
-                <strong>AI 리포트 생성</strong> 버튼을 눌러보세요
-              </p>
-            </div>
           )}
         </div>
       );

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { NavLink } from 'react-router-dom';
-import * as styles from './NavigationBar.style';
+import * as styles from './NavigationBar.styles';
 import { BiSolidMoon, BiSolidMessageSquareDetail } from 'react-icons/bi';
 import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';

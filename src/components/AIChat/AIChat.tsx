@@ -6,13 +6,18 @@ import * as styles from './AIChat.styles';
 import useChat from '../../hooks/useChat';
 
 const AIChat: React.FC = () => {
-  const { chatData, isLoading, submitHandler, userInputRef } = useChat();
+  const { chatData, isLoading, userInputRef, submitHandler, clickQuestion } =
+    useChat();
 
   return (
     <main css={styles.main}>
       <ResponsiveContainer>
         <div css={styles.chatContainer}>
-          <Messages data={chatData} isLoading={isLoading} />
+          <Messages
+            data={chatData}
+            isLoading={isLoading}
+            clickQuestion={clickQuestion}
+          />
           <ChatInput
             inputRef={userInputRef}
             isLoading={isLoading}

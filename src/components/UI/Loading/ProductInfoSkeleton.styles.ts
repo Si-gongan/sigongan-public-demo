@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import * as productInfoStyle from '../../../components/ProductDetail/ProductInfo.styles';
+import * as productInfoStyle from '../../ProductDetail/ProductInfo.styles';
 
 export const container = css`
   ${productInfoStyle.container}
