@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { RefObject } from 'react';
 import { PiPaperPlaneRightFill } from 'react-icons/pi';
-import * as styles from './ChatInput.style';
+import * as styles from './ChatInput.styles';
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>;

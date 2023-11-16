@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { AIProduct } from '../../types/chat';
 import { truncateText } from '../../utils';
-import * as styles from './RecommendedProduct.style';
+import * as styles from './RecommendedProduct.styles';
 
 interface Props {
   product: AIProduct;

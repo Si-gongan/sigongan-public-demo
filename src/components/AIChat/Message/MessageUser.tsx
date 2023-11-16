@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import * as styles from './Messages.style';
+import * as styles from './Message.styles';
 
 interface Props {
   text: string;

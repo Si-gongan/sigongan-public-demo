@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { ApiSate } from '../../../types/api';
 import { HashLoader } from 'react-spinners';
 import { FaCircleInfo, FaRegFaceSurprise } from 'react-icons/fa6';
-import * as styles from './AISection.style';
+import * as styles from './AISection.styles';
 
 interface Props {
   state: ApiSate;

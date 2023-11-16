@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { AIProduct } from '../../types/chat';
-import MarkdownArea from '../UI/Markdown/MarkdownArea';
-import * as styles from './Messages.style';
-import RecommendedProducts from './RecommendedProducts';
+import { AIProduct } from '../../../types/chat';
+import MarkdownArea from '../../UI/Markdown/MarkdownArea';
+import * as styles from './Message.styles';
+import RecommendedProducts from '../RecommendedProducts';
 
 interface Props {
   text: string;

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const pStyle = css`
-  padding-bottom: 8px;
+  padding: 8px 0;
   font-weight: 500;
   color: var(--text-base);
 `;

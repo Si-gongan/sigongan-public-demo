@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import * as productStyle from '../../../components/Products/Product.styles';
+import * as productStyle from '../../Products/Product.styles';
 
 export const imageWrapper = css`
   ${productStyle.imageWrapper}

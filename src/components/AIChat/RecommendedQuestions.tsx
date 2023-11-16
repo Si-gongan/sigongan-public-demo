@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import * as styles from './RecommendedQuestions.style';
+import * as styles from './RecommendedQuestions.styles';
 
 interface Props {
   questions: string[];

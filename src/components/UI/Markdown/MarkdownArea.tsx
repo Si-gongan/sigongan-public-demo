@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import Markdown from 'react-markdown';
-import * as styles from './markdown.style';
+import * as styles from './markdown.styles';
 
 interface Props {
   children?: string;

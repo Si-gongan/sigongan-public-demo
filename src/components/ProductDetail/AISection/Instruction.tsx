@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FaCircleInfo } from 'react-icons/fa6';
-import * as styles from './AISection.style';
+import * as styles from './AISection.styles';
 
 const Instruction: React.FC = () => {
   return (

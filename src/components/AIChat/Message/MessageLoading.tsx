@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { HashLoader } from 'react-spinners';
-import * as styles from './Messages.style';
+import * as styles from './Message.styles';
 import { useTheme } from '@emotion/react';
 
 const MessageLoading: React.FC = () => {

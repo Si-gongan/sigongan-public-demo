@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useEffect, useRef, useState } from 'react';
 import { ChatMessage } from '../../types/chat';
-import * as styles from './Messages.style';
+import * as styles from './Messages.styles';
 import RecommendedQuestions from './RecommendedQuestions';
-import MessageUser from './MessageUser';
-import MessageAI from './MessageAI';
-import MessageLoading from './MessageLoading';
+import MessageUser from './Message/MessageUser';
+import MessageAI from './Message/MessageAI';
+import MessageLoading from './Message/MessageLoading';
 
 interface Props {
   data: ChatMessage[];
