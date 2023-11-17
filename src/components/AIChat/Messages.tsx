@@ -6,6 +6,7 @@ import RecommendedQuestions from './RecommendedQuestions';
 import MessageUser from './Message/MessageUser';
 import MessageAI from './Message/MessageAI';
 import MessageLoading from './Message/MessageLoading';
+import ChatInstruction from './Message/Instruction';
 
 interface Props {
   data: ChatMessage[];
@@ -40,6 +41,7 @@ const Messages: React.FC<Props> = (props) => {
   return (
     <div css={styles.messagesContainer}>
       {/* TODO: 사전 질문 추천 */}
+      {data.length === 0 && <ChatInstruction clickQuestion={clickQuestion} />}
       {/* 채팅 메시지 렌더링 */}
       {data.map((message) =>
         message.sender === 'user' ? (

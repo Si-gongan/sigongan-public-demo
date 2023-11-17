@@ -10,4 +10,5 @@ export const chatContainer = css`
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding: 0 20px;
 `;
