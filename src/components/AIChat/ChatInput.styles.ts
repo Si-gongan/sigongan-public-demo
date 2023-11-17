@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const inputArea = css`
   width: 100%;
-  padding: 0px 0px 24px 16px;
+  padding-bottom: 24px;
   flex-direction: column;
   display: flex;
   flex-direction: row;
@@ -11,7 +11,7 @@ export const inputArea = css`
   position: relative;
 
   @media screen and (max-width: 767px) {
-    padding: 0px 0px 16px 0px;
+    padding-bottom: 12px;
   }
 
   &::before {
@@ -35,6 +35,7 @@ export const form = css`
   align-items: center;
   gap: 8px;
   flex-grow: 1;
+  padding: 0 12px;
 `;
 
 export const inputContainer = css`

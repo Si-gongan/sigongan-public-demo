@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const messagesContainer = css`
-  padding: 0px 20px;
+  position: relative;
   width: 100%;
   flex: 1;
   overflow-y: scroll;
@@ -17,4 +17,8 @@ export const messagesContainer = css`
     display: block;
     height: 48px;
   }
+`;
+
+export const content = css`
+  padding: 0 8px 0 12px;
 `;
