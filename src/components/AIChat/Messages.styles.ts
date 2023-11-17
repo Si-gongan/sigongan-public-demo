@@ -18,3 +18,7 @@ export const messagesContainer = css`
     height: 48px;
   }
 `;
+
+export const content = css`
+  padding: 0 8px 0 12px;
+`;

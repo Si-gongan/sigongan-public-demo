@@ -3,7 +3,8 @@ import { css } from '@emotion/react';
 export const messageArea = css`
   width: 100%;
   position: absolute;
-  top: 64px;
+  top: 96px;
+  left: 0;
 `;
 
 export const container = css`

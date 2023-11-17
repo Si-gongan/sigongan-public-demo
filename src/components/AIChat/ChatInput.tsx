@@ -2,6 +2,7 @@
 import { RefObject } from 'react';
 import { PiPaperPlaneRightFill } from 'react-icons/pi';
 import * as styles from './ChatInput.styles';
+import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 
 interface Props {
   inputRef: RefObject<HTMLInputElement>;
@@ -14,16 +15,18 @@ const ChatInput: React.FC<Props> = (props) => {
 
   return (
     <div css={styles.inputArea}>
-      <form css={styles.form} onSubmit={submitHandler}>
-        <div css={styles.inputContainer}>
-          <input css={styles.input} ref={inputRef} />
-        </div>
-        <div>
-          <button css={styles.submitBtn(isLoading)} disabled={isLoading}>
-            <PiPaperPlaneRightFill size={24} css={styles.icon(isLoading)} />
-          </button>
-        </div>
-      </form>
+      <ResponsiveContainer>
+        <form css={styles.form} onSubmit={submitHandler}>
+          <div css={styles.inputContainer}>
+            <input css={styles.input} ref={inputRef} />
+          </div>
+          <div>
+            <button css={styles.submitBtn(isLoading)} disabled={isLoading}>
+              <PiPaperPlaneRightFill size={24} css={styles.icon(isLoading)} />
+            </button>
+          </div>
+        </form>
+      </ResponsiveContainer>
     </div>
   );
 };

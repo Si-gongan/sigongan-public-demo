@@ -1,9 +1,10 @@
 import { css } from '@emotion/react';
 
 export const container = css`
+  position: relative;
   width: 1728px;
   margin: 0 auto;
-  height: 100%;
+  height: fit-content;
 
   @media screen and (max-width: 1919px) {
     width: 1376px;

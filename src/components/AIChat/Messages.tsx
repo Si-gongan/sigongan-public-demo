@@ -7,6 +7,7 @@ import MessageUser from './Message/MessageUser';
 import MessageAI from './Message/MessageAI';
 import MessageLoading from './Message/MessageLoading';
 import ChatInstruction from './Message/Instruction';
+import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 
 interface Props {
   data: ChatMessage[];
@@ -40,30 +41,36 @@ const Messages: React.FC<Props> = (props) => {
 
   return (
     <div css={styles.messagesContainer}>
-      {/* TODO: 사전 질문 추천 */}
-      {data.length === 0 && <ChatInstruction clickQuestion={clickQuestion} />}
-      {/* 채팅 메시지 렌더링 */}
-      {data.map((message) =>
-        message.sender === 'user' ? (
-          <MessageUser key={message.id} text={message.text} />
-        ) : (
-          <MessageAI
-            key={message.id}
-            text={message.text}
-            products={message.products}
-          />
-        )
-      )}
-      {/* 답변 로딩 중 */}
-      {isLoading && <MessageLoading />}
-      {/* 다음 질문 추천 */}
-      {!isLoading && questions && (
-        <RecommendedQuestions
-          questions={questions}
-          clickQuestion={clickQuestion}
-        />
-      )}
-      <div ref={chatEndRef} />
+      <ResponsiveContainer>
+        <div css={styles.content}>
+          {/* TODO: 사전 질문 추천 */}
+          {data.length === 0 && (
+            <ChatInstruction clickQuestion={clickQuestion} />
+          )}
+          {/* 채팅 메시지 렌더링 */}
+          {data.map((message) =>
+            message.sender === 'user' ? (
+              <MessageUser key={message.id} text={message.text} />
+            ) : (
+              <MessageAI
+                key={message.id}
+                text={message.text}
+                products={message.products}
+              />
+            )
+          )}
+          {/* 답변 로딩 중 */}
+          {isLoading && <MessageLoading />}
+          {/* 다음 질문 추천 */}
+          {!isLoading && questions && (
+            <RecommendedQuestions
+              questions={questions}
+              clickQuestion={clickQuestion}
+            />
+          )}
+          <div ref={chatEndRef} />
+        </div>
+      </ResponsiveContainer>
     </div>
   );
 };
