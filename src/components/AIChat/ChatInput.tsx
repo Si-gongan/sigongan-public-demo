@@ -18,10 +18,15 @@ const ChatInput: React.FC<Props> = (props) => {
       <ResponsiveContainer>
         <form css={styles.form} onSubmit={submitHandler}>
           <div css={styles.inputContainer}>
-            <input css={styles.input} ref={inputRef} />
+            <label css={styles.label} htmlFor="채팅창" />
+            <input css={styles.input} ref={inputRef} id="채팅창" />
           </div>
           <div>
-            <button css={styles.submitBtn(isLoading)} disabled={isLoading}>
+            <button
+              css={styles.submitBtn(isLoading)}
+              disabled={isLoading}
+              aria-label="전송"
+            >
               <PiPaperPlaneRightFill size={24} css={styles.icon(isLoading)} />
             </button>
           </div>

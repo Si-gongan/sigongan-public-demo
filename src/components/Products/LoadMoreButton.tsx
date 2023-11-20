@@ -38,7 +38,12 @@ const LoadMoreButton: React.FC<Props> = (props) => {
       {isLoading ? (
         <BarLoader color="#aaa" speedMultiplier={1.2} />
       ) : (
-        <button css={styles.btn} onClick={toNextPage} disabled={isLoading}>
+        <button
+          css={styles.btn}
+          onClick={toNextPage}
+          disabled={isLoading}
+          aria-label="더 많은 상품 보기"
+        >
           더 많은 상품 보기
         </button>
       )}

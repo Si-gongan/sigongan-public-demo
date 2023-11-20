@@ -3,11 +3,10 @@ import { responsiveCard } from './ProductCard.styles';
 
 interface Props {
   children: React.ReactNode;
-  isLoading?: boolean;
 }
 
 const ProductCard: React.FC<Props> = (props) => {
-  return <div css={responsiveCard(props.isLoading)}>{props.children}</div>;
+  return <li css={responsiveCard}>{props.children}</li>;
 };
 
 export default ProductCard;

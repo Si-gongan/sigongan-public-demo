@@ -46,18 +46,21 @@ const TabbedContent: React.FC<Props> = (props) => {
         <button
           css={styles.button(tabType === 'report')}
           onClick={createReportHandler}
+          aria-label="AI 리포트 생성"
         >
           AI 리포트 생성
         </button>
         <button
           css={styles.button(tabType === 'caption')}
           onClick={createCaptionHandler}
+          aria-label="이미지 분석"
         >
           이미지 분석
         </button>
         <button
           css={styles.button(tabType === 'priceHistory')}
           onClick={clickPriceHistoryHandler}
+          aria-label="가격 추적"
         >
           가격 추적
         </button>

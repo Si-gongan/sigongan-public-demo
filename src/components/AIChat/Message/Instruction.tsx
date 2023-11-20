@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FaQuoteLeft } from 'react-icons/fa6';
 import * as styles from './Instrunction.styles';
-import { useTheme } from '@emotion/react';
 
 const questions = [
   {
@@ -24,7 +23,6 @@ interface Props {
 
 const ChatInstruction: React.FC<Props> = (props) => {
   const { clickQuestion } = props;
-  const theme = useTheme();
 
   const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const question = (event.target as HTMLButtonElement).textContent;
@@ -36,7 +34,7 @@ const ChatInstruction: React.FC<Props> = (props) => {
   return (
     <div css={styles.messageArea}>
       <div css={styles.container}>
-        <FaQuoteLeft size={20} color={theme.text4} />
+        <FaQuoteLeft size={20} color="#6f6f6f" />
         <p css={styles.text}>
           대화를 통해 상품을 추천해주는 픽포미의 AI 챗봇입니다. <br />
           아래 버튼을 눌러 대화를 시작해보세요.
@@ -44,7 +42,11 @@ const ChatInstruction: React.FC<Props> = (props) => {
         <div css={styles.actions}>
           {questions.map((question) => (
             <div key={question.id} css={styles.btnWrapper}>
-              <button css={styles.btn} onClick={clickHandler}>
+              <button
+                css={styles.btn}
+                onClick={clickHandler}
+                aria-label={question.text}
+              >
                 {question.text}
               </button>
             </div>

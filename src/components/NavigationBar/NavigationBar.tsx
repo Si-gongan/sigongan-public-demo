@@ -32,12 +32,16 @@ const NavigationBar: React.FC = () => {
           <div>
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
-                <NavLink to="/chat" css={styles.navLink}>
+                <NavLink to="/chat" css={styles.navLink} aria-label="AI 채팅">
                   <BiSolidMessageSquareDetail />
                 </NavLink>
               </li>
               <li css={styles.navItem}>
-                <button css={styles.navBtn} onClick={toggleTheme}>
+                <button
+                  css={styles.navBtn}
+                  onClick={toggleTheme}
+                  aria-label="테마 변경"
+                >
                   <BiSolidMoon />
                 </button>
               </li>

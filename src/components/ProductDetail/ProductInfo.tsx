@@ -30,7 +30,7 @@ const ProductInfo: React.FC<Props> = (props) => {
   return (
     <div css={styles.container}>
       <div css={styles.imgWrapper}>
-        <img css={styles.img} src={product.picture} />
+        <img css={styles.img} src={product.picture} alt={product.name} />
       </div>
       <div css={styles.contentContainer}>
         <div css={styles.mainInfoContainer}>

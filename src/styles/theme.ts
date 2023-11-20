@@ -24,7 +24,7 @@ export const themeLight: Theme = {
   chatBackground: '#f4f4f4',
   chatPrimary1: '#dfe5f5',
   chatPrimary2: '#c8d2ee',
-  chatPrimary3: '#7486bf',
+  chatPrimary3: '#556cb4', // 7486bf
 };
 
 export const themeDark: Theme = {
