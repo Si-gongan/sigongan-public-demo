@@ -5,6 +5,10 @@ export const messageArea = css`
   position: absolute;
   top: 96px;
   left: 0;
+
+  @media screen and (max-width: 767px) {
+    top: 48px;
+  }
 `;
 
 export const container = css`
@@ -20,7 +24,7 @@ export const text = css`
   padding: 16px 0;
   font-size: 12px;
   font-weight: 600;
-  color: var(--text4);
+  color: var(--color-gray-500);
 `;
 
 export const actions = css`

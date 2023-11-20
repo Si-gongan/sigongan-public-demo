@@ -4,7 +4,7 @@ import * as styles from './ProductsSkeleton.styles';
 
 const ProductsSkeleton: React.FC = () => {
   return (
-    <ProductCard isLoading>
+    <ProductCard>
       <span>
         <div css={styles.imageWrapper}>
           <div css={styles.image} />
