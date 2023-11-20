@@ -18,7 +18,11 @@ const ScrollToTopButton: React.FC = () => {
     <>
       {isVisible && (
         <div css={styles.container}>
-          <button css={styles.btn} onClick={scrollToTop}>
+          <button
+            css={styles.btn}
+            onClick={scrollToTop}
+            aria-label="맨 위로 이동"
+          >
             <BiUpArrowAlt size={24} />
           </button>
         </div>

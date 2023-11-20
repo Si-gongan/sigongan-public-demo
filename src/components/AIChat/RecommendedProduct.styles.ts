@@ -11,6 +11,11 @@ export const card = css`
     width: 100%;
     height: 112px;
   }
+
+  @media screen and (max-width: 320px) {
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const link = css`
@@ -26,6 +31,10 @@ export const container = css`
   @media screen and (max-width: 767px) {
     flex-direction: row;
   }
+
+  @media screen and (max-width: 320px) {
+    flex-direction: column;
+  }
 `;
 
 export const imageWrapper = css`
@@ -36,6 +45,10 @@ export const imageWrapper = css`
   @media screen and (max-width: 767px) {
     width: auto;
     height: 100%;
+  }
+
+  @media screen and (max-width: 320px) {
+    padding: 8px;
   }
 `;
 
@@ -56,6 +69,12 @@ export const infoContainer = css`
     height: 112px;
     padding-top: 4px;
   }
+
+  @media screen and (max-width: 320px) {
+    width: 100%;
+    height: 120px;
+    padding-top: 0;
+  }
 `;
 
 export const contentTitle = css`
@@ -68,6 +87,10 @@ export const contentTitle = css`
 
   @media screen and (max-width: 767px) {
     height: 32px;
+  }
+
+  @media screen and (max-width: 320px) {
+    height: 64px;
   }
 `;
 

@@ -15,7 +15,7 @@ const ChatNavBar = () => {
         <nav css={styles.navbar}>
           <div>
             <div>
-              <Link to=".." css={styles.navLink}>
+              <Link to=".." css={styles.navLink} aria-label="뒤로가기">
                 <BiArrowBack />
               </Link>
             </div>
@@ -23,7 +23,11 @@ const ChatNavBar = () => {
           <div>
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
-                <button css={styles.navBtn} onClick={toggleTheme}>
+                <button
+                  css={styles.navBtn}
+                  onClick={toggleTheme}
+                  aria-label="테마 변경"
+                >
                   <BiSolidMoon />
                 </button>
               </li>

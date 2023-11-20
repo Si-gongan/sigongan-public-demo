@@ -20,7 +20,7 @@ const RecommendedQuestions: React.FC<Props> = (props) => {
     <div css={styles.wrapper}>
       {questions.map((question, index) => (
         <div key={index}>
-          <button css={styles.btn} onClick={clickHandler}>
+          <button css={styles.btn} onClick={clickHandler} aria-label={question}>
             {question}
           </button>
         </div>
