@@ -9,8 +9,8 @@ interface Props {
 const RecommendedQuestions: React.FC<Props> = (props) => {
   const { questions, clickQuestion } = props;
 
-  const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const question = (event.target as HTMLButtonElement).textContent;
+  const clickHandler: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    const question = event.currentTarget.textContent;
     if (question) {
       clickQuestion(question);
     }

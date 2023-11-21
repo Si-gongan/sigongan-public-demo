@@ -63,11 +63,9 @@ const Products: React.FC = () => {
     <>
       <div css={productsContainer}>
         <ul css={ulStyle}>
-          {products &&
-            products.length > 0 &&
-            products.map((product) => (
-              <Product key={product.id} product={product} />
-            ))}
+          {products?.map((product) => (
+            <Product key={product.id} product={product} />
+          ))}
           {/* TODO: 로딩 UI 개선 */}
           {/* {isLoading && <ProductsSkeleton />} */}
         </ul>
