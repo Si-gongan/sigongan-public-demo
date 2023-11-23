@@ -16,6 +16,7 @@ export const imgWrapper = css`
   flex-shrink: 0;
   display: flex;
   justify-content: center;
+  outline: none;
 
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -53,6 +54,7 @@ export const detailTitle = css`
   font-size: 24px;
   font-weight: 700;
   color: var(--text-base);
+  outline: none;
 
   @media screen and (max-width: 767px) {
     font-size: 18px;
@@ -63,11 +65,13 @@ export const detailPrice = css`
   font-size: 24px;
   font-weight: 700;
   color: var(--text-base);
+  outline: none;
 `;
 
 export const metaContainer = css`
   padding: 20px 0;
   border-bottom: 1.2px solid var(--border1);
+  outline: none;
 `;
 
 export const subTitle = css`

@@ -31,12 +31,16 @@ const SearchBar: React.FC = () => {
   return (
     <form css={styles.form} onSubmit={submitHandler}>
       <div css={styles.inputContainer}>
-        <label css={styles.label} htmlFor="검색창" />
+        <label
+          css={styles.label}
+          htmlFor="searchInput"
+          aria-label="검색어 입력창"
+        />
         <input
           css={styles.input}
           type="text"
           onChange={changeHandler}
-          id="검색창"
+          id="searchInput"
         />
         <button
           type="reset"
