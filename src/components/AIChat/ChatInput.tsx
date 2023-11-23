@@ -18,8 +18,12 @@ const ChatInput: React.FC<Props> = (props) => {
       <ResponsiveContainer>
         <form css={styles.form} onSubmit={submitHandler}>
           <div css={styles.inputContainer}>
-            <label css={styles.label} htmlFor="채팅창" />
-            <input css={styles.input} ref={inputRef} id="채팅창" />
+            <label
+              css={styles.label}
+              htmlFor="chatInput"
+              aria-label="메시지 입력창"
+            />
+            <input css={styles.input} ref={inputRef} id="chatInput" />
           </div>
           <div>
             <button

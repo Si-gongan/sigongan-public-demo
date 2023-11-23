@@ -70,10 +70,18 @@ const TabbedContent: React.FC<Props> = (props) => {
         <ContentCard>
           {!tabType && <Instruction />}
           {tabType === 'report' && (
-            <Answer state={report.state} answer={report.answer} />
+            <Answer
+              state={report.state}
+              answer={report.answer}
+              answerRef={report.answerRef}
+            />
           )}
           {tabType === 'caption' && (
-            <Answer state={caption.state} answer={caption.answer} />
+            <Answer
+              state={caption.state}
+              answer={caption.answer}
+              answerRef={caption.answerRef}
+            />
           )}
           {tabType === 'priceHistory' && <PriceHistory histories={histories} />}
         </ContentCard>

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 export const userContainer = css`
   padding: 32px 32px 24px 32px;
+  outline: none;
 `;
 
 export const userText = css`
@@ -18,6 +19,7 @@ export const aiCard = css`
 
 export const aiContainer = css`
   margin-bottom: 16px;
+  outline: none;
 `;
 
 export const aiContent = css`

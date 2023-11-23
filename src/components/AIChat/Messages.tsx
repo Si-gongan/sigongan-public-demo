@@ -19,6 +19,7 @@ const Messages: React.FC<Props> = (props) => {
   const { data, isLoading, clickQuestion } = props;
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [questions, setQuestions] = useState<string[]>([]);
+  const answerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +49,7 @@ const Messages: React.FC<Props> = (props) => {
             <ChatInstruction clickQuestion={clickQuestion} />
           )}
           {/* 채팅 메시지 렌더링 */}
-          {data.map((message) =>
+          {data.map((message, index) =>
             message.sender === 'user' ? (
               <MessageUser key={message.id} text={message.text} />
             ) : (
@@ -56,6 +57,7 @@ const Messages: React.FC<Props> = (props) => {
                 key={message.id}
                 text={message.text}
                 products={message.products}
+                answerRef={index === data.length - 1 ? answerRef : undefined}
               />
             )
           )}

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { FaQuoteLeft } from 'react-icons/fa6';
-import * as styles from './Instrunction.styles';
+import * as styles from './Instruction.styles';
 
 const questions = [
   {
@@ -35,10 +35,10 @@ const ChatInstruction: React.FC<Props> = (props) => {
     <div css={styles.messageArea}>
       <div css={styles.container}>
         <FaQuoteLeft size={20} color="#6f6f6f" />
-        <p css={styles.text}>
-          대화를 통해 상품을 추천해주는 픽포미의 AI 챗봇입니다. <br />
-          아래 버튼을 눌러 대화를 시작해보세요.
-        </p>
+        <div css={styles.text} tabIndex={0}>
+          <p>대화를 통해 상품을 추천해주는 픽포미의 AI 챗봇입니다.</p>
+          <p>아래 버튼을 눌러 대화를 시작해보세요.</p>
+        </div>
         <div css={styles.actions}>
           {questions.map((question) => (
             <div key={question.id} css={styles.btnWrapper}>

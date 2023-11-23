@@ -8,12 +8,17 @@ export const content = css`
   color: var(--text-base);
 `;
 
+export const answerContainer = css`
+  outline: none;
+`;
+
 export const descriptionContainer = css`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 180px;
+  outline: none;
 `;
 
 export const description = css`
