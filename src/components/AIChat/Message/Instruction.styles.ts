@@ -25,6 +25,7 @@ export const text = css`
   font-size: 12px;
   font-weight: 600;
   color: var(--color-gray-500);
+  outline: none;
 `;
 
 export const actions = css`
