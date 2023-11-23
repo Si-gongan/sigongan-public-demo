@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ApiSate } from '../types/api';
 
 type FetchFn<T> = (
@@ -13,6 +13,8 @@ export const useStream = <T>(
   const [answer, setAnswer] = useState(initialText);
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(false);
+  const answerRef = useRef<HTMLDivElement>(null); // 답변 생성 후 focus
+  // TODO: loading, error에 대해서도 각각의 ref 만들어야 할지?
 
   let state: ApiSate = 'pending';
   if (isLoading) {
@@ -29,7 +31,10 @@ export const useStream = <T>(
       setIsLoading(false);
       while (reader) {
         const { done, value } = await reader.read();
-        if (done) break;
+        if (done) {
+          answerRef.current?.focus();
+          break;
+        }
         const replyChunk = new TextDecoder().decode(value);
         setAnswer((prevReply) => prevReply + replyChunk); // update component state
       }
@@ -39,9 +44,13 @@ export const useStream = <T>(
     }
   };
 
+  useEffect(() => {
+    answerRef.current?.focus();
+  }, [state]);
+
   const getAnswer = async () => {
     streamReply();
   };
 
-  return { answer, state, getAnswer };
+  return { answer, state, answerRef, getAnswer };
 };
