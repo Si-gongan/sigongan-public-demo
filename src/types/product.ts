@@ -20,12 +20,14 @@ export interface History {
   createdAt: string;
 }
 
+// detail 페이지에 필요한 데이터
 export interface ProductDetailModel {
   // TODO: 쓸만한 데이터 더 채우기
   id: number;
   name: string;
   picture: string;
   price: number;
+  group: string;
   url: string;
   category: string;
   reviews: number;

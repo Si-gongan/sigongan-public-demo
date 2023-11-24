@@ -11,6 +11,7 @@ interface Props {
 
 const ProductInfo: React.FC<Props> = (props) => {
   const product = props.product;
+  const url = `https://coupang.com/vp/products/${product.group}`;
   const price = `${product.price.toLocaleString()}원`;
 
   const infoData: InfoProps['infoData'] = [
@@ -54,7 +55,7 @@ const ProductInfo: React.FC<Props> = (props) => {
           </Link>
           <a
             css={styles.button('ok')}
-            href={product.url}
+            href={url}
             target="_blank"
             rel="noopener noreferrer"
           >

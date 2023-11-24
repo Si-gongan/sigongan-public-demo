@@ -52,7 +52,6 @@ const Products: React.FC = () => {
           title: product.name,
           image: product.thumbnail,
           price: product.price,
-          url: product.url,
         })
       );
       setNewProducts(newProducts);
