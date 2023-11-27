@@ -1,22 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
-import { ChatParamsModel, ChatResponseModel, ReportParamsModel } from './types';
+import { ChatParamsModel, ChatResponseModel } from './types';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_AI_API_URL,
 });
 
 const aiApi = {
-  // 현재 사용 안 함
-  getReport: (params: ReportParamsModel) => {
-    const defaultParams: ReportParamsModel = {
-      id: '',
-      stream: false,
-      template: '',
-      basic_info: '',
-      detailed_info: '',
-    };
-    return api.post('/report', { ...defaultParams, ...params });
-  },
   getChat: (
     params: ChatParamsModel
   ): Promise<AxiosResponse<ChatResponseModel>> => {

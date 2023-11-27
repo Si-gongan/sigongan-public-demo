@@ -21,3 +21,13 @@ export interface CaptionParamsModel {
 export interface CaptionResponseModel {
   answer: string;
 }
+
+export interface PriceParamsModel {
+  id: string;
+  history?: string; // 사용 안 함
+  stream?: boolean;
+}
+
+export interface PriceResponseModel {
+  answer: string;
+}

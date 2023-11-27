@@ -4,7 +4,11 @@ import ContentCard from '../UI/Card/ContentCard';
 import { useStream } from '../../hooks/useStream';
 import PriceHistory from './PriceHistory/PriceHistory';
 import { DetailTabType, History } from '../../types/product';
-import { getCaption, getReport } from '../../api/fetch/ai/api';
+import {
+  getCaption,
+  getPriceDescription,
+  getReport,
+} from '../../api/fetch/ai/api';
 import Instruction from './AISection/Instruction';
 import Answer from './AISection/Answer';
 
@@ -20,6 +24,7 @@ const TabbedContent: React.FC<Props> = (props) => {
 
   const report = useStream({ id }, getReport);
   const caption = useStream({ id }, getCaption);
+  const priceDescription = useStream({ id }, getPriceDescription);
 
   const createReportHandler = async () => {
     changeTab('report');
@@ -35,8 +40,11 @@ const TabbedContent: React.FC<Props> = (props) => {
     }
   };
 
-  const clickPriceHistoryHandler = () => {
+  const createPriceDescription = async () => {
     changeTab('priceHistory');
+    if (!priceDescription.answer) {
+      priceDescription.getAnswer();
+    }
   };
 
   return (
@@ -59,7 +67,7 @@ const TabbedContent: React.FC<Props> = (props) => {
         </button>
         <button
           css={styles.button(tabType === 'priceHistory')}
-          onClick={clickPriceHistoryHandler}
+          onClick={createPriceDescription}
           aria-label="가격 추적"
         >
           가격 추적
@@ -83,7 +91,14 @@ const TabbedContent: React.FC<Props> = (props) => {
               answerRef={caption.answerRef}
             />
           )}
-          {tabType === 'priceHistory' && <PriceHistory histories={histories} />}
+          {tabType === 'priceHistory' && (
+            <PriceHistory
+              histories={histories}
+              state={priceDescription.state}
+              answer={priceDescription.answer}
+              answerRef={priceDescription.answerRef}
+            />
+          )}
         </ContentCard>
       </section>
     </div>
