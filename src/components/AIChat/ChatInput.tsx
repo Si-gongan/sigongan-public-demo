@@ -23,7 +23,12 @@ const ChatInput: React.FC<Props> = (props) => {
               htmlFor="chatInput"
               aria-label="메시지 입력창"
             />
-            <input css={styles.input} ref={inputRef} id="chatInput" />
+            <input
+              css={styles.input}
+              ref={inputRef}
+              id="chatInput"
+              placeholder="메시지를 입력하세요"
+            />
           </div>
           <div>
             <button

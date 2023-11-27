@@ -62,8 +62,17 @@ export const input = css`
   border: 1.6px solid var(--chat-primary1);
   outline: none;
 
+  &::placeholder {
+    color: var(--text4);
+    font-size: 14px;
+  }
+
   @media screen and (max-width: 767px) {
     padding: 12px 20px;
+
+    &::placeholder {
+      font-size: 12px;
+    }
   }
 `;
 

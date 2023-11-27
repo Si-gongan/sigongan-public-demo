@@ -41,6 +41,7 @@ const SearchBar: React.FC = () => {
           type="text"
           onChange={changeHandler}
           id="searchInput"
+          placeholder="찾고 있는 상품을 검색해 보세요"
         />
         <button
           type="reset"
