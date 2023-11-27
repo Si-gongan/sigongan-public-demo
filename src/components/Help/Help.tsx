@@ -22,7 +22,11 @@ const Help: React.FC = () => {
         {isVisibleContent && <HelpContent />}
         <div css={styles.btnContainer}>
           <button css={styles.btn} onClick={toggleHandler} aria-label="도움말">
-            {isVisibleContent ? <BsX /> : <BsQuestionLg aria-label="닫기" />}
+            {isVisibleContent ? (
+              <BsX strokeWidth={0.4} />
+            ) : (
+              <BsQuestionLg aria-label="닫기" />
+            )}
           </button>
         </div>
       </div>

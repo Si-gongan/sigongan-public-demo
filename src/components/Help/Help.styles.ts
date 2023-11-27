@@ -38,7 +38,7 @@ export const btn = css`
   border: 1px solid var(--border-base);
   border-radius: 100%;
   background-color: var(--background2);
-  color: var(--text1);
+  color: var(--text3);
   box-shadow: 0 0px 16px rgba(0, 0, 0, 0.1);
   font-size: 24px;
   font-weight: 600;
