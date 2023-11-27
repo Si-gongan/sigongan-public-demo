@@ -16,12 +16,8 @@ interface Props {
 const Answer: React.FC<Props> = (props) => {
   const { state, answer, answerRef } = props;
   const answerEndRef = useRef<HTMLDivElement>(null);
-  const loadingMessage = props.loadingMessage
-    ? props.loadingMessage
-    : 'AI가 답변을 생성하고 있어요';
-  const errorMessage = props.errorMessage
-    ? props.errorMessage
-    : 'AI 생성 오류가 발생했어요';
+  const loadingMessage = props.loadingMessage ?? 'AI가 답변을 생성하고 있어요';
+  const errorMessage = props.errorMessage ?? 'AI 생성 오류가 발생했어요';
 
   const scrollToBottom = () => {
     answerEndRef.current?.scrollIntoView({ behavior: 'smooth' });
