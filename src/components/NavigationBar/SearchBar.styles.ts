@@ -37,6 +37,11 @@ export const input = css`
   font-weight: 600;
   width: 100%;
   color: var(--text-base);
+
+  &::placeholder {
+    color: var(--text4);
+    font-size: 14px;
+  }
 `;
 
 export const clearButton = (buttonVisible: boolean) => css`
