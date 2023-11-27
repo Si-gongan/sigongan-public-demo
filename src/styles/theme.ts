@@ -10,7 +10,7 @@ export const themeLight: Theme = {
   text1: '#333333',
   text2: '#333333',
   text3: '#545454',
-  text4: '#d1d1d1',
+  text4: '#c4c4c4',
   textEmp: '#ffffff',
   accent1: '#d1d1d1',
   accent2: '#c4c4c4',

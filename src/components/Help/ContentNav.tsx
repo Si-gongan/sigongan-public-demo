@@ -23,7 +23,30 @@ const ContentNav: React.FC<Props> = (props) => {
           <FaArrowUpRightFromSquare size={12} />
         </a>
       </div>
-      {/* TODO: 시공간 페이지, 앱스토어 등 외부 링크 연결 파트 */}
+      {/* 외부 링크 연결 파트 */}
+      <div css={styles.bottomArea}>
+        <span css={styles.externalLink}>
+          <a
+            href="https://sigongan.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            홈페이지
+          </a>
+        </span>
+        <span css={styles.externalLink}>
+          <a href="mailto:sigongan22@gmail.com">이메일</a>
+        </span>
+        <span css={styles.externalLink}>
+          <a
+            href="https://www.instagram.com/sigongan.official/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            인스타그램
+          </a>
+        </span>
+      </div>
     </div>
   );
 };

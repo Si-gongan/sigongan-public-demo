@@ -91,3 +91,21 @@ export const text = css`
     padding-bottom: 6px;
   }
 `;
+
+export const bottomArea = css`
+  margin: 8px 12px 0 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border1);
+`;
+
+export const externalLink = css`
+  margin-right: 12px;
+  color: var(--text4);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
