@@ -25,6 +25,8 @@ const TabbedContent: React.FC<Props> = (props) => {
   const report = useStream({ id }, getReport);
   const caption = useStream({ id }, getCaption);
   const priceDescription = useStream({ id }, getPriceDescription);
+  const disabled =
+    !report.isDone || !caption.isDone || !priceDescription.isDone;
 
   const createReportHandler = async () => {
     changeTab('report');
@@ -52,23 +54,26 @@ const TabbedContent: React.FC<Props> = (props) => {
       {/* Switchers */}
       <div css={styles.switchers}>
         <button
-          css={styles.button(tabType === 'report')}
+          css={styles.button(tabType === 'report', disabled)}
           onClick={createReportHandler}
           aria-label="AI 리포트 생성"
+          disabled={disabled}
         >
           AI 리포트 생성
         </button>
         <button
-          css={styles.button(tabType === 'caption')}
+          css={styles.button(tabType === 'caption', disabled)}
           onClick={createCaptionHandler}
           aria-label="이미지 분석"
+          disabled={disabled}
         >
           이미지 분석
         </button>
         <button
-          css={styles.button(tabType === 'priceHistory')}
+          css={styles.button(tabType === 'priceHistory', disabled)}
           onClick={createPriceDescription}
           aria-label="가격 추적"
+          disabled={disabled}
         >
           가격 추적
         </button>

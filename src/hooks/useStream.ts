@@ -13,6 +13,7 @@ export const useStream = <T>(
   const [answer, setAnswer] = useState(initialText);
   const [error, setError] = useState<Error>();
   const [isLoading, setIsLoading] = useState(false);
+  const [isDone, setIsDone] = useState(true);
   const answerRef = useRef<HTMLDivElement>(null); // 답변 생성 후 focus
   // TODO: loading, error에 대해서도 각각의 ref 만들어야 할지?
 
@@ -26,12 +27,14 @@ export const useStream = <T>(
   const streamReply = async () => {
     setAnswer(initialText);
     setIsLoading(true);
+    setIsDone(false);
     try {
       const reader = await fetchFn(params);
       setIsLoading(false);
       while (reader) {
         const { done, value } = await reader.read();
         if (done) {
+          setIsDone(true);
           answerRef.current?.focus();
           break;
         }
@@ -52,5 +55,5 @@ export const useStream = <T>(
     streamReply();
   };
 
-  return { answer, state, answerRef, getAnswer };
+  return { answer, state, isDone, answerRef, getAnswer };
 };
