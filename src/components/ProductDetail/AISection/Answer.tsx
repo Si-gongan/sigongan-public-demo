@@ -1,23 +1,50 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { ApiSate } from '../../../types/api';
-import { HashLoader } from 'react-spinners';
-import { FaRegFaceSurprise } from 'react-icons/fa6';
+import PendingContent from './PendingContent';
+import LoadingContent from './LoadingContent';
+import ErrorContent from './ErrorContent';
+import AnswerControlButton from './AnswerControlButton';
 import * as styles from './AISection.styles';
 
 interface Props {
   state: ApiSate;
   answer?: string;
   answerRef: React.RefObject<HTMLDivElement>;
+  isDone: boolean;
+  startAnswer: () => void;
+  stopAnswer: () => void;
   loadingMessage?: string;
   errorMessage?: string;
+  chart?: ReactNode;
 }
 
 const Answer: React.FC<Props> = (props) => {
-  const { state, answer, answerRef } = props;
+  const { state, answer, answerRef, isDone, startAnswer, stopAnswer } = props;
+  const chart = props.chart ?? null;
   const answerEndRef = useRef<HTMLDivElement>(null);
-  const loadingMessage = props.loadingMessage ?? 'AI가 답변을 생성하고 있어요';
-  const errorMessage = props.errorMessage ?? 'AI 생성 오류가 발생했어요';
+
+  // answer가 없거나, 답변 생성이 끝났거나, error가 발생한 경우 '답변 재생성' 버튼
+  const startButtonCondition =
+    (state === 'pending' && !answer) ||
+    (state === 'pending' && answer && isDone) ||
+    state === 'error';
+
+  // content 렌더링 맵
+  const contentMap = {
+    pending: (
+      <PendingContent answer={answer} answerRef={answerRef} chart={chart} />
+    ),
+    loading: (
+      <LoadingContent
+        answerRef={answerRef}
+        loadingMessage={props.loadingMessage}
+      />
+    ),
+    error: (
+      <ErrorContent answerRef={answerRef} errorMessage={props.errorMessage} />
+    ),
+  };
 
   const scrollToBottom = () => {
     answerEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -27,39 +54,17 @@ const Answer: React.FC<Props> = (props) => {
     scrollToBottom();
   }, [answer]);
 
-  switch (state) {
-    case 'pending':
-      return (
-        <div css={styles.content}>
-          {answer && (
-            <div css={styles.answerContainer} tabIndex={0} ref={answerRef}>
-              <p css={styles.answer}>{answer}</p>
-              <div ref={answerEndRef} />
-            </div>
-          )}
-        </div>
-      );
-    case 'loading':
-      return (
-        <div css={styles.content}>
-          <div css={styles.descriptionContainer} tabIndex={0} ref={answerRef}>
-            <HashLoader color="#333" loading size={24} />
-            <div css={styles.description}>{loadingMessage}</div>
-          </div>
-        </div>
-      );
-    case 'error':
-      return (
-        <div css={styles.content}>
-          <div css={styles.descriptionContainer} tabIndex={0} ref={answerRef}>
-            <FaRegFaceSurprise size={20} color="#bbb" />
-            <p css={styles.description}>{errorMessage}</p>
-          </div>
-        </div>
-      );
-    default:
-      return null;
-  }
+  return (
+    <div css={styles.content}>
+      <AnswerControlButton
+        isStartButton={startButtonCondition}
+        startAnswer={startAnswer}
+        stopAnswer={stopAnswer}
+      />
+      {contentMap[state]}
+      <div ref={answerEndRef} />
+    </div>
+  );
 };
 
 export default Answer;

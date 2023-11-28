@@ -6,7 +6,10 @@ import {
 
 const apiUrl = process.env.REACT_APP_AI_API_URL;
 
-export const getReport = async (params: ReportParamsModel) => {
+export const getReport = async (
+  params: ReportParamsModel,
+  abortController: AbortController
+) => {
   const defaultParams = {
     stream: true,
     template: undefined,
@@ -17,6 +20,7 @@ export const getReport = async (params: ReportParamsModel) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...defaultParams, ...params }),
+    signal: abortController.signal,
   });
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -24,7 +28,10 @@ export const getReport = async (params: ReportParamsModel) => {
   return response.body?.getReader();
 };
 
-export const getCaption = async (params: CaptionParamsModel) => {
+export const getCaption = async (
+  params: CaptionParamsModel,
+  abortController: AbortController
+) => {
   const defaultParams = {
     url: '',
     stream: true,
@@ -35,6 +42,7 @@ export const getCaption = async (params: CaptionParamsModel) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...defaultParams, ...params }),
+    signal: abortController.signal,
   });
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -42,7 +50,10 @@ export const getCaption = async (params: CaptionParamsModel) => {
   return response.body?.getReader();
 };
 
-export const getPriceDescription = async (params: PriceParamsModel) => {
+export const getPriceDescription = async (
+  params: PriceParamsModel,
+  abortController: AbortController
+) => {
   const defaultParams: PriceParamsModel = {
     id: '',
     stream: true,
@@ -51,6 +62,7 @@ export const getPriceDescription = async (params: PriceParamsModel) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...defaultParams, ...params }),
+    signal: abortController.signal,
   });
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);

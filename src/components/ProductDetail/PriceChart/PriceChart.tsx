@@ -46,13 +46,13 @@ const PriceChart: React.FC<Props> = (props) => {
 
   // Recharts
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer width="100%" height={256}>
       <LineChart
         data={histories}
         margin={{
-          top: 32,
-          right: isNarrow ? 8 : 64,
-          left: isNarrow ? 8 : 0,
+          top: 56,
+          right: isNarrow ? 8 : 40,
+          left: isNarrow ? 8 : 16,
           bottom: 8,
         }}
         onMouseEnter={mouseEnterHandler}

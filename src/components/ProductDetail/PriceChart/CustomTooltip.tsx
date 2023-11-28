@@ -14,10 +14,10 @@ const CustomTooltip: React.FC<TooltipProps<number, string>> = ({
   }
 
   const { price, createdAt, diff } = payload[0].payload;
-  const title = `
-      ${createdAt.substring(4, 6)}월 
-      ${createdAt.substring(6, 8)}일 
-      가격 정보
+  const title = `${createdAt.substring(4, 6)}월 ${createdAt.substring(
+    6,
+    8
+  )}일 가격 정보
     `;
   const priceText = `${price.toLocaleString()}원`;
 
