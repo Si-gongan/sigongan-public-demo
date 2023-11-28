@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as styles from './TabbedContent.styles';
-import ContentCard from '../UI/Card/ContentCard';
-import { useStream } from '../../hooks/useStream';
-import PriceHistory from './PriceHistory/PriceHistory';
+import { StreamType, useStream } from '../../hooks/useStream';
 import { DetailTabType, History } from '../../types/product';
 import {
   getCaption,
@@ -11,6 +9,7 @@ import {
 } from '../../api/fetch/ai/api';
 import Instruction from './AISection/Instruction';
 import Answer from './AISection/Answer';
+import PriceChart from './PriceChart/PriceChart';
 
 interface Props {
   id: string;
@@ -19,31 +18,34 @@ interface Props {
   changeTab: (tab: DetailTabType) => void;
 }
 
+type Streams = Record<string, StreamType>;
+
 const TabbedContent: React.FC<Props> = (props) => {
   const { id, histories, tabType, changeTab } = props;
 
-  const report = useStream({ id }, getReport);
-  const caption = useStream({ id }, getCaption);
-  const priceDescription = useStream({ id }, getPriceDescription);
-
-  const createReportHandler = async () => {
-    changeTab('report');
-    if (!report.answer) {
-      report.getAnswer();
-    }
+  const streams: Streams = {
+    report: useStream({ id }, getReport),
+    caption: useStream({ id }, getCaption),
+    price: useStream({ id }, getPriceDescription),
   };
 
-  const createCaptionHandler = async () => {
-    changeTab('caption');
-    if (!caption.answer) {
-      caption.getAnswer();
-    }
+  const optionalProps = {
+    report: {},
+    caption: {},
+    price: {
+      loadingMessage: '상품 가격을 분석하고 있어요',
+      errorMessage: '가격 분석에 실패했어요',
+      chart: <PriceChart histories={histories} />,
+    },
   };
 
-  const createPriceDescription = async () => {
-    changeTab('priceHistory');
-    if (!priceDescription.answer) {
-      priceDescription.getAnswer();
+  const disabled =
+    !streams.report.isDone || !streams.caption.isDone || !streams.price.isDone;
+
+  const startAnswerHandler = async (type: DetailTabType) => {
+    changeTab(type);
+    if (type && !streams[type].answer) {
+      streams[type].startAnswer();
     }
   };
 
@@ -52,54 +54,45 @@ const TabbedContent: React.FC<Props> = (props) => {
       {/* Switchers */}
       <div css={styles.switchers}>
         <button
-          css={styles.button(tabType === 'report')}
-          onClick={createReportHandler}
+          css={styles.button(tabType === 'report', disabled)}
+          onClick={() => startAnswerHandler('report')}
           aria-label="AI 리포트 생성"
+          disabled={disabled}
         >
           AI 리포트 생성
         </button>
         <button
-          css={styles.button(tabType === 'caption')}
-          onClick={createCaptionHandler}
+          css={styles.button(tabType === 'caption', disabled)}
+          onClick={() => startAnswerHandler('caption')}
           aria-label="이미지 분석"
+          disabled={disabled}
         >
           이미지 분석
         </button>
         <button
-          css={styles.button(tabType === 'priceHistory')}
-          onClick={createPriceDescription}
+          css={styles.button(tabType === 'price', disabled)}
+          onClick={() => startAnswerHandler('price')}
           aria-label="가격 추적"
+          disabled={disabled}
         >
           가격 추적
         </button>
       </div>
       {/* Content */}
       <section css={styles.contentContainer}>
-        <ContentCard>
-          {!tabType && <Instruction />}
-          {tabType === 'report' && (
-            <Answer
-              state={report.state}
-              answer={report.answer}
-              answerRef={report.answerRef}
-            />
-          )}
-          {tabType === 'caption' && (
-            <Answer
-              state={caption.state}
-              answer={caption.answer}
-              answerRef={caption.answerRef}
-            />
-          )}
-          {tabType === 'priceHistory' && (
-            <PriceHistory
-              histories={histories}
-              state={priceDescription.state}
-              answer={priceDescription.answer}
-              answerRef={priceDescription.answerRef}
-            />
-          )}
-        </ContentCard>
+        {!tabType ? (
+          <Instruction />
+        ) : (
+          <Answer
+            state={streams[tabType].state}
+            answer={streams[tabType].answer}
+            answerRef={streams[tabType].answerRef}
+            isDone={streams[tabType].isDone}
+            startAnswer={streams[tabType].startAnswer}
+            stopAnswer={streams[tabType].stopAnswer}
+            {...optionalProps[tabType]}
+          />
+        )}
       </section>
     </div>
   );

@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 export const switchers = css`
   display: flex;
-  /* gap: 8px; */
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -23,7 +22,7 @@ export const btnColor = {
   `,
 };
 
-export const button = (active: boolean) => css`
+export const button = (active: boolean, disabled?: boolean) => css`
   ${active ? btnColor['active'] : btnColor['inactive']}
   display: flex;
   align-items: center;
@@ -33,11 +32,11 @@ export const button = (active: boolean) => css`
   border-radius: 32px;
   font-weight: 600;
   font-size: 14px;
-  cursor: pointer;
+  cursor: ${disabled ? 'not-allowed' : 'pointer'};
   transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: ${disabled ? 'non' : 'translateY(-2px)'};
   }
 `;
 
