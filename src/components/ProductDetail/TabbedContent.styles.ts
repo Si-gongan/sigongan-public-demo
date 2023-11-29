@@ -36,7 +36,7 @@ export const button = (active: boolean, disabled?: boolean) => css`
   transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: ${disabled ? 'non' : 'translateY(-2px)'};
+    transform: ${disabled ? 'none' : 'translateY(-2px)'};
   }
 `;
 

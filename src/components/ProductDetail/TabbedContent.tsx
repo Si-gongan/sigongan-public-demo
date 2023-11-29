@@ -83,15 +83,7 @@ const TabbedContent: React.FC<Props> = (props) => {
         {!tabType ? (
           <Instruction />
         ) : (
-          <Answer
-            state={streams[tabType].state}
-            answer={streams[tabType].answer}
-            answerRef={streams[tabType].answerRef}
-            isDone={streams[tabType].isDone}
-            startAnswer={streams[tabType].startAnswer}
-            stopAnswer={streams[tabType].stopAnswer}
-            {...optionalProps[tabType]}
-          />
+          <Answer {...streams[tabType]} {...optionalProps[tabType]} />
         )}
       </section>
     </div>
