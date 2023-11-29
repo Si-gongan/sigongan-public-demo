@@ -7,7 +7,7 @@ import { setThemeColor } from './utils';
 import * as Sentry from '@sentry/react';
 
 Sentry.init({
-  // .env SENTRY_DSN
+  dsn: process.env.REACT_APP_SENTRY_DSN,
   integrations: [
     new Sentry.BrowserTracing({
       tracePropagationTargets: [
