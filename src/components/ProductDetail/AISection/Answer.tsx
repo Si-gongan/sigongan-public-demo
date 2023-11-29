@@ -1,19 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { ReactNode, useEffect, useRef } from 'react';
-import { ApiSate } from '../../../types/api';
 import PendingContent from './PendingContent';
 import LoadingContent from './LoadingContent';
 import ErrorContent from './ErrorContent';
 import AnswerControlButton from './AnswerControlButton';
 import * as styles from './AISection.styles';
+import { StreamType } from '../../../hooks/useStream';
 
-interface Props {
-  state: ApiSate;
-  answer?: string;
-  answerRef: React.RefObject<HTMLDivElement>;
-  isDone: boolean;
-  startAnswer: () => void;
-  stopAnswer: () => void;
+interface Props extends StreamType {
   loadingMessage?: string;
   errorMessage?: string;
   chart?: ReactNode;
