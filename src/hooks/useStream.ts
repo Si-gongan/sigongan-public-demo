@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ApiSate } from '../types/api';
+import * as Sentry from '@sentry/react';
 
 type FetchFn<T> = (
   params: T,
@@ -50,6 +51,7 @@ export const useStream = <T>(
       }
       setIsLoading(false);
       setError(error as Error);
+      Sentry.captureException(error);
     }
   };
 
