@@ -4,6 +4,21 @@ import './assets/fonts/font.css';
 import './index.css';
 import App from './App';
 import { setThemeColor } from './utils';
+import * as Sentry from '@sentry/react';
+
+Sentry.init({
+  dsn: process.env.REACT_APP_SENTRY_DSN,
+  integrations: [
+    new Sentry.BrowserTracing({
+      tracePropagationTargets: [
+        'localhost',
+        'https://sigongan-public-demo.vercel.app/',
+      ],
+    }),
+  ],
+  // Performance Monitoring
+  tracesSampleRate: 1.0,
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

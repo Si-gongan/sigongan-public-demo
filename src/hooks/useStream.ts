@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ApiSate } from '../types/api';
+import * as Sentry from '@sentry/react';
 
 type FetchFn<T> = (
   params: T,
@@ -45,11 +46,13 @@ export const useStream = <T>(
         setAnswer((prevReply) => prevReply + replyChunk); // update component state
       }
     } catch (error) {
-      if (error instanceof Error && error.name === 'AbortError') {
-        return; // 사용자가 '생성 멈추기' 버튼을 누른 경우 생성 오류 아님
-      }
       setIsLoading(false);
-      setError(error as Error);
+      setIsDone(true);
+      // 사용자가 '생성 멈추기' 버튼을 누른 경우 생성 오류 아님
+      if (error instanceof Error && error.name !== 'AbortError') {
+        setError(error as Error);
+        Sentry.captureException(error);
+      }
     }
   };
 
