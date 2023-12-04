@@ -7,7 +7,11 @@ import coupangApi from '../../api/axios/coupang/api';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProductInfoSkeleton from '../UI/Loading/ProductInfoSkeleton';
-import { DetailTabType, HistoryInput } from '../../types/product';
+import {
+  DetailTabType,
+  HistoryInput,
+  ProductDetailModel,
+} from '../../types/product';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
@@ -18,6 +22,8 @@ const ProductDetail: React.FC = () => {
     error,
     sendRequest: fetchProduct,
   } = useAxios(coupangApi.getProduct);
+
+  const product: ProductDetailModel = response?.data.product;
 
   useEffect(() => {
     fetchProduct(id as string);
@@ -41,11 +47,12 @@ const ProductDetail: React.FC = () => {
     <div css={styles.container}>
       {isLoading && <ProductInfoSkeleton />}
       {error && <p>error...</p>}
-      {!isLoading && response?.data.product && (
+      {!isLoading && product && (
         <>
-          <ProductInfo product={response?.data.product} />
+          <ProductInfo product={product} />
           <TabbedContent
             id={id as string}
+            group={product.group}
             histories={histories}
             tabType={tabType}
             changeTab={changeTab}

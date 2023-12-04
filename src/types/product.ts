@@ -35,4 +35,9 @@ export interface ProductDetailModel {
   histories: History[];
 }
 
-export type DetailTabType = 'report' | 'caption' | 'price' | undefined;
+export type DetailTabType =
+  | 'report'
+  | 'caption'
+  | 'price'
+  | 'review'
+  | undefined;

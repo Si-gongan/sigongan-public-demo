@@ -25,3 +25,12 @@ export interface ChatResponseModel {
     products?: RecommendedProduct[];
   };
 }
+
+export interface ReviewParamsModel {
+  group: string;
+}
+
+export interface ReviewResponseModel {
+  pros: string[];
+  cons: string[];
+}

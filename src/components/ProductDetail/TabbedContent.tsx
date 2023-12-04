@@ -10,9 +10,13 @@ import {
 import Instruction from './AISection/Instruction';
 import Answer from './AISection/Answer';
 import PriceChart from './PriceChart/PriceChart';
+import useAxios from '../../hooks/useAxios';
+import aiApi from '../../api/axios/ai/api';
+import ReviewContent from './AISection/Review';
 
 interface Props {
   id: string;
+  group: string;
   histories: History[];
   tabType: DetailTabType;
   changeTab: (tab: DetailTabType) => void;
@@ -21,7 +25,14 @@ interface Props {
 type Streams = Record<string, StreamType>;
 
 const TabbedContent: React.FC<Props> = (props) => {
-  const { id, histories, tabType, changeTab } = props;
+  const { id, group, histories, tabType, changeTab } = props;
+  const {
+    response: review,
+    isLoading: reviewLoading,
+    error: reviewError,
+    answerRef: reviewRef,
+    sendRequest: getReview,
+  } = useAxios(aiApi.getReview);
 
   const streams: Streams = {
     report: useStream({ id }, getReport),
@@ -40,13 +51,21 @@ const TabbedContent: React.FC<Props> = (props) => {
   };
 
   const disabled =
-    !streams.report.isDone || !streams.caption.isDone || !streams.price.isDone;
+    !streams.report.isDone ||
+    !streams.caption.isDone ||
+    !streams.price.isDone ||
+    reviewLoading;
 
   const startAnswerHandler = async (type: DetailTabType) => {
     changeTab(type);
     if (type && !streams[type].answer) {
       streams[type].startAnswer();
     }
+  };
+
+  const clickReviewHadler = () => {
+    changeTab('review');
+    getReview({ group });
   };
 
   return (
@@ -77,11 +96,27 @@ const TabbedContent: React.FC<Props> = (props) => {
         >
           가격 추적
         </button>
+        <button
+          css={styles.button(tabType === 'review', disabled)}
+          onClick={clickReviewHadler}
+          aria-label="리뷰 분석"
+          disabled={disabled}
+        >
+          리뷰 분석
+        </button>
       </div>
       {/* Content */}
       <section css={styles.contentContainer}>
         {!tabType ? (
           <Instruction />
+        ) : tabType === 'review' ? (
+          <ReviewContent
+            pros={review?.data.pros}
+            cons={review?.data.cons}
+            isLoading={reviewLoading}
+            error={reviewError}
+            answerRef={reviewRef}
+          />
         ) : (
           <Answer {...streams[tabType]} {...optionalProps[tabType]} />
         )}
