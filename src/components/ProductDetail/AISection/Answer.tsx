@@ -30,14 +30,9 @@ const Answer: React.FC<Props> = (props) => {
       <PendingContent answer={answer} answerRef={answerRef} chart={chart} />
     ),
     loading: (
-      <LoadingContent
-        answerRef={answerRef}
-        loadingMessage={props.loadingMessage}
-      />
+      <LoadingContent answerRef={answerRef} message={props.loadingMessage} />
     ),
-    error: (
-      <ErrorContent answerRef={answerRef} errorMessage={props.errorMessage} />
-    ),
+    error: <ErrorContent answerRef={answerRef} message={props.errorMessage} />,
   };
 
   const scrollToBottom = () => {
