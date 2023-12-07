@@ -1,82 +1,55 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { ProductContext } from '../../store/product-context';
 import Product from './Product';
-import { productsContainer, ulStyle } from './Products.styles';
-import useAxios from '../../hooks/useAxios';
-import coupangApi from '../../api/axios/coupang/api';
-import { ProductsResponseModel } from '../../api/axios/coupang/types';
+import { loaderContainer, productsContainer, ulStyle } from './Products.styles';
+import { getProducts } from '../../api/axios/coupang/api';
 import LoadMoreButton from './LoadMoreButton';
-import ScrollToTopButton from './ScrollToTopButton';
+import { BarLoader } from 'react-spinners';
 
 const Products: React.FC = () => {
-  const { products, query, page, addPage, setNewProducts } =
-    useContext(ProductContext);
-  const {
-    response,
-    isLoading,
-    error,
-    sendRequest: fetchProducts,
-  } = useAxios(coupangApi.getProducts);
-  const [isLastPage, setIsLastPage] = useState(
-    sessionStorage.getItem('isLastPage') === 'true' ? true : false
-  );
-  const isLoadMoreAllowed = !isLastPage && products.length > 0;
+  const { query } = useContext(ProductContext);
 
-  const toNextPage = () => {
-    if (isLoadMoreAllowed) {
-      addPage();
-      fetchProducts({ query, page: page + 1 });
-    }
-  };
-
-  useEffect(() => {
-    if (query.trim().length > 0 && products.length === 0) {
-      fetchProducts({ query, page });
-    }
-  }, [query, products.length]);
-
-  useEffect(() => {
-    const productsData = response?.data.products;
-    if (!isLoading && !error && productsData) {
-      if (page >= response.data.last_page || response.data.count < 15) {
-        setIsLastPage(true);
-        sessionStorage.setItem('isLastPage', 'true');
-      } else {
-        setIsLastPage(false);
-        sessionStorage.setItem('isLastPage', 'false');
-      }
-      const newProducts = productsData.map(
-        (product: ProductsResponseModel) => ({
-          id: product.id,
-          title: product.name,
-          image: product.thumbnail,
-          price: product.price,
-        })
-      );
-      setNewProducts(newProducts);
-    }
-  }, [isLoading, error]);
+  const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
+    useInfiniteQuery({
+      // TODO: AxiosError
+      queryKey: ['products', query],
+      queryFn: ({ pageParam = 1 }) => getProducts({ pageParam, query }),
+      getNextPageParam: (lastPage, pages) => {
+        const isLastPage =
+          lastPage.products.length < 15 || lastPage.lastPage === lastPage.page;
+        return isLastPage ? undefined : pages.length + 1;
+      },
+      initialPageParam: 1,
+      enabled: query.trim().length > 0,
+    });
 
   return (
-    <>
-      <div css={productsContainer}>
-        <ul css={ulStyle}>
-          {products?.map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-          {/* TODO: 로딩 UI 개선 */}
-          {/* {isLoading && <ProductsSkeleton />} */}
-        </ul>
-        <LoadMoreButton
-          toNextPage={toNextPage}
-          isLoading={isLoading}
-          showButton={products.length > 0}
-          isLastPage={isLastPage}
-        />
-      </div>
-      <ScrollToTopButton />
-    </>
+    <div css={productsContainer}>
+      {!data && isLoading && (
+        <div css={loaderContainer}>
+          <BarLoader color="#aaa" speedMultiplier={1.2} />
+        </div>
+      )}
+      {data && (
+        <div>
+          <ul css={ulStyle}>
+            {data?.pages?.map(
+              (page) =>
+                page?.products.map((product) => (
+                  <Product key={product.id} product={product} />
+                ))
+            )}
+          </ul>
+          <LoadMoreButton
+            toNextPage={fetchNextPage}
+            isFetching={isFetchingNextPage}
+            isLastPage={!hasNextPage}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

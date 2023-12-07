@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import { AIMessage, ChatMessage, MetaData, UserMessage } from '../types/chat';
-import useAxios from './useAxios';
-import aiApi from '../api/axios/ai/api';
+import { getChat } from '../api/axios/ai/api';
+import { ChatResponseModel } from '../api/axios/ai/types';
+import { AxiosError } from 'axios';
 
 const useChat = () => {
   const userInputRef = useRef<HTMLInputElement>(null);
@@ -10,11 +12,40 @@ const useChat = () => {
   const idRef = useRef(0);
 
   const {
-    response,
-    isLoading,
+    mutate,
+    isPending: isLoading,
     error,
-    sendRequest: getAnswer,
-  } = useAxios(aiApi.getChat);
+  } = useMutation<ChatResponseModel, AxiosError, string>({
+    mutationFn: (text) => getChat({ text, data: metaData }),
+    onSuccess: (data) => {
+      idRef.current += 1;
+
+      const products = data.data.products?.map((product) => ({
+        name: product.name,
+        price: product.price,
+        rating: product.rating,
+        ratingCount: product.rating_total_count,
+        thumbnail: product.thumbnail,
+        link: product.link,
+      }));
+
+      const newAIMessage: AIMessage = {
+        id: idRef.current,
+        sender: 'ai',
+        text: data.answer,
+        products: products,
+        questions: data.data.questions,
+      };
+
+      const newMetaData: MetaData = {
+        state: data.data.state,
+        threadId: data.data.thread_id,
+      };
+
+      setChatData((prev) => [...prev, newAIMessage]);
+      setMetaData(newMetaData);
+    },
+  });
 
   const clickQuestion = (recommendedQuestion: string) => {
     idRef.current += 1;
@@ -23,13 +54,15 @@ const useChat = () => {
       sender: 'user',
       text: recommendedQuestion,
     };
+
     setChatData((prev) => [...prev, newUserMessage]);
-    getAnswer({ text: recommendedQuestion, data: metaData });
+    mutate(recommendedQuestion); // recommendedQuestion인지 확인
   };
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const enteredUserText = userInputRef.current?.value;
+
     if (enteredUserText) {
       userInputRef.current.value = '';
       idRef.current += 1;
@@ -39,38 +72,9 @@ const useChat = () => {
         text: enteredUserText,
       };
       setChatData((prev) => [...prev, newUserMessage]);
-      getAnswer({ text: enteredUserText, data: metaData });
+      mutate(userInputRef.current?.value);
     }
   };
-
-  useEffect(() => {
-    if (!error && !isLoading && response?.data) {
-      idRef.current += 1;
-
-      const products = response.data.data.products?.map((product) => ({
-        name: product.name,
-        price: product.price,
-        rating: product.rating,
-        ratingCount: product.rating_total_count,
-        thumbnail: product.thumbnail,
-        link: product.link,
-      }));
-      const newAIMessage: AIMessage = {
-        id: idRef.current,
-        sender: 'ai',
-        text: response.data.answer,
-        products: products,
-        questions: response.data.data.questions,
-      };
-      setChatData((prev) => [...prev, newAIMessage]);
-
-      const metaData: MetaData = {
-        state: response.data.data.state,
-        threadId: response.data.data.thread_id,
-      };
-      setMetaData(metaData);
-    }
-  }, [isLoading, error]);
 
   return {
     chatData,

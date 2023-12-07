@@ -6,17 +6,20 @@ import RecommendedQuestions from './RecommendedQuestions';
 import MessageUser from './Message/MessageUser';
 import MessageAI from './Message/MessageAI';
 import MessageLoading from './Message/MessageLoading';
+import MessageError from './Message/MessageError';
 import ChatInstruction from './Message/Instruction';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
+import { AxiosError } from 'axios';
 
 interface Props {
   data: ChatMessage[];
   isLoading: boolean;
+  error: AxiosError | null;
   clickQuestion: (recommendedQuestion: string) => void;
 }
 
 const Messages: React.FC<Props> = (props) => {
-  const { data, isLoading, clickQuestion } = props;
+  const { data, isLoading, error, clickQuestion } = props;
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [questions, setQuestions] = useState<string[]>([]);
   const answerRef = useRef<HTMLDivElement>(null);
@@ -63,6 +66,8 @@ const Messages: React.FC<Props> = (props) => {
           )}
           {/* 답변 로딩 중 */}
           {isLoading && <MessageLoading />}
+          {/* 에러 발생 */}
+          {error && <MessageError />}
           {/* 다음 질문 추천 */}
           {!isLoading && questions && (
             <RecommendedQuestions

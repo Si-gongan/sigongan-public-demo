@@ -11,16 +11,6 @@ const api = axios.create({
 });
 
 const aiApi = {
-  getChat: (
-    params: ChatParamsModel
-  ): Promise<AxiosResponse<ChatResponseModel>> => {
-    const text = params.text;
-    const data = {
-      state: params.data?.state,
-      thread_id: params.data?.threadId,
-    };
-    return api.post<ChatResponseModel>('/shopping-chat', { text, data });
-  },
   getReview: (
     params: ReviewParamsModel
     // abortController: AbortController
@@ -28,6 +18,21 @@ const aiApi = {
     const url = `https://www.coupang.com/vp/products/${params.group}`;
     return api.post<ReviewResponseModel>('/product-review', { url });
   },
+};
+
+export const getChat = async (params: ChatParamsModel) => {
+  const text = params.text;
+  const data = {
+    state: params.data?.state,
+    thread_id: params.data?.threadId,
+  };
+
+  const response = await api.post<ChatResponseModel>('/shopping-chat', {
+    text,
+    data,
+  });
+
+  return response.data;
 };
 
 export default aiApi;

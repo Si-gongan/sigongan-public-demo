@@ -1,9 +1,8 @@
 export interface ProductModel {
   id: number;
-  title: string;
-  image: string;
-  price: number;
-  url: string;
+  name: string;
+  thumbnail: string;
+  price: string;
 }
 
 export interface HistoryInput {

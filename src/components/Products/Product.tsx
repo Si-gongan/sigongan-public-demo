@@ -11,14 +11,14 @@ interface PropsType {
 
 const Product: React.FC<PropsType> = (props) => {
   const { product } = props;
-  const price = `${product.price.toLocaleString()}원`;
-  const truncatedText = `${truncateText(product.title, 48)}`;
+  const price = `${Number(product.price).toLocaleString()}원`;
+  const truncatedText = `${truncateText(product.name, 48)}`;
 
   return (
     <ProductCard>
       <Link to={`/detail/${product.id}`}>
         <div css={styles.imageWrapper}>
-          <img css={styles.image} src={product.image} alt={truncatedText} />
+          <img css={styles.image} src={product.thumbnail} alt={truncatedText} />
         </div>
         <div css={styles.contentTitle}>
           <h2 css={styles.title}>{truncatedText}</h2>
