@@ -1,35 +1,29 @@
 /** @jsxImportSource @emotion/react */
+import { useQuery } from '@tanstack/react-query';
 import ProductInfo from './ProductInfo';
 import TabbedContent from './TabbedContent';
 import * as styles from './ProductDetail.styles';
-import useAxios from '../../hooks/useAxios';
-import coupangApi from '../../api/axios/coupang/api';
+import { getProduct } from '../../api/axios/coupang/api';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ProductInfoSkeleton from '../UI/Loading/ProductInfoSkeleton';
-import {
-  DetailTabType,
-  HistoryInput,
-  ProductDetailModel,
-} from '../../types/product';
+import { DetailTabType, History, HistoryInput } from '../../types/product';
+import RouterError from '../RouterError/RouterError';
 
-const ProductDetail: React.FC = () => {
+const ProductDetailTest: React.FC = () => {
   const { id } = useParams();
   const [tabType, setTabType] = useState<DetailTabType>();
-  const {
-    response,
-    isLoading,
-    error,
-    sendRequest: fetchProduct,
-  } = useAxios(coupangApi.getProduct);
 
-  const product: ProductDetailModel = response?.data.product;
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['product', { id }],
+    queryFn: () => getProduct({ id: id ?? '' }),
+    enabled: id !== undefined,
+    staleTime: 300000,
+  });
 
-  useEffect(() => {
-    fetchProduct(id as string);
-  }, []);
+  const product = data?.product;
 
-  const histories = response?.data.product.histories.map(
+  const histories: History[] = (data?.product.histories || []).map(
     (history: HistoryInput) => ({
       price: history.price,
       regularPrice: history.regular_price,
@@ -46,7 +40,8 @@ const ProductDetail: React.FC = () => {
   return (
     <div css={styles.container}>
       {isLoading && <ProductInfoSkeleton />}
-      {error && <p>error...</p>}
+      {/* TODO: 에러처리 */}
+      {error && <RouterError />}
       {!isLoading && product && (
         <>
           <ProductInfo product={product} />
@@ -63,4 +58,4 @@ const ProductDetail: React.FC = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetailTest;

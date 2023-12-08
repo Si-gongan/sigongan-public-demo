@@ -23,6 +23,7 @@ const Products: React.FC = () => {
       },
       initialPageParam: 1,
       enabled: query.trim().length > 0,
+      staleTime: 300000,
     });
 
   return (

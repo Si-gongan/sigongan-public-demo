@@ -31,7 +31,7 @@ export interface ProductDetailModel {
   category: string;
   reviews: number;
   ratings: number;
-  histories: History[];
+  histories: HistoryInput[];
 }
 
 export type DetailTabType =

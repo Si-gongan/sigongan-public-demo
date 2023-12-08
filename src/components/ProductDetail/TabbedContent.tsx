@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
+import { useQuery } from '@tanstack/react-query';
 import * as styles from './TabbedContent.styles';
 import { StreamType, useStream } from '../../hooks/useStream';
 import { DetailTabType, History } from '../../types/product';
+import Instruction from './AISection/Instruction';
+import Answer from './AISection/Answer';
+import ReviewContent from './AISection/Review';
+import PriceChart from './PriceChart/PriceChart';
+import { getReview } from '../../api/axios/ai/api';
 import {
   getCaption,
   getPriceDescription,
   getReport,
 } from '../../api/fetch/ai/api';
-import Instruction from './AISection/Instruction';
-import Answer from './AISection/Answer';
-import PriceChart from './PriceChart/PriceChart';
-import useAxios from '../../hooks/useAxios';
-import aiApi from '../../api/axios/ai/api';
-import ReviewContent from './AISection/Review';
 
 interface Props {
   id: string;
@@ -26,13 +26,13 @@ type Streams = Record<string, StreamType>;
 
 const TabbedContent: React.FC<Props> = (props) => {
   const { id, group, histories, tabType, changeTab } = props;
-  const {
-    response: review,
-    isLoading: reviewLoading,
-    error: reviewError,
-    answerRef: reviewRef,
-    sendRequest: getReview,
-  } = useAxios(aiApi.getReview);
+
+  const { isLoading: reviewLoading, refetch } = useQuery({
+    queryKey: ['review', { id }],
+    queryFn: () => getReview({ group }),
+    enabled: false,
+    staleTime: 300000,
+  });
 
   const streams: Streams = {
     report: useStream({ id }, getReport),
@@ -65,7 +65,7 @@ const TabbedContent: React.FC<Props> = (props) => {
 
   const clickReviewHadler = () => {
     changeTab('review');
-    getReview({ group });
+    refetch();
   };
 
   const buttons = [
@@ -116,13 +116,7 @@ const TabbedContent: React.FC<Props> = (props) => {
         {!tabType ? (
           <Instruction />
         ) : tabType === 'review' ? (
-          <ReviewContent
-            pros={review?.data.pros}
-            cons={review?.data.cons}
-            isLoading={reviewLoading}
-            error={reviewError}
-            answerRef={reviewRef}
-          />
+          <ReviewContent id={id} />
         ) : (
           <Answer {...streams[tabType]} {...optionalProps[tabType]} />
         )}

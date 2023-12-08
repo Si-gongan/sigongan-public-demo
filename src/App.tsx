@@ -3,7 +3,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import ProductContextProvider from './store/product-context';
 import ThemeContextProvider from './store/theme-context';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 function App() {
   return (
