@@ -1,9 +1,8 @@
 export interface ProductModel {
   id: number;
-  title: string;
-  image: string;
-  price: number;
-  url: string;
+  name: string;
+  thumbnail: string;
+  price: string;
 }
 
 export interface HistoryInput {
@@ -32,7 +31,12 @@ export interface ProductDetailModel {
   category: string;
   reviews: number;
   ratings: number;
-  histories: History[];
+  histories: HistoryInput[];
 }
 
-export type DetailTabType = 'report' | 'caption' | 'price' | undefined;
+export type DetailTabType =
+  | 'report'
+  | 'caption'
+  | 'price'
+  | 'review'
+  | undefined;

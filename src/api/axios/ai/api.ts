@@ -1,21 +1,32 @@
-import axios, { AxiosResponse } from 'axios';
-import { ChatParamsModel, ChatResponseModel } from './types';
+import axios from 'axios';
+import {
+  ChatParamsModel,
+  ChatResponseModel,
+  ReviewParamsModel,
+  ReviewResponseModel,
+} from './types';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_AI_API_URL,
 });
 
-const aiApi = {
-  getChat: (
-    params: ChatParamsModel
-  ): Promise<AxiosResponse<ChatResponseModel>> => {
-    const text = params.text;
-    const data = {
-      state: params.data?.state,
-      thread_id: params.data?.threadId,
-    };
-    return api.post<ChatResponseModel>('/shopping-chat', { text, data });
-  },
+export const getReview = async (params: ReviewParamsModel) => {
+  const url = `https://www.coupang.com/vp/products/${params.group}`;
+  const response = await api.post<ReviewResponseModel>('/product-review', {
+    url,
+  });
+  return response.data;
 };
 
-export default aiApi;
+export const getChat = async (params: ChatParamsModel) => {
+  const text = params.text;
+  const data = {
+    state: params.data?.state,
+    thread_id: params.data?.threadId,
+  };
+  const response = await api.post<ChatResponseModel>('/shopping-chat', {
+    text,
+    data,
+  });
+  return response.data;
+};

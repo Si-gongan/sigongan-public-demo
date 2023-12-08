@@ -1,16 +1,16 @@
-import { ProductDetailModel } from '../../../types/product';
+import { ProductDetailModel, ProductModel } from '../../../types/product';
 
 export interface ProductsParamsModel {
   query: string;
-  page: number;
+  pageParam: number;
 }
 
 // products 페이지에 필요한 데이터
 export interface ProductsResponseModel {
-  id: number;
-  name: string;
-  thumbnail: string;
-  price: string;
+  products: ProductModel[];
+  page: number;
+  lastPage: number;
+  total: number;
 }
 
 export interface ProductParamsModel {

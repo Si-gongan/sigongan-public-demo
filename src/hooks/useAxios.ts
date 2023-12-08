@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AxiosError, AxiosResponse } from 'axios';
 import * as Sentry from '@sentry/react';
 
@@ -8,6 +8,7 @@ const useAxios = <T, R>(requestFn: RequestFn<T, R>) => {
   const [response, setResponse] = useState<AxiosResponse<R>>();
   const [error, setError] = useState<AxiosError>();
   const [isLoading, setIsLoading] = useState(false);
+  const answerRef = useRef<HTMLDivElement>(null);
 
   const fetchData = async (params: T) => {
     setResponse(undefined);
@@ -23,12 +24,16 @@ const useAxios = <T, R>(requestFn: RequestFn<T, R>) => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    answerRef.current?.focus();
+  }, [isLoading, error]);
+
   // trigger
   const sendRequest = (params: T) => {
     fetchData(params);
   };
 
-  return { response, error, isLoading, sendRequest };
+  return { response, error, isLoading, answerRef, sendRequest };
 };
 
 export default useAxios;

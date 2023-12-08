@@ -1,18 +1,22 @@
 /** @jsxImportSource @emotion/react */
+import { useQuery } from '@tanstack/react-query';
 import * as styles from './TabbedContent.styles';
 import { StreamType, useStream } from '../../hooks/useStream';
 import { DetailTabType, History } from '../../types/product';
+import Instruction from './AISection/Instruction';
+import Answer from './AISection/Answer';
+import ReviewContent from './AISection/Review';
+import PriceChart from './PriceChart/PriceChart';
+import { getReview } from '../../api/axios/ai/api';
 import {
   getCaption,
   getPriceDescription,
   getReport,
 } from '../../api/fetch/ai/api';
-import Instruction from './AISection/Instruction';
-import Answer from './AISection/Answer';
-import PriceChart from './PriceChart/PriceChart';
 
 interface Props {
   id: string;
+  group: string;
   histories: History[];
   tabType: DetailTabType;
   changeTab: (tab: DetailTabType) => void;
@@ -21,7 +25,14 @@ interface Props {
 type Streams = Record<string, StreamType>;
 
 const TabbedContent: React.FC<Props> = (props) => {
-  const { id, histories, tabType, changeTab } = props;
+  const { id, group, histories, tabType, changeTab } = props;
+
+  const { isLoading: reviewLoading, refetch } = useQuery({
+    queryKey: ['review', { id }],
+    queryFn: () => getReview({ group }),
+    enabled: false,
+    staleTime: 300000,
+  });
 
   const streams: Streams = {
     report: useStream({ id }, getReport),
@@ -40,7 +51,10 @@ const TabbedContent: React.FC<Props> = (props) => {
   };
 
   const disabled =
-    !streams.report.isDone || !streams.caption.isDone || !streams.price.isDone;
+    !streams.report.isDone ||
+    !streams.caption.isDone ||
+    !streams.price.isDone ||
+    reviewLoading;
 
   const startAnswerHandler = async (type: DetailTabType) => {
     changeTab(type);
@@ -49,39 +63,60 @@ const TabbedContent: React.FC<Props> = (props) => {
     }
   };
 
+  const clickReviewHadler = () => {
+    changeTab('review');
+    refetch();
+  };
+
+  const buttons = [
+    {
+      id: 1,
+      tabType: 'report',
+      text: 'AI 리포트 생성',
+      clickHandler: () => startAnswerHandler('report'),
+    },
+    {
+      id: 2,
+      tabType: 'caption',
+      text: '이미지 분석',
+      clickHandler: () => startAnswerHandler('caption'),
+    },
+    {
+      id: 3,
+      tabType: 'price',
+      text: '가격 추적',
+      clickHandler: () => startAnswerHandler('price'),
+    },
+    {
+      id: 4,
+      tabType: 'review',
+      text: '리뷰 분석',
+      clickHandler: clickReviewHadler,
+    },
+  ];
+
   return (
     <div>
       {/* Switchers */}
       <div css={styles.switchers}>
-        <button
-          css={styles.button(tabType === 'report', disabled)}
-          onClick={() => startAnswerHandler('report')}
-          aria-label="AI 리포트 생성"
-          disabled={disabled}
-        >
-          AI 리포트 생성
-        </button>
-        <button
-          css={styles.button(tabType === 'caption', disabled)}
-          onClick={() => startAnswerHandler('caption')}
-          aria-label="이미지 분석"
-          disabled={disabled}
-        >
-          이미지 분석
-        </button>
-        <button
-          css={styles.button(tabType === 'price', disabled)}
-          onClick={() => startAnswerHandler('price')}
-          aria-label="가격 추적"
-          disabled={disabled}
-        >
-          가격 추적
-        </button>
+        {buttons.map((button) => (
+          <button
+            key={button.id}
+            css={styles.button(tabType === button.tabType, disabled)}
+            onClick={button.clickHandler}
+            aria-label={button.text}
+            disabled={disabled}
+          >
+            {button.text}
+          </button>
+        ))}
       </div>
       {/* Content */}
       <section css={styles.contentContainer}>
         {!tabType ? (
           <Instruction />
+        ) : tabType === 'review' ? (
+          <ReviewContent id={id} />
         ) : (
           <Answer {...streams[tabType]} {...optionalProps[tabType]} />
         )}

@@ -5,18 +5,12 @@ import * as styles from './LoadMoreButton.styles';
 
 interface Props {
   toNextPage: () => void;
-  isLoading: boolean;
-  showButton: boolean;
+  isFetching: boolean;
   isLastPage: boolean;
 }
 
 const LoadMoreButton: React.FC<Props> = (props) => {
-  const { toNextPage, isLoading, showButton, isLastPage } = props;
-
-  // 버튼 숨기기
-  if (!showButton && !isLoading) {
-    return null;
-  }
+  const { toNextPage, isFetching, isLastPage } = props;
 
   // 마지막 상품 UI
   if (isLastPage) {
@@ -35,13 +29,13 @@ const LoadMoreButton: React.FC<Props> = (props) => {
   // default: 버튼 및 로딩 UI
   return (
     <div css={styles.container}>
-      {isLoading ? (
+      {isFetching ? (
         <BarLoader color="#aaa" speedMultiplier={1.2} />
       ) : (
         <button
           css={styles.btn}
           onClick={toNextPage}
-          disabled={isLoading}
+          disabled={isFetching}
           aria-label="더 많은 상품 보기"
         >
           더 많은 상품 보기
