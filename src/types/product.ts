@@ -40,3 +40,31 @@ export type DetailTabType =
   | 'price'
   | 'review'
   | undefined;
+
+export type CategoryId =
+  | '1001'
+  | '1002'
+  | '1010'
+  | '1011'
+  | '1012'
+  | '1013'
+  | '1014'
+  | '1015'
+  | '1016'
+  | '1017'
+  | '1018'
+  | '1019'
+  | '1020'
+  | '1021'
+  | '1024'
+  | '1025'
+  | '1026'
+  | '1029'
+  | '1030';
+
+export interface Category {
+  id: CategoryId;
+  icon: string;
+  title: string;
+  description: string;
+}

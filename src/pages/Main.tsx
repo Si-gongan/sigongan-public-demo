@@ -1,5 +1,12 @@
+import Main from '../components/Main/Main';
+import ResponsiveContainer from '../components/UI/Layout/ResponsiveContainer';
+
 const MainPage: React.FC = () => {
-  return <div></div>;
+  return (
+    <ResponsiveContainer>
+      <Main />
+    </ResponsiveContainer>
+  );
 };
 
 export default MainPage;
