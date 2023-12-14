@@ -1,43 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from 'react';
-import { categories } from '../../utils';
-import BestProducts from './BestProducts';
-import { CategoryId } from '../../types/product';
+import BestProducts from './Products/BestProducts';
 import * as styles from './Main.styles';
+import useCategory from '../../hooks/useCategory';
+import Categories from './Categories/Categories';
 
 // TODO: SSR
 const Main: React.FC = () => {
-  const [categoryId, setCategoryId] = useState<CategoryId>('1001');
+  const { selectedCategory, selectCategory } = useCategory();
 
   return (
     <div css={styles.main}>
       <h2 css={styles.title}>카테고리 별 인기 상품</h2>
-      <div
-        style={{
-          overflowX: 'scroll',
-        }}
-      >
-        <div css={styles.categories}>
-          {categories.map((category) => {
-            return (
-              <button
-                key={category.id}
-                css={styles.btn(category.id === categoryId)}
-                onClick={() => setCategoryId(category.id)}
-              >
-                <div css={styles.categoryIcon}>{category.icon}</div>
-                <div css={styles.categoryText}>{category.title}</div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <BestProducts
-        category={
-          categories.find((category) => category.id === categoryId) ||
-          categories[0]
-        }
+      <Categories
+        selectedCategory={selectedCategory}
+        selectCategory={selectCategory}
       />
+      <BestProducts category={selectedCategory} />
     </div>
   );
 };
