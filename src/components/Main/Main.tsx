@@ -3,6 +3,7 @@ import BestProducts from './Products/BestProducts';
 import * as styles from './Main.styles';
 import useCategory from '../../hooks/useCategory';
 import Categories from './Categories/Categories';
+import GoldBox from './Products/GoldBox';
 
 // TODO: SSR
 const Main: React.FC = () => {
@@ -16,6 +17,7 @@ const Main: React.FC = () => {
         selectCategory={selectCategory}
       />
       <BestProducts category={selectedCategory} />
+      <GoldBox />
     </div>
   );
 };

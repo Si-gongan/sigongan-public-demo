@@ -53,3 +53,7 @@ export interface BestProduct {
 export interface BestProductsResponse {
   products: BestProduct[];
 }
+
+export interface GoldBoxResponse {
+  products: BestProduct[];
+}

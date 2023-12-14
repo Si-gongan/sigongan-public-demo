@@ -1,31 +1,22 @@
-/** @jsxImportSource @emotion/react */
-import { getBestProducts } from '../../../api/axios/ai/api';
-import { Category } from '../../../types/product';
 import { useQuery } from '@tanstack/react-query';
 import Slider from '../../UI/Slider/Slider';
 import Container from './Container';
 import Title from './Title';
+import { getGoldBoxProducts } from '../../../api/axios/ai/api';
 import Item from './Item';
 import Loading from './Loading';
 
-interface Props {
-  category: Category;
-}
-
-const BestProducts: React.FC<Props> = ({ category }) => {
+const GoldBox = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ['best-products', { category }],
-    queryFn: () => getBestProducts({ category: category.id }),
+    queryKey: ['gold-box'],
+    queryFn: getGoldBoxProducts,
   });
-  const title = `${category.description}`;
   const products = data?.products;
-
-  // TODO: error
 
   if (isLoading) {
     return (
       <Container>
-        <Title>{title}</Title>
+        <Title>이런 상품은 어때요?</Title>
         <Loading />
       </Container>
     );
@@ -33,7 +24,7 @@ const BestProducts: React.FC<Props> = ({ category }) => {
 
   return (
     <Container>
-      <Title>{title}</Title>
+      <Title>이런 상품은 어때요?</Title>
       <Slider>
         {products?.map((product) => (
           <Item
@@ -46,4 +37,4 @@ const BestProducts: React.FC<Props> = ({ category }) => {
   );
 };
 
-export default BestProducts;
+export default GoldBox;
