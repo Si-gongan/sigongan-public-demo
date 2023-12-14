@@ -1,41 +1,41 @@
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 400;
-  src: url('./Jost-Regular.woff') format('woff');
+  src: url('./NotoSansKR-Regular.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 500;
-  src: url('./Jost-Medium.woff') format('woff');
+  src: url('./NotoSansKR-Medium.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 600;
-  src: url('./Jost-SemiBold.woff') format('woff');
+  src: url('./NotoSansKR-SemiBold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 700;
-  src: url('./Jost-Bold.woff') format('woff');
+  src: url('./NotoSansKR-Bold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 800;
-  src: url('./Jost-ExtraBold.woff') format('woff');
+  src: url('./NotoSansKR-ExtraBold.woff') format('woff');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Jost';
+  font-family: 'Noto Sans KR';
   font-weight: 900;
-  src: url('./Jost-Black.woff') format('woff');
+  src: url('./NotoSansKR-Black.woff') format('woff');
   font-display: swap;
 }

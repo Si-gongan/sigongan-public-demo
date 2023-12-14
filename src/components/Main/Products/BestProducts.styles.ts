@@ -6,7 +6,7 @@ export const center = css`
 
 export const productsArea = css`
   max-width: 1024px;
-  padding: 16px 0;
+  padding: 8px 0 32px 0;
   margin: 0 auto;
 
   @media screen and (max-width: 1056px) {
@@ -20,9 +20,13 @@ export const productsArea = css`
 
 export const title = css`
   color: var(--text2);
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
+  }
 `;
 
 export const card = css`
@@ -65,14 +69,14 @@ export const contentTitle = css`
   padding: 4px 16px;
   height: 68px;
   overflow: hidden;
-  color: var(--text2);
+  color: var(--text3);
 `;
 
 export const name = css`
   padding: 0;
   margin: 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const contentPrice = css`
@@ -88,6 +92,6 @@ export const priceWrapper = css`
   left: 16px;
   border-radius: 12px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   border: 1px solid transparent;
 `;
