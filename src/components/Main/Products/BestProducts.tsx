@@ -1,34 +1,26 @@
 /** @jsxImportSource @emotion/react */
 import { getBestProducts } from '../../../api/axios/ai/api';
 import { Category } from '../../../types/product';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Slider from '../../UI/Slider/Slider';
 import Container from './Container';
 import Title from './Title';
 import Item from './Item';
-import Loading from './Loading';
 
 interface Props {
   category: Category;
 }
 
 const BestProducts: React.FC<Props> = ({ category }) => {
-  const { data, isLoading } = useQuery({
+  const { data, error } = useSuspenseQuery({
     queryKey: ['best-products', { category }],
     queryFn: () => getBestProducts({ category: category.id }),
   });
   const title = `${category.description}`;
   const products = data?.products;
 
-  // TODO: error
-
-  if (isLoading) {
-    return (
-      <Container>
-        <Title>{title}</Title>
-        <Loading />
-      </Container>
-    );
+  if (error) {
+    throw new Error('Best products fetching Error');
   }
 
   return (
