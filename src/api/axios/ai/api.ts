@@ -1,7 +1,10 @@
 import axios from 'axios';
 import {
+  BestProductsParams,
+  BestProductsResponse,
   ChatParamsModel,
   ChatResponseModel,
+  GoldBoxResponse,
   ReviewParamsModel,
   ReviewResponseModel,
 } from './types';
@@ -28,5 +31,17 @@ export const getChat = async (params: ChatParamsModel) => {
     text,
     data,
   });
+  return response.data;
+};
+
+export const getBestProducts = async (params: BestProductsParams) => {
+  const response = await api.get<BestProductsResponse>(
+    `/coupang/bestcategories/${params.category}`
+  );
+  return response.data;
+};
+
+export const getGoldBoxProducts = async () => {
+  const response = await api.get<GoldBoxResponse>(`/coupang/goldbox`);
   return response.data;
 };

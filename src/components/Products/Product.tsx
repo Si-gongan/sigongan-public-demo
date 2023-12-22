@@ -12,7 +12,7 @@ interface PropsType {
 const Product: React.FC<PropsType> = (props) => {
   const { product } = props;
   const price = `${Number(product.price).toLocaleString()}원`;
-  const truncatedText = `${truncateText(product.name, 48)}`;
+  const truncatedText = `${truncateText(product.name, 32)}`;
 
   return (
     <ProductCard>

@@ -40,13 +40,7 @@ export const input = css`
 
   &::placeholder {
     color: var(--text4);
-    font-size: 14px;
-  }
-
-  @media screen and (max-width: 767px) {
-    &::placeholder {
-      font-size: 12px;
-    }
+    font-size: 12px;
   }
 `;
 

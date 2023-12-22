@@ -17,10 +17,10 @@ export const image = css`
 export const contentTitle = css`
   flex-grow: 1;
   position: relative;
-  padding: 4px 16px;
+  padding: 8px 16px;
   height: 80px;
   overflow: hidden;
-  color: var(--text1);
+  color: var(--text3);
 `;
 
 export const contentPrice = css`
@@ -34,7 +34,7 @@ export const title = css`
   padding: 0;
   margin: 0;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 
   @media screen and (max-width: 767px) {
     font-size: 12px;
@@ -47,9 +47,10 @@ export const priceWrapper = css`
   left: 16px;
   border-radius: 12px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 800;
   border: 1px solid transparent;
-  @media screen and (max-width: 320px) {
-    font-size: 10px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
   }
 `;

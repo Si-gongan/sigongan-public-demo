@@ -1,3 +1,5 @@
+import { CategoryId } from '../../../types/product';
+
 // 채팅 관련 타입
 export interface ChatParamsModel {
   text: string;
@@ -33,4 +35,25 @@ export interface ReviewParamsModel {
 export interface ReviewResponseModel {
   pros: string[];
   cons: string[];
+}
+
+export interface BestProductsParams {
+  category: CategoryId;
+}
+
+export interface BestProduct {
+  productId: number;
+  productName: string;
+  productPrice: number;
+  productImage: string;
+  productUrl: string;
+  rank: number;
+}
+
+export interface BestProductsResponse {
+  products: BestProduct[];
+}
+
+export interface GoldBoxResponse {
+  products: BestProduct[];
 }
