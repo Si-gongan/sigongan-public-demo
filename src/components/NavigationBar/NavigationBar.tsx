@@ -1,16 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { NavLink } from 'react-router-dom';
 import * as styles from './NavigationBar.styles';
-import { BiSolidMoon, BiSolidMessageSquareDetail } from 'react-icons/bi';
+import { BiSolidMessageSquareDetail } from 'react-icons/bi';
 import logo from '../../assets/logo/pickforme-logo.png';
 import SearchBar from './SearchBar';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
 import useScroll from '../../hooks/useScroll';
-import { useContext } from 'react';
-import { ThemeContext } from '../../store/theme-context';
+import ThemeButton from './ThemeButton';
 
 const NavigationBar: React.FC = () => {
-  const { toggleTheme } = useContext(ThemeContext);
   const { scrollDirection } = useScroll();
   const isUp = scrollDirection === 'up' ? true : false;
 
@@ -37,13 +35,7 @@ const NavigationBar: React.FC = () => {
                 </NavLink>
               </li>
               <li css={styles.navItem}>
-                <button
-                  css={styles.navBtn}
-                  onClick={toggleTheme}
-                  aria-label="테마 변경"
-                >
-                  <BiSolidMoon />
-                </button>
+                <ThemeButton />
               </li>
             </ul>
           </div>

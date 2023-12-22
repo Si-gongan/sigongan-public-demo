@@ -1,4 +1,5 @@
 import { Category, History } from '../types/product';
+import { Theme } from '../types/theme';
 
 export const truncateText = (text: string, length: number): string => {
   if (text.length <= length) {
@@ -17,13 +18,22 @@ export const calculatePriceDiff = (data: History[]) => {
 };
 
 export const setThemeColor = () => {
-  const initalThemeColor =
+  const initialThemeColor =
     localStorage.getItem('theme') && localStorage.getItem('theme') === 'dark'
       ? '#121212'
       : '#ffffff';
   document
     .querySelector('meta[name="theme-color"]')
-    ?.setAttribute('content', initalThemeColor);
+    ?.setAttribute('content', initialThemeColor);
+};
+
+export const getTheme = () => {
+  const localStorageTheme = localStorage.getItem('theme');
+  let theme: Theme = 'light';
+  if (localStorageTheme && localStorageTheme === 'dark') {
+    theme = 'dark';
+  }
+  return theme;
 };
 
 export const categories: Category[] = [

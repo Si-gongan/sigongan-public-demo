@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../store/product-context';
 import { BiX } from 'react-icons/bi';
 import * as styles from './SearchBar.styles';
+import queryState from '../../recoil/query';
 
 const SearchBar: React.FC = () => {
   const navigate = useNavigate();
-  const { setUserQuery } = useContext(ProductContext);
+  const setUserQuery = useSetRecoilState(queryState);
   const [userInput, setUserInput] = useState('');
   const buttonVisible = userInput.trim().length > 0;
   // TODO: isLoading, error UI 처리
