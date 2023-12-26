@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { AIMessage, ChatMessage, MetaData, UserMessage } from '../types/chat';
+import { useRecoilState } from 'recoil';
+import chatState from '../recoil/chat';
+import { AIMessage, MetaData, UserMessage } from '../types/chat';
 import { getChat } from '../api/axios/ai/api';
 import { ChatResponseModel } from '../api/axios/ai/types';
 import { AxiosError } from 'axios';
@@ -8,7 +10,8 @@ import { AxiosError } from 'axios';
 const useChat = () => {
   const userInputRef = useRef<HTMLInputElement>(null);
   const [metaData, setMetaData] = useState<MetaData>();
-  const [chatData, setChatData] = useState<ChatMessage[]>([]);
+  const [chatData, setChatData] = useRecoilState(chatState);
+
   const idRef = useRef(0);
 
   const {

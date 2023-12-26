@@ -1,14 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { Link } from 'react-router-dom';
 import * as styles from './ChatNavBar.styles';
-import { BiArrowBack, BiSolidMoon } from 'react-icons/bi';
-import { useContext } from 'react';
-import { ThemeContext } from '../../store/theme-context';
+import { BiArrowBack } from 'react-icons/bi';
 import ResponsiveContainer from '../UI/Layout/ResponsiveContainer';
+import ThemeButton from '../NavigationBar/ThemeButton';
 
 const ChatNavBar = () => {
-  const { toggleTheme } = useContext(ThemeContext);
-
   return (
     <header css={styles.header}>
       <ResponsiveContainer>
@@ -23,13 +20,7 @@ const ChatNavBar = () => {
           <div>
             <ul css={styles.navMenu}>
               <li css={styles.navItem}>
-                <button
-                  css={styles.navBtn}
-                  onClick={toggleTheme}
-                  aria-label="테마 변경"
-                >
-                  <BiSolidMoon />
-                </button>
+                <ThemeButton />
               </li>
             </ul>
           </div>

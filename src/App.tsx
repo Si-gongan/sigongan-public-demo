@@ -1,18 +1,18 @@
 import Router from './routes';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import ProductContextProvider from './store/product-context';
-import ThemeContextProvider from './store/theme-context';
+import { RecoilRoot } from 'recoil';
+import ThemeStateProvider from './providers/ThemeStateProvider';
 
 export const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeContextProvider>
-        <ProductContextProvider>
+      <RecoilRoot>
+        <ThemeStateProvider>
           <Router />
-        </ProductContextProvider>
-      </ThemeContextProvider>
+        </ThemeStateProvider>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }

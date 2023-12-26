@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { useContext } from 'react';
+import { useRecoilValue } from 'recoil';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { ProductContext } from '../../store/product-context';
 import Product from './Product';
 import { loaderContainer, productsContainer, ulStyle } from './Products.styles';
 import { getProducts } from '../../api/axios/coupang/api';
 import LoadMoreButton from './LoadMoreButton';
 import { BarLoader } from 'react-spinners';
+import queryState from '../../recoil/query';
 
 const Products: React.FC = () => {
-  const { query } = useContext(ProductContext);
+  const query = useRecoilValue(queryState);
 
   const { data, isLoading, isFetchingNextPage, hasNextPage, fetchNextPage } =
     useInfiniteQuery({
