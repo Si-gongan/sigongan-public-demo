@@ -28,12 +28,14 @@ const Slider: React.FC<Props> = ({ children }) => {
       <button
         onClick={() => scrollHandler('left')}
         css={styles.scrollBtn('left')}
+        aria-label="이전 상품"
       >
         <FaAngleLeft size={16} />
       </button>
       <button
         onClick={() => scrollHandler('right')}
         css={styles.scrollBtn('right')}
+        aria-label="다음 상품"
       >
         <FaAngleRight size={16} />
       </button>
