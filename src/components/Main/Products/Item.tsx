@@ -7,6 +7,8 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ product }) => {
+  const price = `${product.productPrice.toLocaleString()}원`;
+
   return (
     <div css={styles.card}>
       <a
@@ -14,7 +16,6 @@ const Item: React.FC<ItemProps> = ({ product }) => {
         target="_blank"
         rel="noopener noreferrer"
         css={styles.link}
-        aria-label={`구매 링크. 상품명: ${product.productName}, 가격: ${product.productPrice}`}
       >
         <div css={styles.product}>
           <div css={styles.imageWrapper}>
@@ -29,9 +30,7 @@ const Item: React.FC<ItemProps> = ({ product }) => {
               <h3 css={styles.name}>{product.productName}</h3>
             </div>
             <div css={styles.contentPrice}>
-              <div css={styles.priceWrapper}>
-                {`${product.productPrice.toLocaleString()}원`}
-              </div>
+              <div css={styles.priceWrapper}>{price}</div>
             </div>
           </div>
         </div>
