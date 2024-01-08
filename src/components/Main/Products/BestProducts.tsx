@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { Suspense } from 'react';
 import { getBestProducts } from '../../../api/axios/ai/api';
 import { Category } from '../../../types/product';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -6,36 +7,41 @@ import Slider from '../../UI/Slider/Slider';
 import Container from './Container';
 import Title from './Title';
 import Item from './Item';
+import Loading from './Loading';
 
 interface Props {
   category: Category;
 }
 
-const BestProducts: React.FC<Props> = ({ category }) => {
+export default function BestProducts({ category }: Props) {
+  const title = `${category.description}`;
+
+  return (
+    <Suspense fallback={<Loading />}>
+      <Container>
+        <Title>{title}</Title>
+        <BestProductsSlider category={category} />
+      </Container>
+    </Suspense>
+  );
+}
+
+function BestProductsSlider({ category }: Props) {
   const { data, error } = useSuspenseQuery({
     queryKey: ['best-products', { category }],
     queryFn: () => getBestProducts({ category: category.id }),
   });
-  const title = `${category.description}`;
-  const products = data?.products;
+  const products = data.products;
 
   if (error) {
     throw new Error('Best products fetching Error');
   }
 
   return (
-    <Container>
-      <Title>{title}</Title>
-      <Slider>
-        {products?.map((product) => (
-          <Item
-            key={`${product.rank}-${product.productId}`}
-            product={product}
-          />
-        ))}
-      </Slider>
-    </Container>
+    <Slider>
+      {products.map((product) => (
+        <Item key={`${product.rank}-${product.productId}`} product={product} />
+      ))}
+    </Slider>
   );
-};
-
-export default BestProducts;
+}
