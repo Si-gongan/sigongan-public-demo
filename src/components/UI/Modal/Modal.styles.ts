@@ -6,7 +6,7 @@ export const backdrop = css`
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 20;
+  z-index: 990;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 `;
@@ -23,7 +23,7 @@ export const modal = css`
   padding: 16px;
   border: 1px solid var(--border1);
   border-radius: 14px;
-  z-index: 30;
+  z-index: 999;
   transform: translate(-50%, -50%);
   animation: slide-up 300ms ease-out forwards;
 

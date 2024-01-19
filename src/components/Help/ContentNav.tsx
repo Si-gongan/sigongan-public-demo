@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { APP_URL } from '../../utils';
 import * as styles from './Content.styles';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
 
@@ -20,6 +21,17 @@ const ContentNav: React.FC<Props> = (props) => {
           rel="noopener noreferrer"
         >
           피드백 보내기
+          <FaArrowUpRightFromSquare size={12} />
+        </a>
+      </div>
+      <div css={styles.navBtn}>
+        <a
+          css={styles.link}
+          href={APP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          앱 다운로드
           <FaArrowUpRightFromSquare size={12} />
         </a>
       </div>
