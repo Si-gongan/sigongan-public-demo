@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const main = css`
-  height: calc(100% - 72px); // nav bar 제외
+  height: calc(100% - 96px); // nav bar 제외
   width: 100%;
   flex: 1;
 `;

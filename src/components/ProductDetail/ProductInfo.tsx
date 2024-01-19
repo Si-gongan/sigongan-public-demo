@@ -4,6 +4,7 @@ import Info from '../UI/Info/Info';
 import { InfoProps } from '../UI/Info/types';
 import * as styles from './ProductInfo.styles';
 import { ProductDetailModel } from '../../types/product';
+import { APP_URL } from '../../utils';
 
 interface Props {
   product: ProductDetailModel;
@@ -31,6 +32,7 @@ const ProductInfo: React.FC<Props> = (props) => {
       description: product.reviews.toString(),
     },
   ];
+
   return (
     <div css={styles.container}>
       <div css={styles.imgWrapper} aria-label="상품 이미지" tabIndex={0}>
@@ -50,17 +52,29 @@ const ProductInfo: React.FC<Props> = (props) => {
           <Info infoData={infoData} />
         </div>
         <div css={styles.actions}>
-          <Link css={styles.button('cancel')} to="/products">
-            이전으로
-          </Link>
-          <a
-            css={styles.button('ok')}
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            제품 보러가기
-          </a>
+          <div css={styles.links}>
+            <Link css={styles.button('cancel')} to="/products">
+              이전으로
+            </Link>
+            <a
+              css={styles.button('cancel')}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              제품 보러가기
+            </a>
+          </div>
+          <div css={styles.links}>
+            <a
+              css={styles.button('ok')}
+              href={APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              앱에서 매니저에게 설명 듣기
+            </a>
+          </div>
         </div>
       </div>
     </div>

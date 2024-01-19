@@ -15,7 +15,7 @@ export const loaderContainer = css`
 `;
 
 export const productsContainer = css`
-  padding-top: 16px;
+  padding-top: 8px;
   margin-bottom: 16px;
   display: block;
 `;

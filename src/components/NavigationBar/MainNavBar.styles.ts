@@ -1,26 +1,5 @@
 import { css } from '@emotion/react';
 
-export const header = css`
-  position: relative;
-  top: 0;
-  height: 72px;
-  background: var(--background-base);
-  z-index: 10;
-`;
-
-export const navbar = css`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  align-items: center;
-  padding: 16px 0;
-  height: 72px;
-
-  @media screen and (max-width: 767px) {
-    padding: 12px 0;
-  }
-`;
-
 export const navMenu = css`
   display: flex;
   justify-content: space-between;
@@ -58,6 +37,18 @@ export const navLink = css`
 
   &:hover {
     color: var(--color-gray-200);
+  }
+`;
+
+export const logo = css`
+  display: inline-block;
+  height: 28px;
+  vertical-align: middle;
+  margin-right: 16px;
+  font-weight: 700;
+
+  & img {
+    width: 28px;
   }
 `;
 

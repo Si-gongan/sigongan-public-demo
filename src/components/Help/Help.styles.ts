@@ -13,7 +13,7 @@ export const container = css`
   position: fixed;
   bottom: 32px;
   right: 32px;
-  z-index: 999;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   align-items: end;

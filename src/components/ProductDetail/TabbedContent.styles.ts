@@ -5,7 +5,7 @@ export const switchers = css`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 32px;
+  padding-top: 40px;
   margin-bottom: 16px;
 `;
 
