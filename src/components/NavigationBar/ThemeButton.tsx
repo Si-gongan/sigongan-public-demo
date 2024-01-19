@@ -1,14 +1,20 @@
 /** @jsxImportSource @emotion/react */
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { BiSolidMoon } from 'react-icons/bi';
 import { navBtn } from './ThemeButton.styles';
 import themeState from '../../recoil/theme';
 
 const ThemeButton = () => {
-  const setTheme = useSetRecoilState(themeState);
+  const [theme, setTheme] = useRecoilState(themeState);
 
   const toggleTheme = () => {
-    setTheme((theme) => (theme === 'light' ? 'dark' : 'light'));
+    if (theme === 'light') {
+      setTheme('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      setTheme('light');
+      localStorage.setItem('theme', 'light');
+    }
   };
 
   return (
