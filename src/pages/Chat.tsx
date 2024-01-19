@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import AIChat from '../components/AIChat/AIChat';
-import ChatNavBar from '../components/AIChat/ChatNavBar';
+import ChatNavBar from '../components/NavigationBar/ChatNavBar';
 
 const page = css`
   display: flex;

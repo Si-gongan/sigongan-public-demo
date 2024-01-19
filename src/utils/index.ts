@@ -1,6 +1,8 @@
 import { Category, History } from '../types/product';
 import { Theme } from '../types/theme';
 
+export const APP_URL = 'https://itunes.apple.com/kr/app/app-store/id6450741514';
+
 export const truncateText = (text: string, length: number): string => {
   if (text.length <= length) {
     return text;
