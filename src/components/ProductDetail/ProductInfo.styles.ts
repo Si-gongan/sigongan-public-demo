@@ -83,8 +83,20 @@ export const subTitle = css`
 
 export const actions = css`
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   gap: 8px;
   padding-top: 16px;
+
+  @media screen and (max-width: 1440px) {
+    flex-direction: column;
+  }
+`;
+
+export const links = css`
+  width: 100%;
+  display: flex;
+  gap: 8px;
 `;
 
 const buttonStyles = {
