@@ -66,7 +66,7 @@ export const infoContainer = css`
 
   @media screen and (max-width: 767px) {
     width: 100%;
-    height: 112px;
+    height: 104px;
     padding-top: 4px;
   }
 
