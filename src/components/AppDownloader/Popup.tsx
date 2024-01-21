@@ -3,10 +3,11 @@ import * as styles from './Popup.styles';
 import logoImage from '../../assets/logo/pickforme-logo.png';
 import { useRecoilValue } from 'recoil';
 import { modalRepo } from '../../recoil/modal';
-import { APP_URL } from '../../utils';
+import appUrlState from '../../recoil/app-url';
 
 const AppPopup = () => {
   const { closeModal } = useRecoilValue(modalRepo);
+  const appUrl = useRecoilValue(appUrlState);
 
   return (
     <div css={styles.container}>
@@ -20,7 +21,7 @@ const AppPopup = () => {
         </p>
       </div>
       <div css={styles.actions}>
-        <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+        <a href={appUrl} target="_blank" rel="noopener noreferrer">
           앱 다운받기
         </a>
       </div>

@@ -1,13 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { APP_URL } from '../../utils';
+import { useRecoilValue } from 'recoil';
 import * as styles from './Content.styles';
 import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
+import appUrlState from '../../recoil/app-url';
 
 interface Props {
   clickManual: () => void;
 }
 
 const ContentNav: React.FC<Props> = (props) => {
+  const appUrl = useRecoilValue(appUrlState);
+
   return (
     <div css={styles.container}>
       <div css={styles.navBtn} onClick={props.clickManual}>
@@ -27,7 +30,7 @@ const ContentNav: React.FC<Props> = (props) => {
       <div css={styles.navBtn}>
         <a
           css={styles.link}
-          href={APP_URL}
+          href={appUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
