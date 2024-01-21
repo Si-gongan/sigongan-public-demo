@@ -25,6 +25,7 @@
     "recharts": "^2.9.0",
     "recoil": "^0.7.7",
     "typescript": "^4.4.2",
+    "ua-parser-js": "^1.0.37",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/ua-parser-js": "^0.7.39",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "eslint": "^8.52.0",
