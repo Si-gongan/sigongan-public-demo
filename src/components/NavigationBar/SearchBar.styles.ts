@@ -41,6 +41,7 @@ export const input = css`
   &::placeholder {
     color: var(--text4);
     font-size: 12px;
+    transform: translateY(-2px);
   }
 `;
 
