@@ -75,7 +75,7 @@ const ProductInfo: React.FC<Props> = (props) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              앱에서 매니저에게 설명 듣기
+              매니저에게 상품 설명 받기
             </a>
           </div>
         </div>

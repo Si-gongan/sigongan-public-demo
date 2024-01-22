@@ -17,7 +17,7 @@ const AppPopup = () => {
       <div css={styles.content}>
         <h2 css={styles.title}>픽포미 앱 v2.0 출시</h2>
         <p css={styles.text}>
-          지금 앱을 다운 받고 더 많은 기능을 사용해 보세요!
+          새로워진 픽포미 앱, 이제 앱으로 더 편하게 쇼핑해 보세요!
         </p>
       </div>
       <div css={styles.actions}>
