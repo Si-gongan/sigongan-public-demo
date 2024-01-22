@@ -35,6 +35,10 @@ export const card = css`
   border: none;
   background: var(--background-base);
   cursor: pointer;
+
+  @media screen and (max-width: 767px) {
+    margin: 0px;
+  }
 `;
 
 export const link = css`
@@ -46,6 +50,10 @@ export const product = css`
   flex-direction: column;
   width: 224px;
   height: 100%;
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 export const imageWrapper = css`
@@ -61,6 +69,11 @@ export const image = css`
   aspect-ratio: 1/1;
   object-fit: contain;
   border-radius: 8px;
+
+  @media screen and (max-width: 767px) {
+    border: 1.4px solid var(--border1);
+    border-radius: 16px;
+  }
 `;
 
 export const contentTitle = css`
@@ -70,6 +83,10 @@ export const contentTitle = css`
   height: 68px;
   overflow: hidden;
   color: var(--text3);
+
+  @media screen and (max-width: 767px) {
+    height: 42px;
+  }
 `;
 
 export const name = css`
@@ -77,6 +94,10 @@ export const name = css`
   margin: 0;
   font-size: 14px;
   font-weight: 600;
+
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 export const contentPrice = css`
@@ -94,4 +115,8 @@ export const priceWrapper = css`
   font-size: 18px;
   font-weight: 800;
   border: 1px solid transparent;
+
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+  }
 `;

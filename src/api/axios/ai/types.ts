@@ -38,7 +38,7 @@ export interface ReviewResponseModel {
 }
 
 export interface BestProductsParams {
-  category: CategoryId;
+  category?: CategoryId;
 }
 
 export interface BestProduct {

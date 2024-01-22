@@ -35,6 +35,9 @@ export const getChat = async (params: ChatParamsModel) => {
 };
 
 export const getBestProducts = async (params: BestProductsParams) => {
+  if (!params.category) {
+    throw new Error('undefined category');
+  }
   const response = await api.get<BestProductsResponse>(
     `/coupang/bestcategories/${params.category}`
   );
