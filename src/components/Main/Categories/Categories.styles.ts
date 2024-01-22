@@ -1,64 +1,81 @@
 import { css } from '@emotion/react';
 
-export const container = css`
-  overflow-x: scroll;
+export const container = (isOpen: boolean) => css`
+  margin-bottom: 32px;
+
+  @media screen and (max-width: 767px) {
+    height: ${isOpen ? 'auto' : '136px'};
+    overflow-y: ${isOpen ? 'auto' : 'hidden'};
+  }
 `;
 
 export const categories = css`
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-items: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 32px;
-
-  @media screen and (max-width: 1056px) {
-    grid-template-columns: repeat(8, 1fr);
-  }
 
   @media screen and (max-width: 767px) {
-    display: flex;
-    flex-direction: row;
-    width: fit-content;
-    justify-content: center;
-    padding: 0 8px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
   }
 `;
 
 export const btn = (isSelected: boolean) => css`
-  width: 100%;
-  height: 80px;
+  display: flex;
+  flex-direction: row;
   margin: 0;
   align-items: center;
   justify-content: center;
   padding: 8px 12px;
-  font-weight: 500;
-  color: var(--text1);
-  background: transparent;
+  font-weight: 600;
   border-radius: 24px;
   cursor: pointer;
-  border: ${isSelected
-    ? '2px solid var(--border1)'
-    : '1.2px solid var(--border1)'};
+  border: 1.4px solid var(--border1);
+  color: var(--text1);
+
+  background: ${isSelected ? 'var(--chat-background)' : 'transparent'};
 
   &:active,
   :hover {
-    border: 2px solid var(--chat-primary1);
+    background: var(--chat-background);
   }
 
   @media screen and (max-width: 767px) {
-    width: 64px;
-    height: 64px;
+    border: none;
+    flex-direction: column;
     padding: 0;
+    background: transparent;
+
+    &:active,
+    :hover {
+      background: transparent;
+    }
   }
 `;
 
-export const categoryIcon = css`
-  font-size: 24px;
+export const categoryIcon = (isSelected: boolean) => css`
+  font-size: 16px;
+  margin-right: 2px;
 
   @media screen and (max-width: 767px) {
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    padding: 8px 12px;
+    border-radius: 16px;
+    margin-bottom: 4px;
+    background: ${isSelected ? 'var(--border1)' : 'var(--chat-background)'};
+
+    &:active,
+    :hover {
+      background: var(--border1);
+    }
   }
 `;
 
@@ -67,5 +84,40 @@ export const categoryText = css`
 
   @media screen and (max-width: 767px) {
     font-size: 8px;
+  }
+`;
+
+export const titleContainer = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const title = css`
+  font-size: 16px;
+  padding: 16px 0;
+  font-weight: 600;
+  color: var(--text2);
+
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+    padding: 16px 8px;
+  }
+`;
+
+export const titleBtn = css`
+  padding: 2px 8px;
+  display: none;
+  border: none;
+  color: var(--color-gray-400);
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-gray-500);
+  }
+
+  @media screen and (max-width: 767px) {
+    display: flex;
   }
 `;

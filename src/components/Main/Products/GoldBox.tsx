@@ -1,34 +1,18 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getGoldBoxProducts } from '../../../api/axios/ai/api';
-import Slider from '../../UI/Slider/Slider';
 import Container from './Container';
 import Title from './Title';
-import Item from './Item';
+import MainProducts from './Products';
+import { Suspense } from 'react';
+import Loading from './Loading';
 
-const GoldBox = () => {
-  const { data, error } = useSuspenseQuery({
-    queryKey: ['gold-box'],
-    queryFn: getGoldBoxProducts,
-  });
-  const products = data?.products;
-
-  if (error) {
-    throw new Error('Gold box products fetching Error');
-  }
-
+function GoldBox() {
   return (
-    <Container>
-      <Title>🚨 오늘 하루만! 특가 상품 🚨</Title>
-      <Slider>
-        {products?.map((product) => (
-          <Item
-            key={`${product.rank}-${product.productId}`}
-            product={product}
-          />
-        ))}
-      </Slider>
-    </Container>
+    <Suspense fallback={<Loading />}>
+      <Container>
+        <Title>🚨 오늘 하루만! 특가 상품 🚨</Title>
+        <MainProducts type="gold-box" />
+      </Container>
+    </Suspense>
   );
-};
+}
 
 export default GoldBox;

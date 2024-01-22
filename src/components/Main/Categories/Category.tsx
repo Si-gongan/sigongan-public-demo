@@ -14,8 +14,8 @@ const CategoryBtn: React.FC<CategoryProps> = ({
 }) => {
   return (
     <button css={btn(isSelected)} {...props}>
-      <div css={categoryIcon}>{category.icon}</div>
-      <div css={categoryText}>{category.title}</div>
+      <span css={categoryIcon(isSelected)}>{category.icon}</span>
+      <span css={categoryText}>{category.title}</span>
     </button>
   );
 };

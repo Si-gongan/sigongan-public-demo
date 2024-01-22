@@ -4,13 +4,16 @@ import Info from '../UI/Info/Info';
 import { InfoProps } from '../UI/Info/types';
 import * as styles from './ProductInfo.styles';
 import { ProductDetailModel } from '../../types/product';
-import { APP_URL } from '../../utils';
+import { useRecoilValue } from 'recoil';
+import appUrlState from '../../recoil/app-url';
 
 interface Props {
   product: ProductDetailModel;
 }
 
 const ProductInfo: React.FC<Props> = (props) => {
+  const appUrl = useRecoilValue(appUrlState);
+
   const product = props.product;
   const url = `https://coupang.com/vp/products/${product.group}`;
   const price = `${product.price.toLocaleString()}원`;
@@ -68,11 +71,11 @@ const ProductInfo: React.FC<Props> = (props) => {
           <div css={styles.links}>
             <a
               css={styles.button('ok')}
-              href={APP_URL}
+              href={appUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              앱에서 매니저에게 설명 듣기
+              매니저에게 상품 설명 받기
             </a>
           </div>
         </div>
