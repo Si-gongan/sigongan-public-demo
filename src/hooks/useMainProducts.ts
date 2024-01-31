@@ -1,12 +1,22 @@
+import { useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Category } from '../types/product';
 import { getBestProducts, getGoldBoxProducts } from '../api/axios/ai/api';
-import { useState } from 'react';
 
 const useMainProducts = (
   type: 'best-products' | 'gold-box' = 'best-products',
   category?: Category
 ) => {
+  // react-responsive
+  const isMedium = useMediaQuery({ maxWidth: 1056 });
+  const isNarrow = useMediaQuery({ maxWidth: 767 });
+  let chunkLength = 4;
+  if (!isNarrow && isMedium) {
+    chunkLength = 3;
+  }
+
+  // react-query
   const [currentPage, setCurrentPage] = useState(0);
   const queryKey = [type, category && { category }];
   const queryFn = () =>
@@ -22,13 +32,13 @@ const useMainProducts = (
   // 상품 전체
   const products = data.products;
 
-  // 4개씩 잘랐을 때 페이지 (인덱스) 개수 - 모바일
-  const totalPage = Math.ceil(products.length / 4) - 1;
+  // chunkLength 개씩 잘랐을 때 페이지 (인덱스) 개수 - 모바일
+  const totalPage = Math.ceil(products.length / chunkLength) - 1;
 
-  // 상품 4개씩 분할 - 모바일
+  // 상품 chunkLength 개씩 분할 - 모바일
   const productChunks = [];
-  for (let i = 0; i < products.length; i += 4) {
-    productChunks.push(products.slice(i, i + 4));
+  for (let i = 0; i < products.length; i += chunkLength) {
+    productChunks.push(products.slice(i, i + chunkLength));
   }
 
   const toPrevPage = () => {
