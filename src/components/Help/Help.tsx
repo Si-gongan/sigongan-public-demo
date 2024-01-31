@@ -21,12 +21,12 @@ const Help: React.FC = () => {
       <div css={styles.container}>
         {isVisibleContent && <HelpContent />}
         <div css={styles.btnContainer}>
-          <button css={styles.btn} onClick={toggleHandler} aria-label="도움말">
-            {isVisibleContent ? (
-              <BsX strokeWidth={0.4} />
-            ) : (
-              <BsQuestionLg aria-label="닫기" />
-            )}
+          <button
+            css={styles.btn}
+            onClick={toggleHandler}
+            aria-label={isVisibleContent ? '도움말 닫기' : '도움말'}
+          >
+            {isVisibleContent ? <BsX strokeWidth={0.4} /> : <BsQuestionLg />}
           </button>
         </div>
       </div>
