@@ -9,7 +9,9 @@ interface Props {
 function Container({ children, isOpen = true }: Props) {
   return (
     <div css={container(isOpen)}>
-      <div css={categories}>{children}</div>
+      <div css={categories} role="region" aria-labelledby="main-category-list">
+        {children}
+      </div>
     </div>
   );
 }

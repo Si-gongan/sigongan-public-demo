@@ -18,7 +18,14 @@ function RootNav({ children }: Props) {
   return (
     <>
       {isBannerOpen && <AppBanner />}
-      <header css={header(isBannerOpen, isUp, scrollY)}>
+      <header
+        css={header(isBannerOpen, isUp, scrollY)}
+        role="region"
+        aria-labelledby="root-navigation"
+      >
+        <h2 id="root-navigation" className="visually-hidden">
+          메뉴
+        </h2>
         <ResponsiveContainer>
           <nav css={navbar}>{children}</nav>
         </ResponsiveContainer>
