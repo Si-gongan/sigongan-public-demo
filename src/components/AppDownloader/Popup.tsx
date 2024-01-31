@@ -21,7 +21,12 @@ const AppPopup = () => {
         </p>
       </div>
       <div css={styles.actions}>
-        <a href={appUrl} target="_blank" rel="noopener noreferrer">
+        <a
+          href={appUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          role="button"
+        >
           앱 다운받기
         </a>
       </div>

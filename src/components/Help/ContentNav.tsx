@@ -13,15 +13,16 @@ const ContentNav: React.FC<Props> = (props) => {
 
   return (
     <div css={styles.container}>
-      <div css={styles.navBtn} onClick={props.clickManual}>
+      <button css={styles.navBtn} onClick={props.clickManual}>
         도움말
-      </div>
+      </button>
       <div css={styles.navBtn}>
         <a
           css={styles.link}
           href="http://pf.kakao.com/_csbDxj"
           target="_blank"
           rel="noopener noreferrer"
+          role="button"
         >
           피드백 보내기
           <FaArrowUpRightFromSquare size={12} />
@@ -33,6 +34,8 @@ const ContentNav: React.FC<Props> = (props) => {
           href={appUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="앱 다운로드"
+          role="button"
         >
           앱 다운로드
           <FaArrowUpRightFromSquare size={12} />

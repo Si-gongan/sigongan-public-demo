@@ -21,6 +21,9 @@ export const navBtn = css`
   color: var(--text3);
   border-radius: 16px;
   cursor: pointer;
+  background: transparent;
+  border: none;
+  text-align: left;
 
   &:hover {
     background: var(--chat-background);
@@ -41,6 +44,8 @@ export const backBtn = css`
   color: var(--text3);
   border-radius: 16px;
   cursor: pointer;
+  background: transparent;
+  border: none;
 
   &:hover {
     opacity: 0.6;
@@ -54,6 +59,10 @@ export const emBtn = css`
   color: var(--chat-primary3);
   border-radius: 16px;
   cursor: pointer;
+
+  ::before {
+    content: '▶️ ';
+  }
 
   &:hover {
     background: var(--chat-primary1);
