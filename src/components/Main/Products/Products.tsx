@@ -1,8 +1,6 @@
-import { useMediaQuery } from 'react-responsive';
 import { Category } from '../../../types/product';
 import useMainProducts from '../../../hooks/useMainProducts';
 import GridSlider from '../../UI/Slider/Grid';
-import Slider from '../../UI/Slider/Slider';
 import Item from './Item';
 
 export interface MainProductsProps {
@@ -11,9 +9,8 @@ export interface MainProductsProps {
 }
 
 function MainProducts({ type, category }: MainProductsProps) {
-  const isMobile = useMediaQuery({ maxWidth: 787 });
+  // TODO: toPrevPage/toNextPage 버튼 누른 후, 상품으로 focus
   const {
-    products,
     productChunks,
     error,
     currentPage,
@@ -26,30 +23,18 @@ function MainProducts({ type, category }: MainProductsProps) {
     throw new Error(`${type} fetching Error`);
   }
 
-  if (isMobile) {
-    return (
-      <GridSlider
-        currentPage={currentPage}
-        totalPage={totalPage}
-        nextPageFn={toNextPage}
-        prevPageFn={toPrevPage}
-      >
-        {productChunks[currentPage].map((product) => (
-          <Item
-            key={`${product.rank}-${product.productId}`}
-            product={product}
-          />
-        ))}
-      </GridSlider>
-    );
-  }
-
   return (
-    <Slider>
-      {products.map((product) => (
+    <GridSlider
+      currentPage={currentPage}
+      totalPage={totalPage}
+      nextPageFn={toNextPage}
+      prevPageFn={toPrevPage}
+      title={category?.title || '특가'}
+    >
+      {productChunks[currentPage].map((product) => (
         <Item key={`${product.rank}-${product.productId}`} product={product} />
       ))}
-    </Slider>
+    </GridSlider>
   );
 }
 
