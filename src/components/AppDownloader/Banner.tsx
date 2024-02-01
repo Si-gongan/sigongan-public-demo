@@ -10,7 +10,7 @@ function AppBanner() {
 
   return (
     <div css={styles.container} role="region" aria-labelledby="app-banner">
-      <h2 id="app-banner" className="visually-hidden">
+      <h2 id="app-banner" className="visually-hidden" role="heading">
         앱 설치 배너
       </h2>
       <div css={styles.description}>
