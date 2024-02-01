@@ -54,6 +54,7 @@ export const backBtn = css`
 
 export const emBtn = css`
   padding: 10px 12px;
+  margin: 2px;
   font-size: 14px;
   font-weight: 600;
   color: var(--chat-primary3);
@@ -70,17 +71,7 @@ export const emBtn = css`
 `;
 
 export const content = css`
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text3);
-  border-radius: 16px;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--chat-background);
-  }
+  outline: none;
 `;
 
 export const textContainer = css`

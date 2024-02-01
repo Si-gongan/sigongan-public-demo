@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import { useEffect, useRef } from 'react';
 import * as styles from './Content.styles';
 import { Link } from 'react-router-dom';
 
@@ -8,14 +7,8 @@ interface Props {
 }
 
 const ContentManual: React.FC<Props> = (props) => {
-  const manualRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    manualRef.current?.focus();
-  }, []);
-
   return (
-    <div css={styles.container} tabIndex={-1} ref={manualRef}>
+    <div css={styles.container}>
       <button css={styles.backBtn} onClick={props.clickBack}>
         이전으로
       </button>

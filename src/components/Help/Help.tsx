@@ -19,7 +19,14 @@ const Help: React.FC = () => {
     <>
       <div css={styles.backdrop} onClick={closeHandler} />
       <div css={styles.container}>
-        {isVisibleContent && <HelpContent />}
+        {/* 모달 */}
+        {isVisibleContent && (
+          <HelpContent
+            closeHandler={closeHandler}
+            isVisibleContent={isVisibleContent}
+          />
+        )}
+        {/* 버튼 */}
         <div css={styles.btnContainer}>
           <button
             css={styles.btn}
