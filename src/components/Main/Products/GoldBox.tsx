@@ -8,7 +8,10 @@ function GoldBox() {
   return (
     <Suspense fallback={<Loading />}>
       <Container>
-        <Title>🚨 오늘 하루만! 특가 상품 🚨</Title>
+        <Title>
+          <span aria-hidden="true">🚨 </span>오늘 하루만! 특가 상품
+          <span aria-hidden="true"> 🚨</span>
+        </Title>
         <MainProducts type="gold-box" />
       </Container>
     </Suspense>

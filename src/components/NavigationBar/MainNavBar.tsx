@@ -13,8 +13,13 @@ const MainNavBar: React.FC = () => {
       <RootNav>
         {/* Logo */}
         <div>
-          <NavLink to="/" css={styles.logo}>
-            <img src={logoImage} alt="logo" />
+          <NavLink
+            to="/"
+            css={styles.logo}
+            aria-label="픽포미 로고"
+            role="button"
+          >
+            <img src={logoImage} alt="" />
           </NavLink>
         </div>
         {/* Search */}
@@ -23,16 +28,21 @@ const MainNavBar: React.FC = () => {
         </div>
         {/* Navigation */}
         <div>
-          <ul css={styles.navMenu}>
-            <li css={styles.navItem}>
-              <NavLink to="/chat" css={styles.navLink} aria-label="AI 채팅">
+          <div css={styles.navMenu}>
+            <div css={styles.navItem}>
+              <NavLink
+                to="/chat"
+                css={styles.navLink}
+                aria-label="AI 채팅"
+                role="button"
+              >
                 <BiSolidMessageSquareDetail />
               </NavLink>
-            </li>
-            <li css={styles.navItem}>
+            </div>
+            <div css={styles.navItem}>
               <ThemeButton />
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </RootNav>
     </>

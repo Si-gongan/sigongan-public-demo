@@ -1,13 +1,23 @@
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Category } from '../types/product';
 import { getBestProducts, getGoldBoxProducts } from '../api/axios/ai/api';
-import { useState } from 'react';
 
 const useMainProducts = (
   type: 'best-products' | 'gold-box' = 'best-products',
-  category?: Category
+  category?: Category,
+  focusRef?: React.RefObject<HTMLDivElement>
 ) => {
-  const [currentPage, setCurrentPage] = useState(0);
+  // react-responsive
+  const isMedium = useMediaQuery({ maxWidth: 1056 });
+  const isNarrow = useMediaQuery({ maxWidth: 767 });
+  let chunkLength = 4;
+  if (!isNarrow && isMedium) {
+    chunkLength = 3;
+  }
+
+  // react-query
   const queryKey = [type, category && { category }];
   const queryFn = () =>
     type === 'best-products'
@@ -22,35 +32,51 @@ const useMainProducts = (
   // 상품 전체
   const products = data.products;
 
-  // 4개씩 잘랐을 때 페이지 (인덱스) 개수 - 모바일
-  const totalPage = Math.ceil(products.length / 4) - 1;
-
-  // 상품 4개씩 분할 - 모바일
+  // 상품 chunkLength 개씩 분할
   const productChunks = [];
-  for (let i = 0; i < products.length; i += 4) {
-    productChunks.push(products.slice(i, i + 4));
+  for (let i = 0; i < products.length; i += chunkLength) {
+    productChunks.push(products.slice(i, i + chunkLength));
   }
 
+  // 페이지 (인덱스) 관련
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPage = Math.ceil(products.length / chunkLength) - 1;
+  if (currentPage > totalPage) {
+    setCurrentPage(totalPage);
+  }
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [category]);
+
+  // 현재 보여질 상품 chunk
+  const productChunk =
+    currentPage <= totalPage
+      ? productChunks[currentPage]
+      : productChunks[totalPage];
+
   const toPrevPage = () => {
-    if (currentPage === 0) {
+    if (currentPage !== 0) {
+      setCurrentPage((prev) => prev - 1);
+    } else {
       setCurrentPage(totalPage);
-      return;
     }
-    setCurrentPage((prev) => prev - 1);
+    focusRef?.current?.focus();
   };
 
   const toNextPage = () => {
-    if (currentPage === totalPage) {
+    if (currentPage !== totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    } else {
       setCurrentPage(0);
-      return;
     }
-    setCurrentPage((prev) => prev + 1);
+    focusRef?.current?.focus();
   };
 
   return {
     products,
     totalPage,
     productChunks,
+    productChunk,
     error,
     currentPage,
     toPrevPage,

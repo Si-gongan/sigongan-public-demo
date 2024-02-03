@@ -6,6 +6,7 @@ export const container = css`
   justify-content: center;
   align-items: center;
   padding: 8px;
+  outline: none;
 
   @media screen and (max-width: 767px) {
     padding: 0;

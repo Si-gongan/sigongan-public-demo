@@ -19,15 +19,13 @@ const Item: React.FC<ItemProps> = ({ product }) => {
       >
         <div css={styles.product}>
           <div css={styles.imageWrapper}>
-            <img
-              css={styles.image}
-              src={product.productImage}
-              alt="상품 이미지"
-            />
+            <img css={styles.image} src={product.productImage} alt="" />
           </div>
           <div>
             <div css={styles.contentTitle}>
-              <h3 css={styles.name}>{product.productName}</h3>
+              <h3 css={styles.name} role="presentation">
+                {product.productName}
+              </h3>
             </div>
             <div css={styles.contentPrice}>
               <div css={styles.priceWrapper}>{price}</div>

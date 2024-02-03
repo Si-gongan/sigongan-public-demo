@@ -5,13 +5,13 @@ import Help from '../components/Help/Help';
 const RootLayout: React.FC = () => {
   return (
     <>
+      <section>
+        <Help />
+      </section>
       <MainNavBar />
       <main>
         <Outlet />
       </main>
-      <footer>
-        <Help />
-      </footer>
     </>
   );
 };

@@ -48,12 +48,8 @@ export const link = css`
 export const product = css`
   display: flex;
   flex-direction: column;
-  width: 224px;
+  width: 100%;
   height: 100%;
-
-  @media screen and (max-width: 767px) {
-    width: 100%;
-  }
 `;
 
 export const imageWrapper = css`

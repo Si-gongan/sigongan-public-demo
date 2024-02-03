@@ -1,4 +1,7 @@
 /** @jsxImportSource @emotion/react */
+
+// 이제 사용하지 않는 파일
+
 import { useRef } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import * as styles from './Slider.styles';

@@ -6,7 +6,9 @@ const RouterError: React.FC = () => {
   return (
     <div css={styles.container}>
       <FaTriangleExclamation size={40} />
-      <h2 css={styles.title}>요청하신 페이지가 없습니다.</h2>
+      <h2 css={styles.title} role="heading">
+        요청하신 페이지가 없습니다.
+      </h2>
     </div>
   );
 };

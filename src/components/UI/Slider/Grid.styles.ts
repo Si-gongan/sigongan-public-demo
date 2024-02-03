@@ -1,8 +1,17 @@
 import { css } from '@emotion/react';
 
-export const container = (column: number) => css`
+export const container = css`
+  outline: none;
   display: grid;
-  grid-template-columns: repeat(${column}, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (max-width: 1056px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const actions = css`
