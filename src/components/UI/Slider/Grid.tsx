@@ -8,7 +8,8 @@ interface Props {
   totalPage: number;
   nextPageFn: () => void;
   prevPageFn: () => void;
-  title: string;
+  ariaTitle: string;
+  containerRef: React.RefObject<HTMLDivElement>;
 }
 
 function GridSlider({
@@ -17,14 +18,15 @@ function GridSlider({
   totalPage,
   nextPageFn,
   prevPageFn,
-  title,
+  ariaTitle,
+  containerRef,
 }: Props) {
   const pageText = `${currentPage + 1} / ${totalPage + 1}`;
   const pageLabel = `총 ${totalPage + 1} 페이지 중 ${currentPage + 1} 페이지`;
 
   return (
-    <div role="region" aria-label={`${title} 상품 슬라이더`}>
-      <div css={styles.container} role="group">
+    <div role="region" aria-label={`${ariaTitle} 상품 슬라이더`}>
+      <div css={styles.container} role="group" ref={containerRef} tabIndex={-1}>
         {children}
       </div>
       <div css={styles.actions}>

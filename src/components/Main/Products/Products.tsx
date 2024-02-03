@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Category } from '../../../types/product';
 import useMainProducts from '../../../hooks/useMainProducts';
 import GridSlider from '../../UI/Slider/Grid';
@@ -9,7 +10,7 @@ export interface MainProductsProps {
 }
 
 function MainProducts({ type, category }: MainProductsProps) {
-  // TODO: toPrevPage/toNextPage 버튼 누른 후, 상품으로 focus
+  const containerRef = useRef<HTMLDivElement>(null);
   const {
     productChunks,
     error,
@@ -17,7 +18,7 @@ function MainProducts({ type, category }: MainProductsProps) {
     totalPage,
     toPrevPage,
     toNextPage,
-  } = useMainProducts(type, category);
+  } = useMainProducts(type, category, containerRef);
 
   if (error) {
     throw new Error(`${type} fetching Error`);
@@ -29,7 +30,8 @@ function MainProducts({ type, category }: MainProductsProps) {
       totalPage={totalPage}
       nextPageFn={toNextPage}
       prevPageFn={toPrevPage}
-      title={category?.title || '특가'}
+      ariaTitle={category?.title || '특가'}
+      containerRef={containerRef}
     >
       {productChunks[currentPage].map((product) => (
         <Item key={`${product.rank}-${product.productId}`} product={product} />

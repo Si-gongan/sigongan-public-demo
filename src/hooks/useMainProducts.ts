@@ -6,7 +6,8 @@ import { getBestProducts, getGoldBoxProducts } from '../api/axios/ai/api';
 
 const useMainProducts = (
   type: 'best-products' | 'gold-box' = 'best-products',
-  category?: Category
+  category?: Category,
+  focusRef?: React.RefObject<HTMLDivElement>
 ) => {
   // react-responsive
   const isMedium = useMediaQuery({ maxWidth: 1056 });
@@ -42,19 +43,21 @@ const useMainProducts = (
   }
 
   const toPrevPage = () => {
-    if (currentPage === 0) {
+    if (currentPage !== 0) {
+      setCurrentPage((prev) => prev - 1);
+    } else {
       setCurrentPage(totalPage);
-      return;
     }
-    setCurrentPage((prev) => prev - 1);
+    focusRef?.current?.focus();
   };
 
   const toNextPage = () => {
-    if (currentPage === totalPage) {
+    if (currentPage !== totalPage) {
+      setCurrentPage((prev) => prev + 1);
+    } else {
       setCurrentPage(0);
-      return;
     }
-    setCurrentPage((prev) => prev + 1);
+    focusRef?.current?.focus();
   };
 
   return {

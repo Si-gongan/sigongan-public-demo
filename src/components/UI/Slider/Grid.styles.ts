@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 
 export const container = css`
+  outline: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
