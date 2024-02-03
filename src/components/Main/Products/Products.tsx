@@ -12,7 +12,7 @@ export interface MainProductsProps {
 function MainProducts({ type, category }: MainProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const {
-    productChunks,
+    productChunk,
     error,
     currentPage,
     totalPage,
@@ -33,7 +33,7 @@ function MainProducts({ type, category }: MainProductsProps) {
       ariaTitle={category?.title || '특가'}
       containerRef={containerRef}
     >
-      {productChunks[currentPage].map((product) => (
+      {productChunk.map((product) => (
         <Item key={`${product.rank}-${product.productId}`} product={product} />
       ))}
     </GridSlider>
