@@ -20,15 +20,17 @@ const RecommendedProduct: React.FC<Props> = (props) => {
         target="_blank"
         rel="noopener noreferrer"
         css={styles.link}
-        aria-label={`구매 링크. 상품명: ${shortTitle}, 가격: ${price}`}
+        aria-label={`상품명: ${shortTitle}, 가격: ${price}`}
       >
         <div css={styles.container}>
           <div css={styles.imageWrapper}>
-            <img css={styles.image} src={product.thumbnail} alt="상품 이미지" />
+            <img css={styles.image} src={product.thumbnail} alt="" />
           </div>
           <div css={styles.infoContainer}>
             <div css={styles.contentTitle}>
-              <h2 css={styles.title}>{title}</h2>
+              <h2 css={styles.title} role="heading">
+                {title}
+              </h2>
             </div>
             <div css={styles.contentPrice}>
               <div css={styles.priceWrapper}>{price}</div>
