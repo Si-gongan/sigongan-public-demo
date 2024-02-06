@@ -47,11 +47,11 @@ const Messages: React.FC<Props> = (props) => {
     <div css={styles.messagesContainer}>
       <ResponsiveContainer>
         <div css={styles.content}>
-          {/* TODO: 사전 질문 추천 */}
+          {/* 시작 화면 */}
           {data.length === 0 && (
             <ChatInstruction clickQuestion={clickQuestion} />
           )}
-          {/* 채팅 메시지 렌더링 */}
+          {/* 이전 채팅 메시지 */}
           {data.map((message, index) =>
             message.sender === 'user' ? (
               <MessageUser key={message.id} text={message.text} />
