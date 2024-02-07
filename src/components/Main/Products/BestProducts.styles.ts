@@ -37,7 +37,7 @@ export const card = css`
   cursor: pointer;
 
   @media screen and (max-width: 767px) {
-    margin: 0px;
+    margin: 1px;
   }
 `;
 
