@@ -19,8 +19,13 @@ function HelpContent({ closeHandler, isVisibleContent }: Props) {
   useTrapFocus(contentRef, closeHandler, [contentType, isVisibleContent]);
 
   return (
-    <div css={content} ref={contentRef} tabIndex={-1}>
-      <p className="visually-hidden" role="alert">
+    <div
+      css={content}
+      ref={contentRef}
+      tabIndex={-1}
+      aria-describedby="close-help"
+    >
+      <p className="visually-hidden" id="close-help">
         도움말을 닫으려면 Esc 키를 누르세요
       </p>
       {contentType === 'nav' ? (
