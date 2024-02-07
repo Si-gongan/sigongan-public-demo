@@ -20,7 +20,7 @@ function RootNav({ children }: Props) {
       {isBannerOpen && <AppBanner />}
       <header
         css={header(isBannerOpen, isUp, scrollY)}
-        role="region"
+        role="banner"
         aria-labelledby="root-navigation"
       >
         <h2 id="root-navigation" className="visually-hidden">
