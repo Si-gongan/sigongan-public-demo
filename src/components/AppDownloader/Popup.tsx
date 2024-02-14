@@ -26,7 +26,11 @@ const AppPopup = () => {
         <img src={logoImage} alt="로고" />
       </div>
       <div css={styles.content}>
-        <h2 css={styles.title} role="heading">
+        <h2
+          css={styles.title}
+          role="heading"
+          aria-label="픽포미 앱 2.0 버전 출시"
+        >
           픽포미 앱 v2.0 출시
         </h2>
         <p css={styles.text}>
