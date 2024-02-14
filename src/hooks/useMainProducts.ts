@@ -74,10 +74,10 @@ const useMainProducts = (
 
   return {
     products,
-    totalPage,
     productChunks,
     productChunk,
     error,
+    totalPage,
     currentPage,
     toPrevPage,
     toNextPage,

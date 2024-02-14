@@ -23,9 +23,11 @@ function HelpContent({ closeHandler, isVisibleContent }: Props) {
       css={content}
       ref={contentRef}
       tabIndex={-1}
-      role="dialog"
-      aria-modal="true"
+      aria-describedby="close-help"
     >
+      <p className="visually-hidden" id="close-help">
+        도움말을 닫으려면 Esc 키를 누르세요
+      </p>
       {contentType === 'nav' ? (
         <ContentNav clickManual={() => setContentType('manual')} />
       ) : (

@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { useRecoilValue } from 'recoil';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import Product from './Product';
-import { loaderContainer, productsContainer, ulStyle } from './Products.styles';
+import { loaderContainer, productsContainer } from './Products.styles';
 import { getProducts } from '../../api/axios/coupang/api';
 import LoadMoreButton from './LoadMoreButton';
 import { BarLoader } from 'react-spinners';
 import queryState from '../../recoil/query';
+import ProductList from './ProductList';
 
 const Products: React.FC = () => {
   const query = useRecoilValue(queryState);
@@ -35,14 +35,7 @@ const Products: React.FC = () => {
       )}
       {data && (
         <div>
-          <ul css={ulStyle}>
-            {data?.pages?.map(
-              (page) =>
-                page?.products.map((product) => (
-                  <Product key={product.id} product={product} />
-                ))
-            )}
-          </ul>
+          <ProductList data={data} />
           <LoadMoreButton
             toNextPage={fetchNextPage}
             isFetching={isFetchingNextPage}
