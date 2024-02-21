@@ -19,10 +19,10 @@ const Product: React.FC<PropsType> = (props) => {
     <ProductCard>
       <Link to={`/detail/${product.id}`} ref={focusRef}>
         <div css={styles.imageWrapper}>
-          <img css={styles.image} src={product.thumbnail} alt={truncatedText} />
+          <img css={styles.image} src={product.thumbnail} alt="" />
         </div>
         <div css={styles.contentTitle}>
-          <h2 css={styles.title}>{truncatedText}</h2>
+          <p css={styles.title}>{truncatedText}</p>
         </div>
         <div css={styles.contentPrice}>
           <div css={styles.priceWrapper}>{price}</div>

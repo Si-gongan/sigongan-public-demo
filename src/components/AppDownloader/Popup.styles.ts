@@ -23,6 +23,7 @@ export const content = css`
 `;
 
 export const title = css`
+  font-size: 24px;
   font-weight: 700;
   line-height: 48px;
   padding: 4px 0;

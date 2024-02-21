@@ -23,16 +23,10 @@ const AppPopup = () => {
       aria-modal="true"
     >
       <div css={styles.logo}>
-        <img src={logoImage} alt="로고" />
+        <img src={logoImage} alt="픽포미 로고" />
       </div>
       <div css={styles.content}>
-        <h2
-          css={styles.title}
-          role="heading"
-          aria-label="픽포미 앱 2.0 버전 출시"
-        >
-          픽포미 앱 v2.0 출시
-        </h2>
+        <p css={styles.title}>픽포미 앱 버전 2 출시</p>
         <p css={styles.text}>
           새로워진 픽포미 앱, 이제 앱으로 더 편하게 쇼핑해 보세요!
         </p>
