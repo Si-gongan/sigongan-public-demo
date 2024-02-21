@@ -23,7 +23,10 @@ function HelpContent({ closeHandler, isVisibleContent }: Props) {
       css={content}
       ref={contentRef}
       tabIndex={-1}
+      aria-label="도움말"
       aria-describedby="close-help"
+      role="dialog"
+      aria-modal="true"
     >
       <p className="visually-hidden" id="close-help">
         도움말을 닫으려면 Esc 키를 누르세요

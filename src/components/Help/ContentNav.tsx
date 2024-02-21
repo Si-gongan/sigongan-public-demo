@@ -13,7 +13,11 @@ const ContentNav: React.FC<Props> = (props) => {
 
   return (
     <div css={styles.container}>
-      <button css={styles.navBtn} onClick={props.clickManual}>
+      <button
+        css={styles.navBtn}
+        onClick={props.clickManual}
+        aria-label="도움말"
+      >
         도움말
       </button>
       <div css={styles.navBtn}>
@@ -24,7 +28,7 @@ const ContentNav: React.FC<Props> = (props) => {
           rel="noopener noreferrer"
           role="button"
         >
-          피드백 보내기
+          문의하기
           <FaArrowUpRightFromSquare size={12} />
         </a>
       </div>

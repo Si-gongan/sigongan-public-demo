@@ -33,7 +33,7 @@ function GridSlider({
         <button
           css={styles.arrowBtn}
           onClick={prevPageFn}
-          aria-label="슬라이더 상품 이전 페이지"
+          aria-label="카테고리 상품 이전 페이지"
         >
           <FaAngleLeft />
         </button>
@@ -50,7 +50,7 @@ function GridSlider({
         <button
           css={styles.arrowBtn}
           onClick={nextPageFn}
-          aria-label="슬라이더 상품 다음 페이지"
+          aria-label="카테고리 상품 다음 페이지"
         >
           <FaAngleRight />
         </button>

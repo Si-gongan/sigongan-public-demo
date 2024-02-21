@@ -18,7 +18,7 @@ function ProductList({ data }: Props) {
   }, [data?.pages.length]);
 
   return (
-    <ul css={ulStyle}>
+    <ul css={ulStyle} aria-label="검색 결과">
       {data?.pages?.map((page, idx) => {
         const lastIdx = data.pages.length - 1;
         const isLastPage = idx === lastIdx;

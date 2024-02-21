@@ -20,17 +20,17 @@ const ProductInfo: React.FC<Props> = (props) => {
 
   const infoData: InfoProps['infoData'] = [
     {
-      title: 'category',
+      title: '카테고리',
       label: '카테고리',
       description: product.category,
     },
     {
-      title: 'ratings',
+      title: '평점',
       label: '평점',
       description: product.ratings.toString(),
     },
     {
-      title: 'reviews',
+      title: '리뷰 수',
       label: '리뷰 수',
       description: product.reviews.toString(),
     },
@@ -74,6 +74,7 @@ const ProductInfo: React.FC<Props> = (props) => {
               href={appUrl}
               target="_blank"
               rel="noopener noreferrer"
+              role="button"
             >
               매니저에게 상품 설명 받기
             </a>
