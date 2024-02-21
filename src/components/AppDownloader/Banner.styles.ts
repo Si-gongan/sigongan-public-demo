@@ -28,6 +28,7 @@ export const closeBtn = css`
   border: none;
   cursor: pointer;
   padding: 2px 4px;
+  margin-left: 4px;
   font-size: 10px;
 `;
 
