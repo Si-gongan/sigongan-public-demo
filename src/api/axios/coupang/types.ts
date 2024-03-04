@@ -13,10 +13,10 @@ export interface ProductsResponseModel {
   total: number;
 }
 
-export interface ProductParamsModel {
+export interface SearchDetailParamsModel {
   id: string;
 }
 
-export interface ProductResponseModel {
+export interface SearchDetailResponseModel {
   product: ProductDetailModel;
 }

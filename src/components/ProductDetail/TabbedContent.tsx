@@ -1,99 +1,69 @@
 /** @jsxImportSource @emotion/react */
 import { useQuery } from '@tanstack/react-query';
-import * as styles from './TabbedContent.styles';
-import { StreamType, useStream } from '../../hooks/useStream';
-import { DetailTabType, History } from '../../types/product';
+import { DetailTabType, MainProductTab, ProductTab } from '../../types/product';
 import Instruction from './AISection/Instruction';
 import Answer from './AISection/Answer';
 import ReviewContent from './AISection/Review';
-import PriceChart from './PriceChart/PriceChart';
 import { getReview } from '../../api/axios/ai/api';
-import {
-  getCaption,
-  getPriceDescription,
-  getReport,
-} from '../../api/fetch/ai/api';
+import useTab from '../../hooks/useTab';
+import { getTabButtons } from '../../utils';
+import * as styles from './TabbedContent.styles';
 
-interface Props {
-  id: string;
-  group: string;
-  histories: History[];
+interface MainProductProps {
+  productType: 'main';
   tabType: DetailTabType;
   changeTab: (tab: DetailTabType) => void;
+  tabProps: MainProductTab; // id, url
 }
 
-type Streams = Record<string, StreamType>;
+interface SearchProductProps {
+  productType: 'search';
+  tabType: DetailTabType;
+  changeTab: (tab: DetailTabType) => void;
+  tabProps: ProductTab; // id, group, histories
+}
 
-const TabbedContent: React.FC<Props> = (props) => {
-  const { id, group, histories, tabType, changeTab } = props;
+type Props = MainProductProps | SearchProductProps;
+
+export default function TabbedContent({
+  productType,
+  tabType,
+  changeTab,
+  tabProps,
+}: Props) {
+  const { id } = tabProps;
+  const { queryParam, streams, disabledStreams, answerProps } = useTab(
+    productType === 'main'
+      ? { productType, tabProps }
+      : { productType, tabProps }
+  );
 
   const { isLoading: reviewLoading, refetch } = useQuery({
     queryKey: ['review', { id }],
-    queryFn: () => getReview({ group }),
+    queryFn: () => getReview(queryParam),
     enabled: false,
     staleTime: 300000,
   });
 
-  const streams: Streams = {
-    report: useStream({ id }, getReport),
-    caption: useStream({ id }, getCaption),
-    price: useStream({ id }, getPriceDescription),
-  };
+  const disabled = disabledStreams || reviewLoading;
 
-  const optionalProps = {
-    report: {},
-    caption: {},
-    price: {
-      loadingMessage: '상품 가격을 분석하고 있어요',
-      errorMessage: '가격 분석에 실패했어요',
-      chart: <PriceChart histories={histories} />,
-    },
-  };
-
-  const disabled =
-    !streams.report.isDone ||
-    !streams.caption.isDone ||
-    !streams.price.isDone ||
-    reviewLoading;
-
-  const startAnswerHandler = async (type: DetailTabType) => {
+  const startAnswerHandler = (type: DetailTabType) => {
     changeTab(type);
     if (type && !streams[type].answer) {
       streams[type].startAnswer();
     }
   };
 
-  const clickReviewHadler = () => {
+  const clickReviewHandler = () => {
     changeTab('review');
     refetch();
   };
 
-  const buttons = [
-    {
-      id: 1,
-      tabType: 'report',
-      text: 'AI 리포트 생성',
-      clickHandler: () => startAnswerHandler('report'),
-    },
-    {
-      id: 2,
-      tabType: 'caption',
-      text: '이미지 분석',
-      clickHandler: () => startAnswerHandler('caption'),
-    },
-    {
-      id: 3,
-      tabType: 'price',
-      text: '가격 추적',
-      clickHandler: () => startAnswerHandler('price'),
-    },
-    {
-      id: 4,
-      tabType: 'review',
-      text: '리뷰 분석',
-      clickHandler: clickReviewHadler,
-    },
-  ];
+  const buttons = getTabButtons(
+    productType,
+    startAnswerHandler,
+    clickReviewHandler
+  );
 
   return (
     <div>
@@ -114,15 +84,13 @@ const TabbedContent: React.FC<Props> = (props) => {
       {/* Content */}
       <section css={styles.contentContainer}>
         {!tabType ? (
-          <Instruction />
+          <Instruction productType={productType} />
         ) : tabType === 'review' ? (
           <ReviewContent id={id} />
         ) : (
-          <Answer {...streams[tabType]} {...optionalProps[tabType]} />
+          <Answer {...streams[tabType]} {...answerProps[tabType]} />
         )}
       </section>
     </div>
   );
-};
-
-export default TabbedContent;
+}

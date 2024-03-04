@@ -1,4 +1,10 @@
-import { Category } from '../types/product';
+import { InfoProps } from '../components/UI/Info/types';
+import {
+  Category,
+  DetailTabType,
+  MainProductDetailModel,
+  ProductDetailModel,
+} from '../types/product';
 
 export const categories: Category[] = [
   {
@@ -104,3 +110,102 @@ export const categories: Category[] = [
     description: '아이를 위한 패션 아이템',
   },
 ];
+
+export const getTabButtons = (
+  productType: 'main' | 'search',
+  startAnswer: (type: DetailTabType) => void,
+  clickReview: () => void
+) => {
+  const buttons =
+    productType === 'main'
+      ? [
+          {
+            id: 2,
+            tabType: 'caption',
+            text: '이미지 설명',
+            clickHandler: () => startAnswer('caption'),
+          },
+          {
+            id: 4,
+            tabType: 'review',
+            text: '리뷰 분석',
+            clickHandler: clickReview,
+          },
+        ]
+      : [
+          {
+            id: 1,
+            tabType: 'report',
+            text: '상세페이지 설명',
+            clickHandler: () => startAnswer('report'),
+          },
+          {
+            id: 2,
+            tabType: 'caption',
+            text: '이미지 설명',
+            clickHandler: () => startAnswer('caption'),
+          },
+          {
+            id: 3,
+            tabType: 'price',
+            text: '가격 분석',
+            clickHandler: () => startAnswer('price'),
+          },
+          {
+            id: 4,
+            tabType: 'review',
+            text: '리뷰 분석',
+            clickHandler: clickReview,
+          },
+        ];
+
+  return buttons;
+};
+
+export const getInfo = (
+  product: ProductDetailModel | MainProductDetailModel
+) => {
+  const infoData: InfoProps['infoData'] =
+    'group' in product
+      ? [
+          {
+            title: '옵션',
+            label: '옵션',
+            description: product.option ?? '-',
+          },
+          {
+            title: '평점',
+            label: '평점',
+            description: `${(product.ratings / 100) * 5} 점`,
+          },
+          {
+            title: '리뷰 수',
+            label: '리뷰 수',
+            description: `${product.reviews.toLocaleString()} 개`,
+          },
+          {
+            title: '역대 최고가',
+            label: '역대 최고가',
+            description: `${product.highest_price.toLocaleString()} 원`,
+          },
+          {
+            title: '역대 최저가',
+            label: '역대 최저가',
+            description: `${product.lowest_price.toLocaleString()} 원`,
+          },
+        ]
+      : [
+          {
+            title: '평점',
+            label: '평점',
+            description: `${(product.ratings / 100) * 5} 점`,
+          },
+          {
+            title: '리뷰 수',
+            label: '리뷰 수',
+            description: `${product.reviews.toLocaleString()} 개`,
+          },
+        ];
+
+  return infoData;
+};

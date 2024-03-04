@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { Link } from 'react-router-dom';
 import { BestProduct } from '../../../api/axios/ai/types';
 import * as styles from './BestProducts.styles';
 
@@ -11,12 +12,7 @@ const Item: React.FC<ItemProps> = ({ product }) => {
 
   return (
     <div css={styles.card}>
-      <a
-        href={product.productUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        css={styles.link}
-      >
+      <Link to={`/detail/m${product.productId}`} css={styles.link}>
         <div css={styles.product}>
           <div css={styles.imageWrapper}>
             <img css={styles.image} src={product.productImage} alt="" />
@@ -32,7 +28,7 @@ const Item: React.FC<ItemProps> = ({ product }) => {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };

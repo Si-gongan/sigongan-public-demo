@@ -1,22 +1,39 @@
-export interface ReportParamsModel {
-  id: string;
+interface ReportParams {
   stream?: boolean;
   template?: string;
   basic_info?: string; // any
   detailed_info?: string; // any
 }
 
+interface ReportParamsId extends ReportParams {
+  id: string;
+}
+
+interface ReportParamsUrl extends ReportParams {
+  url: string;
+}
+
+export type ReportParamsModel = ReportParamsId | ReportParamsUrl;
+
 export interface ReportResponseModel {
   answer: string;
 }
 
-export interface CaptionParamsModel {
-  id: string;
-  url?: string;
+interface CaptionParams {
   stream?: boolean;
   template?: string;
   meta_data?: string; // any
 }
+
+interface CaptionParamsId extends CaptionParams {
+  id: string;
+}
+
+interface CaptionParamsUrl extends CaptionParams {
+  url: string;
+}
+
+export type CaptionParamsModel = CaptionParamsId | CaptionParamsUrl;
 
 export interface CaptionResponseModel {
   answer: string;

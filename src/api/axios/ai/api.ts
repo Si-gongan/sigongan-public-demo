@@ -4,6 +4,8 @@ import {
   BestProductsResponse,
   ChatParamsModel,
   ChatResponseModel,
+  MainDetailParamsModel,
+  MainDetailResponseModel,
   GoldBoxResponse,
   ReviewParamsModel,
   ReviewResponseModel,
@@ -13,12 +15,28 @@ const api = axios.create({
   baseURL: process.env.REACT_APP_AI_API_URL,
 });
 
-export const getReview = async (params: ReviewParamsModel) => {
-  const url = `https://www.coupang.com/vp/products/${params.group}`;
-  const response = await api.post<ReviewResponseModel>('/product-review', {
-    url,
+export const getMainDetail = async (params: MainDetailParamsModel) => {
+  const response = await api.post<MainDetailResponseModel>('/product-detail', {
+    url: params.url,
   });
   return response.data;
+};
+
+export const getReview = async (params: ReviewParamsModel) => {
+  if ('group' in params) {
+    const url = `https://www.coupang.com/vp/products/${params.group}`;
+    const response = await api.post<ReviewResponseModel>('/product-review', {
+      url,
+    });
+    return response.data;
+  }
+
+  if ('url' in params) {
+    const response = await api.post<ReviewResponseModel>('/product-review', {
+      url: params.url,
+    });
+    return response.data;
+  }
 };
 
 export const getChat = async (params: ChatParamsModel) => {
