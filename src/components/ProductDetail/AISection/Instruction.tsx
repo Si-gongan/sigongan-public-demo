@@ -19,6 +19,7 @@ export default function Instruction({ productType }: Props) {
         위 탭을 눌러 <strong>AI 분석 서비스</strong>를 이용해 보세요
       </p>
     );
+
   return (
     <ContentCard>
       <div css={styles.content}>

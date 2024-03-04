@@ -12,18 +12,18 @@ import * as styles from './Content.styles';
 
 interface MainProductProps {
   productType: 'main';
+  tabProps: MainProductTab;
   data?: MainDetailResponseModel;
   isLoading: boolean;
   error: Error | null;
-  tabProps: MainProductTab;
 }
 
 interface SearchProductProps {
   productType: 'search';
+  tabProps: ProductTab;
   data?: SearchDetailResponseModel;
   isLoading: boolean;
   error: Error | null;
-  tabProps: ProductTab;
 }
 
 type Props = MainProductProps | SearchProductProps;
@@ -42,6 +42,11 @@ export default function ProductDetailContent({
     setTabType(tab);
   };
 
+  const tabbedProps =
+    productType === 'main'
+      ? { productType, tabProps }
+      : { productType, tabProps };
+
   return (
     <div css={styles.container}>
       {isLoading && <ProductInfoSkeleton />}
@@ -49,21 +54,11 @@ export default function ProductDetailContent({
       {!isLoading && product && (
         <>
           <ProductInfo product={product} />
-          {productType === 'main' ? (
-            <TabbedContent
-              productType={productType}
-              tabType={tabType}
-              changeTab={changeTab}
-              tabProps={tabProps}
-            />
-          ) : (
-            <TabbedContent
-              productType={productType}
-              tabType={tabType}
-              changeTab={changeTab}
-              tabProps={tabProps}
-            />
-          )}
+          <TabbedContent
+            tabType={tabType}
+            changeTab={changeTab}
+            {...tabbedProps}
+          />
         </>
       )}
     </div>

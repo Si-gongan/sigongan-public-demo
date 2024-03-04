@@ -18,11 +18,11 @@ const ProductInfo: React.FC<Props> = (props) => {
   const appUrl = useRecoilValue(appUrlState);
 
   const product = props.product;
+  const thumbnail = 'group' in product ? product.picture : product.thumbnail;
   const url =
     'group' in product
       ? `https://coupang.com/vp/products/${product.group}`
       : product.productUrl;
-  const thumbnail = 'group' in product ? product.picture : product.thumbnail;
   const price = `${product.price.toLocaleString()}원`;
 
   const infoData = getInfo(product);

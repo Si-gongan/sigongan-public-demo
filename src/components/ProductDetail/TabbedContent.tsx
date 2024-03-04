@@ -9,18 +9,18 @@ import useTab from '../../hooks/useTab';
 import { getTabButtons } from '../../utils';
 import * as styles from './TabbedContent.styles';
 
-interface MainProductProps {
+export interface MainProductProps {
   productType: 'main';
+  tabProps: MainProductTab; // id, url
   tabType: DetailTabType;
   changeTab: (tab: DetailTabType) => void;
-  tabProps: MainProductTab; // id, url
 }
 
-interface SearchProductProps {
+export interface SearchProductProps {
   productType: 'search';
+  tabProps: ProductTab; // id, group, histories
   tabType: DetailTabType;
   changeTab: (tab: DetailTabType) => void;
-  tabProps: ProductTab; // id, group, histories
 }
 
 type Props = MainProductProps | SearchProductProps;
