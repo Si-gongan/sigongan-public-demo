@@ -1,4 +1,4 @@
-import { CategoryId } from '../../../types/product';
+import { CategoryId, MainProductDetailModel } from '../../../types/product';
 
 // 채팅 관련 타입
 export interface ChatParamsModel {
@@ -28,9 +28,23 @@ export interface ChatResponseModel {
   };
 }
 
-export interface ReviewParamsModel {
+export interface MainDetailParamsModel {
+  url: string;
+}
+
+export interface MainDetailResponseModel {
+  product: MainProductDetailModel;
+}
+
+interface ReviewParamsGroup {
   group: string;
 }
+
+interface ReviewParamsUrl {
+  url: string;
+}
+
+export type ReviewParamsModel = ReviewParamsGroup | ReviewParamsUrl;
 
 export interface ReviewResponseModel {
   pros: string[];

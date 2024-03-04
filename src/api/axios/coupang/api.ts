@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
-  ProductParamsModel,
-  ProductResponseModel,
+  SearchDetailParamsModel,
+  SearchDetailResponseModel,
   ProductsParamsModel,
   ProductsResponseModel,
 } from './types';
@@ -24,7 +24,7 @@ export const getProducts = async (params: ProductsParamsModel) => {
   return data;
 };
 
-export const getProduct = async (params: ProductParamsModel) => {
-  const response = await api<ProductResponseModel>(params.id);
+export const getProduct = async (params: SearchDetailParamsModel) => {
+  const response = await api<SearchDetailResponseModel>(params.id);
   return response.data;
 };

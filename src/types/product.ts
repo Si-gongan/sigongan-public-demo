@@ -32,6 +32,33 @@ export interface ProductDetailModel {
   reviews: number;
   ratings: number;
   histories: HistoryInput[];
+  option: string;
+  highest_price: number;
+  lowest_price: number;
+}
+
+export interface MainProductDetailModel {
+  name: string;
+  price: number;
+  ratings: number;
+  reviews: number;
+  thumbnail: string;
+  productUrl: string;
+  id: string;
+  productId: string;
+}
+
+// 디테일 페이지 탭 (메인 상품)
+export interface MainProductTab {
+  id: string;
+  url: string;
+}
+
+// 디테일 페이지 탭 (검색 상품)
+export interface ProductTab {
+  id: string;
+  group: string;
+  histories: History[];
 }
 
 export type DetailTabType =

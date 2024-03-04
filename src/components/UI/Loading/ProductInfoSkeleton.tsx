@@ -16,7 +16,6 @@ const ProductInfoSkeleton: React.FC = () => {
           <div css={styles.subTitle} />
           <div css={styles.info} />
           <div css={styles.info} />
-          <div css={styles.info} />
         </div>
         <div css={styles.actions}>
           <div css={styles.button} />

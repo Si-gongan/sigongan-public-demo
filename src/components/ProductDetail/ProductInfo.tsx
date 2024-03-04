@@ -1,45 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { Link } from 'react-router-dom';
-import Info from '../UI/Info/Info';
-import { InfoProps } from '../UI/Info/types';
-import * as styles from './ProductInfo.styles';
-import { ProductDetailModel } from '../../types/product';
 import { useRecoilValue } from 'recoil';
 import appUrlState from '../../recoil/app-url';
+import Info from '../UI/Info/Info';
+import {
+  MainProductDetailModel,
+  ProductDetailModel,
+} from '../../types/product';
+import { getInfo } from '../../utils';
+import * as styles from './ProductInfo.styles';
 
 interface Props {
-  product: ProductDetailModel;
+  product: ProductDetailModel | MainProductDetailModel;
 }
 
 const ProductInfo: React.FC<Props> = (props) => {
   const appUrl = useRecoilValue(appUrlState);
 
   const product = props.product;
-  const url = `https://coupang.com/vp/products/${product.group}`;
+  const thumbnail = 'group' in product ? product.picture : product.thumbnail;
+  const url =
+    'group' in product
+      ? `https://coupang.com/vp/products/${product.group}`
+      : product.productUrl;
   const price = `${product.price.toLocaleString()}원`;
 
-  const infoData: InfoProps['infoData'] = [
-    {
-      title: 'category',
-      label: '카테고리',
-      description: product.category,
-    },
-    {
-      title: 'ratings',
-      label: '평점',
-      description: product.ratings.toString(),
-    },
-    {
-      title: 'reviews',
-      label: '리뷰 수',
-      description: product.reviews.toString(),
-    },
-  ];
+  const infoData = getInfo(product);
 
   return (
     <div css={styles.container}>
       <div css={styles.imgWrapper} aria-label="상품 이미지" tabIndex={0}>
-        <img css={styles.img} src={product.picture} alt={product.name} />
+        <img css={styles.img} src={thumbnail} alt={product.name} />
       </div>
       <div css={styles.contentContainer}>
         <div css={styles.mainInfoContainer}>
