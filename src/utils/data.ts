@@ -120,7 +120,7 @@ export const getTabButtons = (
     productType === 'main'
       ? [
           {
-            id: 2,
+            id: 1,
             tabType: 'caption',
             text: '이미지 설명',
             clickHandler: () => startAnswer('caption'),
@@ -135,15 +135,15 @@ export const getTabButtons = (
       : [
           {
             id: 1,
-            tabType: 'report',
-            text: '상세페이지 설명',
-            clickHandler: () => startAnswer('report'),
-          },
-          {
-            id: 2,
             tabType: 'caption',
             text: '이미지 설명',
             clickHandler: () => startAnswer('caption'),
+          },
+          {
+            id: 2,
+            tabType: 'report',
+            text: '상세 페이지 설명',
+            clickHandler: () => startAnswer('report'),
           },
           {
             id: 3,
