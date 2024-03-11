@@ -9,12 +9,9 @@ function AppBanner() {
   const appUrl = useRecoilValue(appUrlState);
 
   return (
-    <div css={styles.container} role="region" aria-labelledby="app-banner">
+    <div css={styles.container} role="region" aria-label="앱 설치 배너">
       <div css={styles.description}>
-        <button css={styles.closeBtn} onClick={closeBanner} aria-label="닫기">
-          ×
-        </button>
-        <p id="app-banner">앱 설치하고 더 다양한 기능 사용하기</p>
+        <p>앱 설치하고 더 다양한 기능 사용하기</p>
       </div>
       <div css={styles.actions}>
         <a
@@ -25,6 +22,9 @@ function AppBanner() {
         >
           앱으로 보기
         </a>
+        <button css={styles.closeBtn} onClick={closeBanner} aria-label="닫기">
+          ×
+        </button>
       </div>
     </div>
   );

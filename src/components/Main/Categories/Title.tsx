@@ -13,9 +13,9 @@ function CategoryTitle({ isOpen, toggle }: Props) {
 
   return (
     <div css={titleContainer}>
-      <h2 css={title} id="main-category-list" role="heading">
+      <p css={title} id="main-category-list">
         카테고리 별 인기 상품
-      </h2>
+      </p>
       <button css={titleBtn} onClick={toggle} aria-label={btnLabel}>
         {icon}
       </button>

@@ -38,20 +38,23 @@ const SearchBar: React.FC = () => {
         <input
           css={styles.input}
           type="text"
+          value={userInput}
           onChange={changeHandler}
           id="searchInput"
           placeholder="상품을 검색해 보세요"
           aria-label="검색 필드"
           role="search"
         />
-        <button
-          type="reset"
-          css={styles.clearButton(buttonVisible)}
-          onClick={resetHandler}
-          aria-label="입력 삭제"
-        >
-          <BiX size={14} />
-        </button>
+        {buttonVisible && (
+          <button
+            type="reset"
+            css={styles.clearButton}
+            onClick={resetHandler}
+            aria-label="입력 삭제"
+          >
+            <BiX size={14} />
+          </button>
+        )}
       </div>
     </form>
   );

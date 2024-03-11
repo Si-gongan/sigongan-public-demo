@@ -28,9 +28,7 @@ const RecommendedProduct: React.FC<Props> = (props) => {
           </div>
           <div css={styles.infoContainer}>
             <div css={styles.contentTitle}>
-              <h2 css={styles.title} role="heading">
-                {title}
-              </h2>
+              <p css={styles.title}>{title}</p>
             </div>
             <div css={styles.contentPrice}>
               <div css={styles.priceWrapper}>{price}</div>

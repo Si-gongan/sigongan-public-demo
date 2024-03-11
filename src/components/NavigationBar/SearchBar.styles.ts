@@ -45,7 +45,7 @@ export const input = css`
   }
 `;
 
-export const clearButton = (buttonVisible: boolean) => css`
+export const clearButton = css`
   display: flex;
   height: fit-content;
   background: var(--background3);
@@ -54,7 +54,4 @@ export const clearButton = (buttonVisible: boolean) => css`
   border-radius: 100%;
   padding: 2px;
   cursor: pointer;
-  transition: all 0.1s ease-in-out;
-  opacity: ${buttonVisible ? '1' : '0'};
-  pointer-events: ${buttonVisible ? '' : 'none'};
 `;

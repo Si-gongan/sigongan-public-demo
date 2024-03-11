@@ -24,7 +24,6 @@ const ProductInfo: React.FC<Props> = (props) => {
       ? `https://coupang.com/vp/products/${product.group}`
       : product.productUrl;
   const price = `${product.price.toLocaleString()}원`;
-
   const infoData = getInfo(product);
 
   return (
@@ -65,6 +64,7 @@ const ProductInfo: React.FC<Props> = (props) => {
               href={appUrl}
               target="_blank"
               rel="noopener noreferrer"
+              role="button"
             >
               매니저에게 상품 설명 받기
             </a>
