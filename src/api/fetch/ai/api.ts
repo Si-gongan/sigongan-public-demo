@@ -33,7 +33,6 @@ export const getCaption = async (
   abortController: AbortController
 ) => {
   const defaultParams = {
-    url: '',
     stream: true,
     template: undefined,
     meta_data: undefined,
