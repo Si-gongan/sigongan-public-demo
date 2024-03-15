@@ -7,9 +7,9 @@ import {
 } from './types';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_COUPANG_API_URL,
+  baseURL: import.meta.env.VITE_COUPANG_API_URL,
   headers: {
-    Authorization: `Bearer ${process.env.REACT_APP_COUPANG_API_TOKEN}`,
+    Authorization: `Bearer ${import.meta.env.VITE_COUPANG_API_TOKEN}`,
   },
 });
 

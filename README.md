@@ -24,18 +24,18 @@ yarn start
 
 The following environment variables are used by the application:
 
-- `REACT_APP_AI_API_URL` : The API URL for the application.
-- `REACT_APP_COUPANG_API_URL` : The API URL for the products from Coupang.
-- `REACT_APP_COUPANG_API_TOKEN` : The API Token for the products from Coupang.
-- `REACT_APP_SENTRY_DSN` : The Sentry DSN key for tracking error.
+- `VITE_AI_API_URL` : The API URL for the application.
+- `VITE_COUPANG_API_URL` : The API URL for the products from Coupang.
+- `VITE_COUPANG_API_TOKEN` : The API Token for the products from Coupang.
+- `VITE_SENTRY_DSN` : The Sentry DSN key for tracking error.
 
 To set these environment variables, create a `.env` file in the root directory of the project and add the following lines:
 
 ```
-REACT_APP_AI_API_URL=YOUR_API
-REACT_APP_COUPANG_API_URL=YOUR_API
-REACT_APP_COUPANG_API_TOKEN=YOUR_TOKEN
-REACT_APP_SENTRY_DSN=YOUR_SENTRY_KEY
+VITE_AI_API_URL=YOUR_API
+VITE_COUPANG_API_URL=YOUR_API
+VITE_COUPANG_API_TOKEN=YOUR_TOKEN
+VITE_SENTRY_DSN=YOUR_SENTRY_KEY
 ```
 
 ## Development Environment
