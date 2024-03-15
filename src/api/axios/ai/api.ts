@@ -12,7 +12,7 @@ import {
 } from './types';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_AI_API_URL,
+  baseURL: import.meta.env.VITE_AI_API_URL,
 });
 
 export const getMainDetail = async (params: MainDetailParamsModel) => {

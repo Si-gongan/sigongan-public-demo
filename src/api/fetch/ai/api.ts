@@ -4,7 +4,7 @@ import {
   PriceParamsModel,
 } from './types';
 
-const apiUrl = process.env.REACT_APP_AI_API_URL;
+const apiUrl = import.meta.env.VITE_AI_API_URL;
 
 export const getReport = async (
   params: ReportParamsModel,
