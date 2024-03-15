@@ -9,6 +9,8 @@ const useMainProducts = (
   category?: Category,
   focusRef?: React.RefObject<HTMLDivElement>
 ) => {
+  const [isReadPage, setIsReadPage] = useState(false); // fix: aria-live
+
   // react-responsive
   const isMedium = useMediaQuery({ maxWidth: 1056 });
   const isNarrow = useMediaQuery({ maxWidth: 767 });
@@ -44,8 +46,11 @@ const useMainProducts = (
   if (currentPage > totalPage) {
     setCurrentPage(totalPage);
   }
+
+  // 카테고리 변경 시 페이지 0으로 초기화 후 focus
   useEffect(() => {
     setCurrentPage(0);
+    focusRef?.current?.focus();
   }, [category]);
 
   // 현재 보여질 상품 chunk
@@ -54,33 +59,29 @@ const useMainProducts = (
       ? productChunks[currentPage]
       : productChunks[totalPage];
 
-  const toPrevPage = () => {
-    if (currentPage !== 0) {
-      setCurrentPage((prev) => prev - 1);
-    } else {
-      setCurrentPage(totalPage);
+  const navigatePage = (direction: 'prev' | 'next') => {
+    switch (direction) {
+      case 'prev':
+        setCurrentPage((prev) => (prev !== 0 ? prev - 1 : totalPage));
+        break;
+      case 'next':
+        setCurrentPage((prev) => (prev !== totalPage ? prev + 1 : 0));
+        break;
     }
     focusRef?.current?.focus();
-  };
-
-  const toNextPage = () => {
-    if (currentPage !== totalPage) {
-      setCurrentPage((prev) => prev + 1);
-    } else {
-      setCurrentPage(0);
-    }
-    focusRef?.current?.focus();
+    setIsReadPage(true);
   };
 
   return {
+    isReadPage,
     products,
     productChunks,
     productChunk,
     error,
     totalPage,
     currentPage,
-    toPrevPage,
-    toNextPage,
+    toPrevPage: () => navigatePage('prev'),
+    toNextPage: () => navigatePage('next'),
   };
 };
 

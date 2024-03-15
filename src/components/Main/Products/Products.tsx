@@ -12,6 +12,7 @@ export interface MainProductsProps {
 function MainProducts({ type, category }: MainProductsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const {
+    isReadPage,
     productChunk,
     error,
     currentPage,
@@ -32,6 +33,7 @@ function MainProducts({ type, category }: MainProductsProps) {
       prevPageFn={toPrevPage}
       ariaTitle={category?.title || '특가'}
       containerRef={containerRef}
+      isReadPage={isReadPage}
     >
       {productChunk.map((product) => (
         <Item key={`${product.rank}-${product.productId}`} product={product} />

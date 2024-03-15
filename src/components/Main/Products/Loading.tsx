@@ -9,7 +9,7 @@ const Loading = () => {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 467px;
+        height: 504px;
       `}
     >
       <BarLoader color="#aaa" speedMultiplier={1.2} />
