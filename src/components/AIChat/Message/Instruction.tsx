@@ -36,10 +36,8 @@ const ChatInstruction: React.FC<Props> = (props) => {
       <div css={styles.container}>
         <FaQuoteLeft size={20} color="#6f6f6f" />
         <div css={styles.text} tabIndex={0}>
-          <p>
-            대화를 통해 상품을 추천해주는 픽포미의 AI 챗봇입니다. <br />
-            아래 버튼을 눌러 대화를 시작해보세요.
-          </p>
+          <p>대화를 통해 상품을 추천해주는 인공지능 챗봇 포미 입니다. </p>
+          <p>아래 버튼을 눌러 대화를 시작해보세요.</p>
         </div>
         <div css={styles.actions}>
           {questions.map((question) => (

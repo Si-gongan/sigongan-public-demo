@@ -33,7 +33,7 @@ const MainNavBar: React.FC = () => {
               <NavLink
                 to="/chat"
                 css={styles.navLink}
-                aria-label="AI 채팅"
+                aria-label="인공지능 챗봇 포미"
                 role="button"
               >
                 <BiSolidMessageSquareDetail />
