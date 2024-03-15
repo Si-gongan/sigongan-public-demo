@@ -10,6 +10,7 @@ interface Props {
   prevPageFn: () => void;
   ariaTitle: string;
   containerRef: React.RefObject<HTMLDivElement>;
+  isReadPage: boolean;
 }
 
 function GridSlider({
@@ -20,13 +21,20 @@ function GridSlider({
   prevPageFn,
   ariaTitle,
   containerRef,
+  isReadPage,
 }: Props) {
   const pageText = `${currentPage + 1} / ${totalPage + 1}`;
   const pageLabel = `총 ${totalPage + 1} 페이지 중 ${currentPage + 1} 페이지`;
 
   return (
     <div role="region" aria-label={`${ariaTitle} 상품 슬라이더`}>
-      <div css={styles.container} role="group" ref={containerRef} tabIndex={-1}>
+      <div
+        css={styles.container}
+        role="group"
+        aria-label={`${ariaTitle} 상품`}
+        ref={containerRef}
+        tabIndex={-1}
+      >
         {children}
       </div>
       <div css={styles.actions}>
@@ -37,12 +45,13 @@ function GridSlider({
         >
           <FaAngleLeft />
         </button>
-        <span css={styles.text} aria-label={pageLabel}>
+        <span css={styles.text} aria-labelledby="grid-page-label">
           {pageText}
         </span>
         <span
           className="visually-hidden"
-          aria-live="polite"
+          id="grid-page-label"
+          aria-live={isReadPage ? 'polite' : undefined}
           aria-atomic="false"
         >
           {pageLabel}
